@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Mangalore University Alumni</title>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a67d8;
+            --secondary: #764ba2;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #6b7280;
+            --gray-light: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Profile Layout */
+        .profile-container {
+            padding: 2rem 0;
+        }
+
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Profile Sidebar */
+        .profile-sidebar {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-title {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .profile-menu {
+            padding: 1rem 0;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background: var(--light);
+            color: var(--primary);
+            border-right: 3px solid var(--primary);
+        }
+
+        .menu-item i {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Profile Content */
+        .profile-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Profile Info */
+        .profile-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        /* Connections Grid */
+        .connections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .connection-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .connection-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .connection-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .connection-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .connection-title {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0.75rem;
+        }
+
+        .connection-actions {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--gray-light);
+            color: var(--dark);
+        }
+
+        .btn-outline:hover {
+            background: var(--light);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Events Section */
+        .events-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            font-weight: 500;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .event-card {
+            border: 1px solid var(--gray-light);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-header {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .event-body {
+            padding: 1.25rem;
+        }
+
+        .event-description {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .event-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* Update Button */
+        .update-btn-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .btn-update {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-update:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Empty States */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--gray);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .connections-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="assets/img/logo.png" alt="Mangalore University Alumni" class="logo-img">
+                    <span>Mangalore University Alumni</span>
+                </a>
+                
+                <!-- User Profile Dropdown would be here -->
+                <div class="user-profile">
+                    <button class="btn btn-outline">
+                        <i class="bi bi-person-circle"></i>
+                        My Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Container -->
+    <div class="container profile-container">
+        <div class="profile-layout">
+            <!-- Profile Sidebar -->
+            <div class="profile-sidebar">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <h2 class="profile-name" id="profileName">John Doe</h2>
+                    <p class="profile-title">Alumni Member</p>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="connectionsCount">42</div>
+                        <div class="stat-label">Connections</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="eventsCount">8</div>
+                        <div class="stat-label">Events</div>
+                    </div>
+                </div>
+                
+                <div class="profile-menu">
+                    <a href="#profile" class="menu-item active">
+                        <i class="bi bi-person"></i>
+                        Profile Information
+                    </a>
+                    <a href="#connections" class="menu-item">
+                        <i class="bi bi-people"></i>
+                        My Connections
+                    </a>
+                    <a href="#events" class="menu-item">
+                        <i class="bi bi-calendar-event"></i>
+                        My Events
+                    </a>
+                    <a href="#membership" class="menu-item">
+                        <i class="bi bi-card-checklist"></i>
+                        Membership
+                    </a>
+                    <a href="#settings" class="menu-item">
+                        <i class="bi bi-gear"></i>
+                        Settings
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Profile Content -->
+            <div class="profile-content">
+                <!-- Profile Information Card -->
+                <div class="profile-card" id="profile">
+                    <div class="card-header">
+                        <h3 class="card-title">Profile Information</h3>
+                        <button class="btn btn-outline">
+                            <i class="bi bi-pencil"></i>
+                            Edit Profile
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="profile-info-grid">
+                            <div class="info-group">
+                                <div class="info-label">Full Name</div>
+                                <div class="info-value" id="infoName">John Doe</div>
+                            </div>
+                            <div class="info-group">
+                                <div class="info-label">Email Address</div>
+                                <div class="info-value" id="infoEmail">john.doe@alumni.mangaloreuniversity.edu</div>
+                            </div>
+                            <div class="info-group">
+                                <div class="info-label">Phone Number</div>
+                                <div class="info-value" id="infoPhone">+91 98765 43210</div>
+                            </div>
+                            <div class="info-group">
+                                <div class="info-label">WhatsApp Number</div>
+                                <div class="info-value" id="infoWhatsApp">+91 98765 43210 <span class="privacy-badge">Public</span></div>
+                            </div>
+                            <div class="info-group">
+                                <div class="info-label">Degree/Course</div>
+                                <div class="info-value" id="infoDegree">Bachelor of Computer Applications</div>
+                            </div>
+                            <div class="info-group">
+                                <div class="info-label">Passout Year</div>
+                                <div class="info-value" id="infoPassoutYear">2020</div>
+                            </div>
+                            <div class="info-group">
+                                <div class="info-label">University Seat Number (USN)</div>
+                                <div class="info-value" id="infoUSN">4MU20BCA001</div>
+                            </div>
+                            <div class="info-group">
+                                <div class="info-label">Current Address</div>
+                                <div class="info-value" id="infoAddress">123 Main Street, Mangalore, Karnataka 575001, India</div>
+                            </div>
+                            <div class="info-group">
+                                <div class="info-label">Membership Status</div>
+                                <div class="info-value">
+                                    <span class="status-badge active">Active</span>
+                                </div>
+                            </div>
+                            <div class="info-group">
+                                <div class="info-label">Membership Since</div>
+                                <div class="info-value" id="infoMemberSince">January 15, 2021</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Connections Card -->
+                <div class="profile-card" id="connections">
+                    <div class="card-header">
+                        <h3 class="card-title">My Connections</h3>
+                        <button class="btn btn-primary">
+                            <i class="bi bi-plus"></i>
+                            Add Connection
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="connections-grid" id="connectionsGrid">
+                            <!-- Connections will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Events Card -->
+                <div class="profile-card" id="events">
+                    <div class="card-header">
+                        <h3 class="card-title">My Events</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="events-tabs">
+                            <button class="tab-btn active" data-tab="interested">Interested</button>
+                            <button class="tab-btn" data-tab="not-interested">Not Interested</button>
+                            <button class="tab-btn" data-tab="attended">Attended</button>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <div class="events-grid" id="interestedEvents">
+                                <!-- Interested events will be populated by JavaScript -->
+                            </div>
+                            <div class="events-grid" id="notInterestedEvents" style="display: none;">
+                                <!-- Not interested events will be populated by JavaScript -->
+                            </div>
+                            <div class="events-grid" id="attendedEvents" style="display: none;">
+                                <!-- Attended events will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Update Button -->
+                <div class="update-btn-container">
+                    <button class="btn-update" id="updateProfileBtn">
+                        <i class="bi bi-arrow-clockwise"></i>
+                        Update Profile Information
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample Data
+        const profileData = {
+            name: "John Doe",
+            email: "john.doe@alumni.mangaloreuniversity.edu",
+            phone: "+91 98765 43210",
+            whatsapp: "+91 98765 43210",
+            degree: "Bachelor of Computer Applications",
+            passoutYear: "2020",
+            usn: "4MU20BCA001",
+            address: "123 Main Street, Mangalore, Karnataka 575001, India",
+            memberSince: "January 15, 2021"
+        };
+
+        const connections = [
+            { id: 1, name: "Sarah Johnson", title: "Software Engineer", initial: "S" },
+            { id: 2, name: "Michael Chen", title: "Data Scientist", initial: "M" },
+            { id: 3, name: "Priya Sharma", title: "Product Manager", initial: "P" },
+            { id: 4, name: "Robert Wilson", title: "UX Designer", initial: "R" },
+            { id: 5, name: "Emily Davis", title: "Marketing Director", initial: "E" },
+            { id: 6, name: "David Brown", title: "Business Analyst", initial: "D" }
+        ];
+
+        const events = {
+            interested: [
+                { 
+                    id: 1, 
+                    title: "Annual Alumni Meet 2023", 
+                    date: "Dec 15, 2023", 
+                    location: "University Campus", 
+                    description: "Join us for the annual alumni gathering with keynote speakers, networking sessions, and campus tours."
+                },
+                { 
+                    id: 2, 
+                    title: "Tech Innovation Summit", 
+                    date: "Jan 20, 2024", 
+                    location: "Virtual Event", 
+                    description: "Explore the latest trends in technology and innovation with industry leaders."
+                }
+            ],
+            notInterested: [
+                { 
+                    id: 3, 
+                    title: "Finance Workshop", 
+                    date: "Nov 30, 2023", 
+                    location: "Business School Auditorium", 
+                    description: "Learn about personal finance management and investment strategies."
+                }
+            ],
+            attended: [
+                { 
+                    id: 4, 
+                    title: "Career Guidance Session", 
+                    date: "Oct 10, 2023", 
+                    location: "Career Development Center", 
+                    description: "Interactive session on career planning and job search strategies for recent graduates."
+                },
+                { 
+                    id: 5, 
+                    title: "Alumni Sports Day", 
+                    date: "Sep 5, 2023", 
+                    location: "University Sports Complex", 
+                    description: "Fun-filled sports event for alumni with various competitions and activities."
+                }
+            ]
+        };
+
+        // Initialize Profile Page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load profile data
+            loadProfileData();
+            
+            // Load connections
+            loadConnections();
+            
+            // Load events
+            loadEvents();
+            
+            // Setup event listeners
+            setupEventListeners();
+        });
+
+        // Load Profile Data
+        function loadProfileData() {
+            document.getElementById('profileName').textContent = profileData.name;
+            document.getElementById('infoName').textContent = profileData.name;
+            document.getElementById('infoEmail').textContent = profileData.email;
+            document.getElementById('infoPhone').textContent = profileData.phone;
+            document.getElementById('infoWhatsApp').textContent = profileData.whatsapp;
+            document.getElementById('infoDegree').textContent = profileData.degree;
+            document.getElementById('infoPassoutYear').textContent = profileData.passoutYear;
+            document.getElementById('infoUSN').textContent = profileData.usn;
+            document.getElementById('infoAddress').textContent = profileData.address;
+            document.getElementById('infoMemberSince').textContent = profileData.memberSince;
+            
+            // Update stats
+            document.getElementById('connectionsCount').textContent = connections.length;
+            document.getElementById('eventsCount').textContent = 
+                events.interested.length + events.attended.length;
+        }
+
+        // Load Connections
+        function loadConnections() {
+            const connectionsGrid = document.getElementById('connectionsGrid');
+            connectionsGrid.innerHTML = '';
+            
+            if (connections.length === 0) {
+                connectionsGrid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <i class="bi bi-people"></i>
+                        <h3>No Connections Yet</h3>
+                        <p>Start building your network by connecting with other alumni.</p>
+                        <button class="btn btn-primary mt-2">
+                            <i class="bi bi-plus"></i>
+                            Find Connections
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            connections.forEach(connection => {
+                const connectionCard = document.createElement('div');
+                connectionCard.className = 'connection-card';
+                connectionCard.innerHTML = `
+                    <div class="connection-avatar">
+                        ${connection.initial}
+                    </div>
+                    <div class="connection-name">${connection.name}</div>
+                    <div class="connection-title">${connection.title}</div>
+                    <div class="connection-actions">
+                        <button class="btn btn-outline btn-sm" onclick="messageConnection(${connection.id})">
+                            <i class="bi bi-chat"></i>
+                        </button>
+                        <button class="btn btn-outline btn-sm" onclick="removeConnection(${connection.id})">
+                            <i class="bi bi-person-dash"></i>
+                        </button>
+                    </div>
+                `;
+                connectionsGrid.appendChild(connectionCard);
+            });
+        }
+
+        // Load Events
+        function loadEvents() {
+            loadEventTab('interested', events.interested);
+            loadEventTab('not-interested', events.notInterested);
+            loadEventTab('attended', events.attended);
+        }
+
+        function loadEventTab(tabId, eventsList) {
+            const eventsContainer = document.getElementById(tabId + 'Events');
+            eventsContainer.innerHTML = '';
+            
+            if (eventsList.length === 0) {
+                eventsContainer.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <i class="bi bi-calendar-x"></i>
+                        <h3>No Events</h3>
+                        <p>You don't have any events in this category.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            eventsList.forEach(event => {
+                const eventCard = document.createElement('div');
+                eventCard.className = 'event-card';
+                eventCard.innerHTML = `
+                    <div class="event-header">
+                        <div class="event-date">
+                            <i class="bi bi-calendar-event"></i>
+                            ${event.date}
+                        </div>
+                        <div class="event-title">${event.title}</div>
+                        <div class="event-location">
+                            <i class="bi bi-geo-alt"></i>
+                            ${event.location}
+                        </div>
+                    </div>
+                    <div class="event-body">
+                        <p class="event-description">${event.description}</p>
+                        <div class="event-actions">
+                            <button class="btn btn-primary btn-sm" onclick="viewEvent(${event.id})">
+                                <i class="bi bi-eye"></i>
+                                View Details
+                            </button>
+                            ${tabId === 'interested' ? `
+                            <button class="btn btn-outline btn-sm" onclick="markNotInterested(${event.id})">
+                                <i class="bi bi-x-circle"></i>
+                                Not Interested
+                            </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+                eventsContainer.appendChild(eventCard);
+            });
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Tab switching
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all tab contents
+                    document.getElementById('interestedEvents').style.display = 'none';
+                    document.getElementById('notInterestedEvents').style.display = 'none';
+                    document.getElementById('attendedEvents').style.display = 'none';
+                    
+                    // Show selected tab content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId + 'Events').style.display = 'grid';
+                });
+            });
+            
+            // Update profile button
+            document.getElementById('updateProfileBtn').addEventListener('click', function() {
+                // Show loading state
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="bi bi-arrow-clockwise spinning"></i> Updating...';
+                this.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    alert('Profile updated successfully!');
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 1500);
+            });
+            
+            // Menu item clicks
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all items
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Scroll to section
+                    const targetId = this.getAttribute('href').substring(1);
+                    document.getElementById(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+
+        // Connection Actions
+        function messageConnection(connectionId) {
+            alert(`Messaging connection ${connectionId}`);
+        }
+
+        function removeConnection(connectionId) {
+            if (confirm('Are you sure you want to remove this connection?')) {
+                alert(`Removed connection ${connectionId}`);
+                // In a real app, you would update the connections array and reload
+            }
+        }
+
+        // Event Actions
+        function viewEvent(eventId) {
+            alert(`Viewing event ${eventId}`);
+        }
+
+        function markNotInterested(eventId) {
+            if (confirm('Mark this event as not interested?')) {
+                alert(`Marked event ${eventId} as not interested`);
+                // In a real app, you would update the events data and reload
+            }
+        }
+
+        // Add spinning animation for update button
+        const style = document.createElement('style');
+        style.textContent = `
+            .spinning {
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            .status-badge {
+                display: inline-block;
+                padding: 0.25rem 0.75rem;
+                border-radius: 20px;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+            .status-badge.active {
+                background: #d1fae5;
+                color: #065f46;
+            }
+            .privacy-badge {
+                display: inline-block;
+                padding: 0.15rem 0.5rem;
+                border-radius: 12px;
+                font-size: 0.7rem;
+                background: #e0f2fe;
+                color: #0369a1;
+                margin-left: 0.5rem;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

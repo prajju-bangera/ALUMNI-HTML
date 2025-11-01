@@ -1,6 +1,6 @@
 /**
-* Template Name: Dewi
-* Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
+* Template Name: Mangalore University Alumni
+* Template URL: https://bootstrapmade.com/Mangalore University Alumni-free-multi-purpose-html-template/
 * Updated: Aug 07 2024 with Bootstrap v5.3.3
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
@@ -239,10 +239,26 @@ h6 {
 }
 
 .sitename {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin: 0;
+ display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+
+}
+.university-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff; /* Dark blue color */
+    margin: 0;
+    white-space: nowrap;
+}
+
+.alumni-network {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #a2aaff; /* Same dark blue color */
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 2px 0 0 0;
 }
 
 /* Responsive logo */
@@ -267,13 +283,14 @@ h6 {
   }
 }
 .header .logo {
-  line-height: 1;
+ text-decoration: none;
+  color: inherit;
 }
 
 .header .logo img {
-  max-height: 36px;
-  margin-right: 8px;
-}
+   height: 50px;
+    width: auto;
+    margin-right: 12px;}
 
 .header .logo h1 {
   font-size: 26px;
@@ -291,7 +308,7 @@ h6 {
   border-radius: 20px;
   transition: 0.3s;
   text-transform: uppercase;
-  border: 2px solid var(--contrast-color);
+  border: 2px solid rgb(153, 199, 251)
 }
 
 .header .cta-btn:hover,
@@ -1886,3 +1903,108 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+  /* User Profile Dropdown */
+        .user-profile {
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .user-profile-btn {
+        width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+        }
+
+        .user-profile-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            /* background: rgba(255, 255, 255, 0.2); */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* border: 2px solid rgba(255, 255, 255, 0.3); */
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .profile-dropdown-arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .user-profile.active .profile-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .profile-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 10px;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .user-profile.active .profile-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .profile-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #495057;
+            transition: all 0.3s ease;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .profile-dropdown-item:hover {
+            background: #f8f9fa;
+            color: #667eea;
+        }
+
+        .profile-dropdown-divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 5px 0;
+        }
+
+        .logout-btn {
+            color: #dc3545;
+        }
+
+        .logout-btn:hover {
+            background: #f8d7da;
+            color: #dc3545;
+        }

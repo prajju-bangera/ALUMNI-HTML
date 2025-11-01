@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Description - Mangalore University Alumni</title>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a67d8;
+            --secondary: #764ba2;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #6b7280;
+            --gray-light: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .breadcrumb-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-links a:hover {
+            color: var(--primary);
+        }
+
+        /* News Article */
+        .news-article {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .article-header {
+            position: relative;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 2rem;
+            color: white;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .article-content {
+            padding: 3rem;
+        }
+
+        .article-body {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-intro {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        .article-text {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .article-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-highlight {
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .article-quote {
+            font-style: italic;
+            border-left: 4px solid var(--secondary);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* Article Actions */
+        .article-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            border-top: 1px solid var(--gray-light);
+            background: var(--light);
+        }
+
+        .social-share {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .share-text {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid var(--gray-light);
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .share-btn.facebook:hover { background: #1877f2; color: white; border-color: #1877f2; }
+        .share-btn.twitter:hover { background: #1da1f2; color: white; border-color: #1da1f2; }
+        .share-btn.linkedin:hover { background: #0077b5; color: white; border-color: #0077b5; }
+        .share-btn.whatsapp:hover { background: #25d366; color: white; border-color: #25d366; }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--gray-light);
+            color: var(--dark);
+        }
+
+        .btn-outline:hover {
+            background: var(--light);
+        }
+
+        /* Related News */
+        .related-news {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 3px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .related-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .related-content {
+            padding: 1.5rem;
+        }
+
+        .related-category {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .related-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .related-excerpt {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .related-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Comments Section */
+        .comments-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .comments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .comments-count {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .comment-form {
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .comments-list {
+            margin-top: 2rem;
+        }
+
+        .comment {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .comment-text {
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section p {
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .article-actions {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: flex-start;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comments-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .article-title {
+                font-size: 1.75rem;
+            }
+
+            .article-overlay {
+                padding: 1.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="assets/img/logo.png" alt="Mangalore University Alumni" class="logo-img">
+                    <span>Mangalore University Alumni</span>
+                </a>
+                
+                <div class="user-profile">
+                    <a href="profile.html" class="btn btn-outline">
+                        <i class="bi bi-person-circle"></i>
+                        My Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="index.html">Home</a>
+                <i class="bi bi-chevron-right"></i>
+                <a href="news.html">Latest News</a>
+                <i class="bi bi-chevron-right"></i>
+                <span id="breadcrumbTitle">News Article</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Article -->
+    <div class="container">
+        <article class="news-article" id="newsArticle">
+            <!-- Article content will be populated by JavaScript -->
+        </article>
+
+        <!-- Related News -->
+        <section class="related-news">
+            <h2 class="section-title">Related News</h2>
+            <div class="related-grid" id="relatedNews">
+                <!-- Related news will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Comments Section -->
+        <section class="comments-section">
+            <div class="comments-header">
+                <h3 class="comments-count" id="commentsCount">Comments (3)</h3>
+                <button class="btn btn-outline" id="toggleCommentForm">
+                    <i class="bi bi-chat"></i>
+                    Add Comment
+                </button>
+            </div>
+
+            <form class="comment-form" id="commentForm" style="display: none;">
+                <div class="form-group">
+                    <label for="commentName" class="form-label">Name</label>
+                    <input type="text" id="commentName" class="form-input" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="commentEmail" class="form-label">Email</label>
+                    <input type="email" id="commentEmail" class="form-input" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="commentText" class="form-label">Comment</label>
+                    <textarea id="commentText" class="form-textarea" placeholder="Share your thoughts..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-send"></i>
+                    Post Comment
+                </button>
+            </form>
+
+            <div class="comments-list" id="commentsList">
+                <!-- Comments will be populated by JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Mangalore University Alumni</h3>
+                    <p>Connecting graduates across the globe and celebrating their achievements while fostering lifelong relationships with our alma mater.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html" style="color: #cbd5e1;">Home</a></p>
+                    <p><a href="AlumniNetwork.html" style="color: #cbd5e1;">Alumni Network</a></p>
+                    <p><a href="notable-alumni.html" style="color: #cbd5e1;">Notable Alumni</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Mangalore University</p>
+                    <p>Mangalagangothri, Mangalore</p>
+                    <p>Karnataka 574199, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Mangalore University Alumni Association. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample News Data (In a real app, this would come from a database or API)
+        const newsData = {
+            1: {
+                id: 1,
+                title: "University Announces New Research Center for AI and Machine Learning",
+                category: "University Updates",
+                image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                author: "Dr. Ramesh Kumar",
+                date: "December 15, 2023",
+                readTime: "3 min read",
+                excerpt: "Mangalore University establishes a state-of-the-art research facility focusing on artificial intelligence and machine learning applications.",
+                content: `
+                    <p class="article-intro">Mangalore University is proud to announce the establishment of a groundbreaking Research Center for Artificial Intelligence and Machine Learning, marking a significant milestone in our commitment to technological innovation and academic excellence.</p>
+                    
+                    <p>The new center, spanning over 20,000 square feet, is equipped with cutting-edge computing infrastructure and research facilities. It will serve as a hub for interdisciplinary research, bringing together experts from computer science, mathematics, engineering, and various applied sciences.</p>
+                    
+                    <div class="article-highlight">
+                        <strong>Key Features:</strong>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                            <li>High-performance computing cluster with 100+ GPUs</li>
+                            <li>Dedicated research labs for computer vision, natural language processing, and robotics</li>
+                            <li>Collaboration spaces for industry-academia partnerships</li>
+                            <li>Incubation center for AI-based startups</li>
+                        </ul>
+                    </div>
+                    
+                    <p>Professor Anjali Sharma, who will be heading the center, expressed her enthusiasm: "This facility represents our commitment to staying at the forefront of technological innovation. We aim to create an ecosystem where theoretical research meets practical applications, benefiting both our students and the wider community."</p>
+                    
+                    <p>The center will offer specialized courses, workshops, and certification programs in AI and ML, making these cutting-edge technologies accessible to students from diverse academic backgrounds. Industry partnerships with leading tech companies will provide students with real-world project experience and career opportunities.</p>
+                    
+                    <div class="article-quote">
+                        "Artificial Intelligence is not just the future; it's the present. By establishing this research center, we're ensuring that our students are not just consumers of technology but creators and innovators who will shape the future of this field."
+                        <br><br>
+                        <strong>- Dr. Ramesh Kumar, Vice Chancellor</strong>
+                    </div>
+                    
+                    <p>Research focus areas will include healthcare AI, agricultural technology, environmental monitoring, and educational technology. The center aims to address local and global challenges through innovative AI solutions while maintaining ethical standards and social responsibility.</p>
+                    
+                    <p>Admissions for the first batch of students will begin in January 2024, with both undergraduate and postgraduate programs available. The university has also announced scholarships for meritorious students and those from underrepresented backgrounds in technology.</p>
+                `,
+                tags: ["AI", "Machine Learning", "Research", "Technology", "Innovation"]
+            },
+            2: {
+                id: 2,
+                title: "Alumnus Rajesh Mehta's Startup Reaches $100M Valuation",
+                category: "Alumni Spotlights",
+                image: "https://images.unsplash.com/photo-1551836026-d5c88ac5c4fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                author: "Alumni Team",
+                date: "December 12, 2023",
+                readTime: "4 min read",
+                excerpt: "Computer Science graduate from 2010 batch achieves remarkable success with his AI-powered healthcare startup.",
+                content: `
+                    <p class="article-intro">Rajesh Mehta, a 2010 Computer Science graduate from Mangalore University, has reached a significant milestone as his healthcare technology startup, MedAI Solutions, achieves a $100 million valuation in its latest funding round.</p>
+                    
+                    <p>Founded in 2018, MedAI Solutions uses artificial intelligence to revolutionize medical diagnosis and treatment planning. The platform analyzes medical images, patient records, and clinical data to assist healthcare professionals in making accurate diagnoses and personalized treatment recommendations.</p>
+                    
+                    <p>"The foundation I received at Mangalore University, particularly in algorithms and data structures, was instrumental in developing our core technology," Mehta shared in an exclusive interview. "My professors encouraged critical thinking and problem-solving, skills that have been invaluable in my entrepreneurial journey."</p>
+                    
+                    <div class="article-highlight">
+                        <strong>Key Achievements:</strong>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                            <li>$100M valuation in Series B funding</li>
+                            <li>Partnerships with 50+ hospitals across India</li>
+                            <li>95% accuracy in early cancer detection</li>
+                            <li>Recognition from Ministry of Health</li>
+                        </ul>
+                    </div>
+                    
+                    <p>The startup's success story began in Mehta's final year project, where he developed a basic algorithm for medical image analysis. After working with multinational tech companies for several years, he decided to pursue his passion for healthcare technology.</p>
+                    
+                    <div class="article-quote">
+                        "Seeing the impact our technology has on patient outcomes is what drives me every day. We're not just building a business; we're saving lives and making quality healthcare more accessible."
+                        <br><br>
+                        <strong>- Rajesh Mehta, Founder & CEO</strong>
+                    </div>
+                    
+                    <p>MedAI Solutions currently employs over 150 professionals, including 25 fellow Mangalore University alumni. The company has plans to expand to Southeast Asian and African markets in the coming year.</p>
+                    
+                    <p>Mehta attributes part of his success to the strong alumni network. "The Mangalore University alumni community has been incredibly supportive. Many of our early investors and advisors came through alumni connections," he noted.</p>
+                    
+                    <p>The university plans to invite Mehta as a guest lecturer for the upcoming semester, where he will share his entrepreneurial journey and insights with current students.</p>
+                `,
+                tags: ["Startup", "Healthcare", "AI", "Entrepreneurship", "Success Story"]
+            }
+        };
+
+        // Sample Related News
+        const relatedNews = [
+            {
+                id: 3,
+                title: "Annual Alumni Reunion 2024: Record-breaking Attendance",
+                category: "Events",
+                image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                excerpt: "Over 2000 alumni gathered for the annual reunion, creating unforgettable memories and strengthening bonds.",
+                date: "December 8, 2023"
+            },
+            {
+                id: 4,
+                title: "Alumni Mentorship Program Helps 500+ Students Secure Jobs",
+                category: "Career Stories",
+                image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                excerpt: "Our mentorship initiative connects experienced alumni with current students for career guidance.",
+                date: "December 5, 2023"
+            },
+            {
+                id: 6,
+                title: "New Digital Library Inaugurated with 50,000+ Online Resources",
+                category: "University Updates",
+                image: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                excerpt: "University enhances learning resources with state-of-the-art digital library accessible worldwide.",
+                date: "November 28, 2023"
+            }
+        ];
+
+        // Sample Comments
+        const sampleComments = [
+            {
+                id: 1,
+                author: "Priya Sharma",
+                date: "2 days ago",
+                text: "This is fantastic news! As an alumna working in tech, I'm thrilled to see our university taking such progressive steps. Looking forward to potential collaborations."
+            },
+            {
+                id: 2,
+                author: "Dr. Arjun Patel",
+                date: "1 day ago",
+                text: "Excellent initiative! The focus on interdisciplinary research is particularly commendable. Wishing the team great success."
+            },
+            {
+                id: 3,
+                author: "Sanjay Kumar",
+                date: "5 hours ago",
+                text: "Proud to be part of an institution that's embracing the future of technology. Hope current students make the most of these opportunities."
+            }
+        ];
+
+        // Initialize Page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get news ID from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const newsId = parseInt(urlParams.get('id')) || 1;
+            
+            // Load news article
+            loadNewsArticle(newsId);
+            
+            // Load related news
+            loadRelatedNews();
+            
+            // Load comments
+            loadComments();
+            
+            // Setup event listeners
+            setupEventListeners();
+        });
+
+        // Load News Article
+        function loadNewsArticle(newsId) {
+            const news = newsData[newsId];
+            if (!news) {
+                // Redirect to news list if article not found
+                window.location.href = 'news.html';
+                return;
+            }
+            
+            const articleContainer = document.getElementById('newsArticle');
+            const breadcrumbTitle = document.getElementById('breadcrumbTitle');
+            
+            // Update breadcrumb
+            breadcrumbTitle.textContent = news.title.length > 30 ? 
+                news.title.substring(0, 30) + '...' : news.title;
+            
+            // Create article HTML
+            articleContainer.innerHTML = `
+                <div class="article-header">
+                    <img src="${news.image}" alt="${news.title}" class="article-image">
+                    <div class="article-overlay">
+                        <div class="article-category">${news.category}</div>
+                        <h1 class="article-title">${news.title}</h1>
+                        <div class="article-meta">
+                            <div class="meta-item">
+                                <i class="bi bi-person"></i>
+                                <span>By ${news.author}</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="bi bi-calendar"></i>
+                                <span>${news.date}</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="bi bi-clock"></i>
+                                <span>${news.readTime}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-content">
+                    <div class="article-body">
+                        ${news.content}
+                        
+                        <div class="article-tags" style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-light);">
+                            <strong style="color: var(--dark);">Tags: </strong>
+                            ${news.tags.map(tag => `<span style="background: var(--light); color: var(--primary); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; margin-right: 0.5rem;">#${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-actions">
+                    <div class="social-share">
+                        <span class="share-text">Share this article:</span>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" class="share-btn twitter">
+                                <i class="bi bi-twitter"></i>
+                            </a>
+                            <a href="#" class="share-btn linkedin">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="#" class="share-btn whatsapp">
+                                <i class="bi bi-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-outline" onclick="window.print()">
+                            <i class="bi bi-printer"></i>
+                            Print
+                        </button>
+                        <a href="news.html" class="btn btn-primary">
+                            <i class="bi bi-arrow-left"></i>
+                            Back to News
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            // Update page title
+            document.title = `${news.title} - Mangalore University Alumni`;
+        }
+
+        // Load Related News
+        function loadRelatedNews() {
+            const relatedContainer = document.getElementById('relatedNews');
+            
+            relatedNews.forEach(news => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'related-card';
+                newsCard.innerHTML = `
+                    <img src="${news.image}" alt="${news.title}" class="related-image">
+                    <div class="related-content">
+                        <div class="related-category">${news.category}</div>
+                        <h4 class="related-title">${news.title}</h4>
+                        <p class="related-excerpt">${news.excerpt}</p>
+                        <div class="related-meta">
+                            <span>${news.date}</span>
+                            <a href="news-description.html?id=${news.id}" class="read-more-btn" style="color: var(--primary); text-decoration: none; font-weight: 500;">
+                                Read More <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                
+                relatedContainer.appendChild(newsCard);
+            });
+        }
+
+        // Load Comments
+        function loadComments() {
+            const commentsList = document.getElementById('commentsList');
+            const commentsCount = document.getElementById('commentsCount');
+            
+            commentsCount.textContent = `Comments (${sampleComments.length})`;
+            
+            if (sampleComments.length === 0) {
+                commentsList.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: var(--gray);">
+                        <i class="bi bi-chat" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
+                        <p>No comments yet. Be the first to share your thoughts!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            sampleComments.forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.className = 'comment';
+                commentElement.innerHTML = `
+                    <div class="comment-header">
+                        <div class="comment-author">${comment.author}</div>
+                        <div class="comment-date">${comment.date}</div>
+                    </div>
+                    <div class="comment-text">${comment.text}</div>
+                `;
+                
+                commentsList.appendChild(commentElement);
+            });
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Toggle comment form
+            const toggleButton = document.getElementById('toggleCommentForm');
+            const commentForm = document.getElementById('commentForm');
+            
+            toggleButton.addEventListener('click', function() {
+                const isVisible = commentForm.style.display === 'block';
+                commentForm.style.display = isVisible ? 'none' : 'block';
+                toggleButton.innerHTML = isVisible ? 
+                    '<i class="bi bi-chat"></i> Add Comment' : 
+                    '<i class="bi bi-x"></i> Cancel';
+            });
+            
+            // Handle comment form submission
+            commentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('commentName').value;
+                const email = document.getElementById('commentEmail').value;
+                const text = document.getElementById('commentText').value;
+                
+                if (name && email && text) {
+                    // In a real app, you would send this to a server
+                    alert('Thank you for your comment! It will be reviewed before publishing.');
+                    commentForm.reset();
+                    commentForm.style.display = 'none';
+                    toggleButton.innerHTML = '<i class="bi bi-chat"></i> Add Comment';
+                }
+            });
+            
+            // Social share buttons
+            const shareButtons = document.querySelectorAll('.share-btn');
+            shareButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const platform = this.classList[1]; // facebook, twitter, etc.
+                    alert(`Sharing via ${platform} would be implemented here`);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

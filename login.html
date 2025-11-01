@@ -475,43 +475,37 @@
         }
 
         // Form Submission
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const formData = {
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value,
-                rememberMe: document.getElementById('rememberMe').checked
-            };
+        // Form Submission - Simplified version
+loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-            // Basic validation
-            if (!formData.email || !formData.password) {
-                showError('Please fill in all fields');
-                return;
-            }
+    if (!email || !password) {
+        showError('Please fill in all fields');
+        return;
+    }
 
-            setLoading(true);
-            hideError();
+    setLoading(true);
+    hideError();
 
-            try {
-                // Simulate API call
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                // For demo purposes, check for specific credentials
-                if (formData.email === 'alumni@mangaloreuniversity.edu' && formData.password === 'password') {
-                    // Successful login
-                    alert('Login successful! Redirecting...');
-                    window.location.href = 'index.html';
-                } else {
-                    throw new Error('Invalid email or password');
-                }
-            } catch (err) {
-                showError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        });
-
+    try {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Accept any email/password for testing
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userName', '');
+        
+        window.location.href = 'index.html';
+        
+    } catch (err) {
+        showError('Login failed. Please try again.');
+    } finally {
+        setLoading(false);
+    }
+});
         // Navigation Functions
         function goBack() {
             window.history.back();

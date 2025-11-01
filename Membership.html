@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Portal</title>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Button styles */
+        .btn-get-started {
+            display: inline-block;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+        }
+
+        .btn-get-started:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(106, 17, 203, 0.4);
+        }
+
+        /* Overlay styles */
+        .alumni-membership-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        /* Form container styles */
+        .alumni-membership-form-container {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header styles */
+        .alumni-membership-header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 12px 12px 0 0;
+            position: relative;
+        }
+
+        .alumni-membership-header h2 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .alumni-membership-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .alumni-membership-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .alumni-membership-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Form styles */
+        .alumni-membership-form {
+            padding: 25px;
+        }
+
+        .alumni-form-grid {
+            display: grid;
+            gap: 25px;
+        }
+
+        .alumni-form-section {
+            background: #f9fafc;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #6a11cb;
+        }
+
+        .alumni-form-section-title {
+            font-size: 18px;
+            color: #6a11cb;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .alumni-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .alumni-form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .alumni-form-group {
+            margin-bottom: 15px;
+        }
+
+        .alumni-form-label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .alumni-form-input, .alumni-form-textarea, .alumni-form-file-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        .alumni-form-input:focus, .alumni-form-textarea:focus {
+            outline: none;
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+        }
+
+        .alumni-form-input.error, .alumni-form-textarea.error, .alumni-form-file-input.error {
+            border-color: #e74c3c;
+        }
+
+        .alumni-form-error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .alumni-form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* WhatsApp input with toggle */
+        .whatsapp-input-with-toggle {
+            display: flex;
+            align-items: center;
+        }
+
+        .whatsapp-input {
+            flex: 1;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .privacy-toggle-inside {
+            margin-left: -1px;
+        }
+
+        .privacy-toggle-btn {
+            height: 46px;
+            width: 50px;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-radius: 0 6px 6px 0;
+            background: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .privacy-toggle-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .privacy-explanation {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Payment section */
+        .alumni-payment-info {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #eaeaea;
+        }
+
+        .alumni-payment-amount {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .alumni-payment-label {
+            font-weight: 600;
+        }
+
+        .alumni-payment-value {
+            font-weight: 700;
+            color: #6a11cb;
+            font-size: 18px;
+        }
+
+        .alumni-upi-section {
+            margin-bottom: 20px;
+        }
+
+        .alumni-upi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .alumni-upi-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .alumni-upi-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .alumni-upi-copy-btn, .alumni-upi-scanner-btn {
+            background: #f0f4ff;
+            border: 1px solid #c5d3ff;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .alumni-upi-copy-btn:hover, .alumni-upi-scanner-btn:hover {
+            background: #e1e9ff;
+        }
+
+        .alumni-upi-details {
+            background: #f9fafc;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .alumni-upi-instructions {
+            font-size: 13px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Scanner section */
+        .alumni-scanner-container {
+            background: white;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .alumni-scanner-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .alumni-scanner-header h4 {
+            color: #6a11cb;
+            margin-bottom: 5px;
+        }
+
+        .alumni-scanner-image {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .alumni-qr-code {
+            max-width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            background: white;
+        }
+
+        .alumni-scanner-instructions {
+            background: #f9fafc;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .alumni-scanner-instructions ol {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .alumni-scanner-instructions li {
+            margin-bottom: 5px;
+        }
+
+        /* File preview */
+        .alumni-file-preview {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #27ae60;
+        }
+
+        /* Form actions */
+        .alumni-form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .alumni-form-cancel-btn {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .alumni-form-cancel-btn:hover {
+            background: #eaeaea;
+        }
+
+        .alumni-form-submit-btn {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alumni-form-submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(106, 17, 203, 0.3);
+        }
+
+        .alumni-form-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .alumni-loading-spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Demo content */
+        .demo-content {
+            text-align: center;
+            padding: 100px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .demo-content h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .demo-content p {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="demo-content">
+            <h1>Alumni Portal</h1>
+            <p>Connect with your fellow alumni and stay updated with the latest news and events from your alma mater.</p>
+            <a href="#about" class="btn-get-started" id="get-started-btn">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Alumni Membership Form Popup - Hidden by default -->
+    <div class="alumni-membership-overlay" id="membership-overlay">
+        <div class="alumni-membership-form-container">
+            <div class="alumni-membership-header">
+                <h2>🎓 Alumni Membership Registration</h2>
+                <p class="alumni-membership-subtitle">
+                    Join our growing network of successful alumni. Membership fee: ₹300
+                </p>
+                <button class="alumni-membership-close-btn" id="close-form-btn">
+                    ✕
+                </button>
+            </div>
+
+            <form class="alumni-membership-form" id="membership-form">
+                <div class="alumni-form-grid">
+                    <!-- Personal Information -->
+                    <div class="alumni-form-section">
+                        <h3 class="alumni-form-section-title">Personal Information</h3>
+                        
+                        <div class="alumni-form-group">
+                            <label for="name" class="alumni-form-label">
+                                Full Name *
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="alumni-form-input"
+                                placeholder="Enter your full name"
+                            />
+                            <span class="alumni-form-error" id="name-error"></span>
+                        </div>
+
+                        <div class="alumni-form-row">
+                            <div class="alumni-form-group">
+                                <label for="email" class="alumni-form-label">
+                                    Email Address *
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="alumni-form-input"
+                                    placeholder="your.email@example.com"
+                                />
+                                <span class="alumni-form-error" id="email-error"></span>
+                            </div>
+
+                            <div class="alumni-form-group">
+                                <label for="whatsapp" class="alumni-form-label">
+                                    WhatsApp Number *
+                                </label>
+                                <div class="whatsapp-input-with-toggle">
+                                    <input
+                                        type="tel"
+                                        id="whatsapp"
+                                        name="whatsapp"
+                                        class="alumni-form-input whatsapp-input"
+                                        placeholder="9876543210"
+                                    />
+                                    <div class="privacy-toggle-inside">
+                                        <button
+                                            type="button"
+                                            class="privacy-toggle-btn public"
+                                            id="privacy-toggle"
+                                            title="Public - Click to make private"
+                                        >
+                                            🌐
+                                        </button>
+                                    </div>
+                                </div>
+                                <span class="alumni-form-error" id="whatsapp-error"></span>
+                                <div class="privacy-explanation" id="privacy-explanation">
+                                    🌐 Your number will be visible to other alumni members
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Information -->
+                    <div class="alumni-form-section">
+                        <h3 class="alumni-form-section-title">Academic Information</h3>
+                        
+                        <div class="alumni-form-row">
+                            <div class="alumni-form-group">
+                                <label for="degree" class="alumni-form-label">
+                                    Degree/Course *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="degree"
+                                    name="degree"
+                                    class="alumni-form-input"
+                                    placeholder="e.g., B.Sc, M.Com, MBA"
+                                />
+                                <span class="alumni-form-error" id="degree-error"></span>
+                            </div>
+
+                            <div class="alumni-form-group">
+                                <label for="passoutYear" class="alumni-form-label">
+                                    Passout Year *
+                                </label>
+                                <select
+                                    id="passoutYear"
+                                    name="passoutYear"
+                                    class="alumni-form-input"
+                                >
+                                    <option value="">Select Year</option>
+                                    <!-- Years will be populated by JavaScript -->
+                                </select>
+                                <span class="alumni-form-error" id="passoutYear-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="alumni-form-group">
+                            <label for="usn" class="alumni-form-label">
+                                University Seat Number (USN) *
+                            </label>
+                            <input
+                                type="text"
+                                id="usn"
+                                name="usn"
+                                class="alumni-form-input"
+                                placeholder="e.g., 4MU20CS001"
+                            />
+                            <span class="alumni-form-error" id="usn-error"></span>
+                        </div>
+
+                        <div class="alumni-form-group">
+                            <label for="currentAddress" class="alumni-form-label">
+                                Current Address *
+                            </label>
+                            <textarea
+                                id="currentAddress"
+                                name="currentAddress"
+                                class="alumni-form-input alumni-form-textarea"
+                                placeholder="Enter your complete current address"
+                                rows="3"
+                            ></textarea>
+                            <span class="alumni-form-error" id="currentAddress-error"></span>
+                        </div>
+                    </div>
+
+                    <!-- Payment Section -->
+                    <div class="alumni-form-section">
+                        <h3 class="alumni-form-section-title">Payment Details</h3>
+                        <div class="alumni-payment-info">
+                            <div class="alumni-payment-amount">
+                                <span class="alumni-payment-label">Membership Fee:</span>
+                                <span class="alumni-payment-value">₹300</span>
+                            </div>
+                            
+                            <div class="alumni-upi-section">
+                                <div class="alumni-upi-header">
+                                    <span class="alumni-upi-title">UPI Payment</span>
+                                    <div class="alumni-upi-buttons">
+                                        <button type="button" class="alumni-upi-copy-btn" id="copy-upi-btn">
+                                            📋 Copy UPI ID
+                                        </button>
+                                        <button type="button" class="alumni-upi-scanner-btn" id="scanner-btn">
+                                            📱 Pay using Scanner
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="alumni-upi-details">
+                                    <div class="alumni-upi-id">
+                                        <strong>UPI ID:</strong> alumni.association@upi
+                                    </div>
+                                    <div class="alumni-upi-name">
+                                        <strong>Name:</strong> Alumni Association
+                                    </div>
+                                </div>
+                                <p class="alumni-upi-instructions">
+                                    Send ₹300 to the above UPI ID and upload the payment screenshot below.
+                                </p>
+
+                                <!-- Scanner Image Display -->
+                                <div class="alumni-scanner-container" id="scanner-container">
+                                    <div class="alumni-scanner-header">
+                                        <h4>Scan to Pay</h4>
+                                        <p>Use any UPI app to scan this QR code</p>
+                                    </div>
+                                    <div class="alumni-scanner-image">
+                                        <!-- Placeholder for QR code -->
+                                        <div style="width: 200px; height: 200px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 8px;">
+                                            QR Code Placeholder
+                                        </div>
+                                    </div>
+                                    <div class="alumni-scanner-instructions">
+                                        <p><strong>Instructions:</strong></p>
+                                        <ol>
+                                            <li>Open your UPI payment app (Google Pay, PhonePe, Paytm, etc.)</li>
+                                            <li>Tap on 'Scan QR Code'</li>
+                                            <li>Scan the QR code above</li>
+                                            <li>Enter amount: ₹300 and complete payment</li>
+                                            <li>Take a screenshot of the payment confirmation</li>
+                                            <li>Upload the screenshot below</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="alumni-form-group">
+                                <label for="paymentScreenshot" class="alumni-form-label">
+                                    Payment Screenshot *
+                                </label>
+                                <input
+                                    type="file"
+                                    id="paymentScreenshot"
+                                    name="paymentScreenshot"
+                                    class="alumni-form-file-input"
+                                    accept="image/*,.pdf"
+                                />
+                                <span class="alumni-form-error" id="paymentScreenshot-error"></span>
+                                <div class="alumni-file-preview" id="file-preview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alumni-form-actions">
+                    <button
+                        type="button"
+                        class="alumni-form-cancel-btn"
+                        id="cancel-btn"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type="submit"
+                        class="alumni-form-submit-btn"
+                        id="submit-btn"
+                    >
+                        Submit Application
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get DOM elements
+            const getStartedBtn = document.getElementById('get-started-btn');
+            const membershipOverlay = document.getElementById('membership-overlay');
+            const closeFormBtn = document.getElementById('close-form-btn');
+            const cancelBtn = document.getElementById('cancel-btn');
+            const membershipForm = document.getElementById('membership-form');
+            const privacyToggle = document.getElementById('privacy-toggle');
+            const privacyExplanation = document.getElementById('privacy-explanation');
+            const copyUpiBtn = document.getElementById('copy-upi-btn');
+            const scannerBtn = document.getElementById('scanner-btn');
+            const scannerContainer = document.getElementById('scanner-container');
+            const paymentScreenshot = document.getElementById('paymentScreenshot');
+            const filePreview = document.getElementById('file-preview');
+            const passoutYearSelect = document.getElementById('passoutYear');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            // Populate passout year dropdown
+            const currentYear = new Date().getFullYear();
+            for (let i = 0; i < 50; i++) {
+                const year = currentYear - i;
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                passoutYearSelect.appendChild(option);
+            }
+            
+            // Show form when "Get Started" is clicked
+            getStartedBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                membershipOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+            
+            // Hide form when close button is clicked
+            function closeForm() {
+                membershipOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+                scannerContainer.style.display = 'none'; // Hide scanner if open
+                scannerBtn.textContent = '📱 Pay using Scanner'; // Reset scanner button text
+            }
+            
+            closeFormBtn.addEventListener('click', closeForm);
+            cancelBtn.addEventListener('click', closeForm);
+            
+            // Close form when clicking outside the form container
+            membershipOverlay.addEventListener('click', function(e) {
+                if (e.target === membershipOverlay) {
+                    closeForm();
+                }
+            });
+            
+            // Toggle WhatsApp privacy setting
+            let isPrivate = false;
+            privacyToggle.addEventListener('click', function() {
+                isPrivate = !isPrivate;
+                if (isPrivate) {
+                    privacyToggle.classList.remove('public');
+                    privacyToggle.classList.add('private');
+                    privacyToggle.innerHTML = '🔒';
+                    privacyToggle.title = 'Private - Click to make public';
+                    privacyExplanation.innerHTML = '🔒 Your number will not be visible to other alumni';
+                } else {
+                    privacyToggle.classList.remove('private');
+                    privacyToggle.classList.add('public');
+                    privacyToggle.innerHTML = '🌐';
+                    privacyToggle.title = 'Public - Click to make private';
+                    privacyExplanation.innerHTML = '🌐 Your number will be visible to other alumni members';
+                }
+            });
+            
+            // Copy UPI ID to clipboard
+            copyUpiBtn.addEventListener('click', function() {
+                const upiId = 'alumni.association@upi';
+                navigator.clipboard.writeText(upiId).then(function() {
+                    // Show success feedback
+                    const originalText = copyUpiBtn.textContent;
+                    copyUpiBtn.textContent = '✅ Copied!';
+                    setTimeout(() => {
+                        copyUpiBtn.textContent = originalText;
+                    }, 2000);
+                }).catch(function(err) {
+                    console.error('Failed to copy UPI ID: ', err);
+                    alert('Failed to copy UPI ID. Please copy it manually: ' + upiId);
+                });
+            });
+            
+            // Toggle scanner display
+            scannerBtn.addEventListener('click', function() {
+                if (scannerContainer.style.display === 'none') {
+                    scannerContainer.style.display = 'block';
+                    scannerBtn.textContent = '📱 Hide Scanner';
+                } else {
+                    scannerContainer.style.display = 'none';
+                    scannerBtn.textContent = '📱 Pay using Scanner';
+                }
+            });
+            
+            // Show file name when selected
+            paymentScreenshot.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    filePreview.textContent = '✅ ' + this.files[0].name;
+                } else {
+                    filePreview.textContent = '';
+                }
+            });
+            
+            // Form validation and submission
+            membershipForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simple validation
+                let isValid = true;
+                const requiredFields = ['name', 'email', 'whatsapp', 'degree', 'passoutYear', 'usn', 'currentAddress'];
+                
+                requiredFields.forEach(field => {
+                    const input = document.getElementById(field);
+                    const error = document.getElementById(field + '-error');
+                    
+                    if (!input.value.trim()) {
+                        input.classList.add('error');
+                        error.textContent = 'This field is required';
+                        isValid = false;
+                    } else {
+                        input.classList.remove('error');
+                        error.textContent = '';
+                    }
+                });
+                
+                // Validate email format
+                const emailInput = document.getElementById('email');
+                const emailError = document.getElementById('email-error');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailInput.value && !emailRegex.test(emailInput.value)) {
+                    emailInput.classList.add('error');
+                    emailError.textContent = 'Please enter a valid email address';
+                    isValid = false;
+                }
+                
+                // Validate WhatsApp number
+                const whatsappInput = document.getElementById('whatsapp');
+                const whatsappError = document.getElementById('whatsapp-error');
+                const phoneRegex = /^[0-9]{10}$/;
+                if (whatsappInput.value && !phoneRegex.test(whatsappInput.value)) {
+                    whatsappInput.classList.add('error');
+                    whatsappError.textContent = 'Please enter a valid 10-digit phone number';
+                    isValid = false;
+                }
+                
+                // Check if file is selected
+                const fileError = document.getElementById('paymentScreenshot-error');
+                if (!paymentScreenshot.files.length) {
+                    paymentScreenshot.classList.add('error');
+                    fileError.textContent = 'Please upload a payment screenshot';
+                    isValid = false;
+                } else {
+                    paymentScreenshot.classList.remove('error');
+                    fileError.textContent = '';
+                }
+                
+                if (isValid) {
+                    // Simulate form submission
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<div class="alumni-loading-spinner"></div> Submitting...';
+                    
+                    // In a real application, you would send the form data to a server here
+                    setTimeout(() => {
+                        alert('Form submitted successfully!');
+                        closeForm();
+                        membershipForm.reset();
+                        filePreview.textContent = '';
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Submit Application';
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+</body>
