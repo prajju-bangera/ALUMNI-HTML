@@ -25,52 +25,15 @@
             padding: 20px;
         }
 
-        /* Button styles */
-        .btn-get-started {
-            display: inline-block;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
-        }
-
-        .btn-get-started:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(106, 17, 203, 0.4);
-        }
-
-        /* Overlay styles */
-        .alumni-membership-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none; /* Hidden by default */
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            padding: 20px;
-        }
-
         /* Form container styles */
         .alumni-membership-form-container {
             background: white;
             border-radius: 12px;
             width: 100%;
             max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 0.3s ease-out;
+            margin: 40px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-out;
         }
 
         @keyframes fadeIn {
@@ -95,28 +58,6 @@
         .alumni-membership-subtitle {
             font-size: 14px;
             opacity: 0.9;
-        }
-
-        .alumni-membership-close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .alumni-membership-close-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
         }
 
         /* Form styles */
@@ -431,7 +372,7 @@
         /* Demo content */
         .demo-content {
             text-align: center;
-            padding: 100px 20px;
+            padding: 40px 20px;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -451,24 +392,18 @@
 </head>
 <body>
     <div class="container">
-        <div class="demo-content">
+        <!-- <div class="demo-content">
             <h1>Alumni Portal</h1>
             <p>Connect with your fellow alumni and stay updated with the latest news and events from your alma mater.</p>
-            <a href="#about" class="btn-get-started" id="get-started-btn">Get Started</a>
-        </div>
-    </div>
+        </div> -->
 
-    <!-- Alumni Membership Form Popup - Hidden by default -->
-    <div class="alumni-membership-overlay" id="membership-overlay">
+        <!-- Alumni Membership Form - Now directly displayed -->
         <div class="alumni-membership-form-container">
             <div class="alumni-membership-header">
                 <h2>🎓 Alumni Membership Registration</h2>
                 <p class="alumni-membership-subtitle">
                     Join our growing network of successful alumni. Membership fee: ₹300
                 </p>
-                <button class="alumni-membership-close-btn" id="close-form-btn">
-                    ✕
-                </button>
             </div>
 
             <form class="alumni-membership-form" id="membership-form">
@@ -701,10 +636,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Get DOM elements
-            const getStartedBtn = document.getElementById('get-started-btn');
-            const membershipOverlay = document.getElementById('membership-overlay');
-            const closeFormBtn = document.getElementById('close-form-btn');
-            const cancelBtn = document.getElementById('cancel-btn');
             const membershipForm = document.getElementById('membership-form');
             const privacyToggle = document.getElementById('privacy-toggle');
             const privacyExplanation = document.getElementById('privacy-explanation');
@@ -715,6 +646,7 @@
             const filePreview = document.getElementById('file-preview');
             const passoutYearSelect = document.getElementById('passoutYear');
             const submitBtn = document.getElementById('submit-btn');
+            const cancelBtn = document.getElementById('cancel-btn');
             
             // Populate passout year dropdown
             const currentYear = new Date().getFullYear();
@@ -725,31 +657,6 @@
                 option.textContent = year;
                 passoutYearSelect.appendChild(option);
             }
-            
-            // Show form when "Get Started" is clicked
-            getStartedBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                membershipOverlay.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            });
-            
-            // Hide form when close button is clicked
-            function closeForm() {
-                membershipOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Restore scrolling
-                scannerContainer.style.display = 'none'; // Hide scanner if open
-                scannerBtn.textContent = '📱 Pay using Scanner'; // Reset scanner button text
-            }
-            
-            closeFormBtn.addEventListener('click', closeForm);
-            cancelBtn.addEventListener('click', closeForm);
-            
-            // Close form when clicking outside the form container
-            membershipOverlay.addEventListener('click', function(e) {
-                if (e.target === membershipOverlay) {
-                    closeForm();
-                }
-            });
             
             // Toggle WhatsApp privacy setting
             let isPrivate = false;
@@ -804,6 +711,29 @@
                 } else {
                     filePreview.textContent = '';
                 }
+            });
+            
+            // Reset form when cancel button is clicked
+            cancelBtn.addEventListener('click', function() {
+                membershipForm.reset();
+                filePreview.textContent = '';
+                scannerContainer.style.display = 'none';
+                scannerBtn.textContent = '📱 Pay using Scanner';
+                
+                // Reset privacy toggle
+                isPrivate = false;
+                privacyToggle.classList.remove('private');
+                privacyToggle.classList.add('public');
+                privacyToggle.innerHTML = '🌐';
+                privacyToggle.title = 'Public - Click to make private';
+                privacyExplanation.innerHTML = '🌐 Your number will be visible to other alumni members';
+                
+                // Clear error states
+                const errorElements = document.querySelectorAll('.alumni-form-error');
+                errorElements.forEach(error => error.textContent = '');
+                
+                const inputElements = document.querySelectorAll('.alumni-form-input, .alumni-form-textarea, .alumni-form-file-input');
+                inputElements.forEach(input => input.classList.remove('error'));
             });
             
             // Form validation and submission
@@ -867,14 +797,24 @@
                     // In a real application, you would send the form data to a server here
                     setTimeout(() => {
                         alert('Form submitted successfully!');
-                        closeForm();
                         membershipForm.reset();
                         filePreview.textContent = '';
+                        scannerContainer.style.display = 'none';
+                        scannerBtn.textContent = '📱 Pay using Scanner';
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = 'Submit Application';
+                        
+                        // Reset privacy toggle
+                        isPrivate = false;
+                        privacyToggle.classList.remove('private');
+                        privacyToggle.classList.add('public');
+                        privacyToggle.innerHTML = '🌐';
+                        privacyToggle.title = 'Public - Click to make private';
+                        privacyExplanation.innerHTML = '🌐 Your number will be visible to other alumni members';
                     }, 2000);
                 }
             });
         });
     </script>
 </body>
+</html>

@@ -564,23 +564,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="logo">
-                    <img src="assets/img/logo.png" alt="Mangalore University Alumni" class="logo-img">
-                    <span>Mangalore University Alumni</span>
-                </a>
-                
-                <div class="user-profile">
-                    <a href="profile.html" class="btn btn-outline">
-                        <i class="bi bi-person-circle"></i>
-                        My Profile
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
+
 
     <!-- Breadcrumb -->
     <div class="breadcrumb">
@@ -588,7 +572,7 @@
             <div class="breadcrumb-links">
                 <a href="index.html">Home</a>
                 <i class="bi bi-chevron-right"></i>
-                <a href="news.html">Latest News</a>
+                <!-- <a href="news.html">Latest News</a> -->
                 <i class="bi bi-chevron-right"></i>
                 <span id="breadcrumbTitle">News Article</span>
             </div>
@@ -610,42 +594,11 @@
         </section>
 
         <!-- Comments Section -->
-        <section class="comments-section">
-            <div class="comments-header">
-                <h3 class="comments-count" id="commentsCount">Comments (3)</h3>
-                <button class="btn btn-outline" id="toggleCommentForm">
-                    <i class="bi bi-chat"></i>
-                    Add Comment
-                </button>
-            </div>
 
-            <form class="comment-form" id="commentForm" style="display: none;">
-                <div class="form-group">
-                    <label for="commentName" class="form-label">Name</label>
-                    <input type="text" id="commentName" class="form-input" placeholder="Enter your name" required>
-                </div>
-                <div class="form-group">
-                    <label for="commentEmail" class="form-label">Email</label>
-                    <input type="email" id="commentEmail" class="form-input" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="commentText" class="form-label">Comment</label>
-                    <textarea id="commentText" class="form-textarea" placeholder="Share your thoughts..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    <i class="bi bi-send"></i>
-                    Post Comment
-                </button>
-            </form>
-
-            <div class="comments-list" id="commentsList">
-                <!-- Comments will be populated by JavaScript -->
-            </div>
-        </section>
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <!-- <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -669,7 +622,7 @@
                 <p>&copy; 2023 Mangalore University Alumni Association. All rights reserved.</p>
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <script>
         // Sample News Data (In a real app, this would come from a database or API)

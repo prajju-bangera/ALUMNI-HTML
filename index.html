@@ -38,21 +38,20 @@
 
 <body class="index-page">
 
-    <header id="header" class="header d-flex align-items-center fixed-top">
-        <div class="container-fluid container-xl position-relative d-flex align-items-center">
-          <a href="index.html" class="logo d-flex align-items-center me-auto">
-    <img src="assets/img/logo.png" alt="Mangalore University Alumni Logo" class="logo-img">
-    <div class="sitename">
-        <div class="university-name">Mangalore University</div>
-        <div class="alumni-network">ALUMNI NETWORK</div>
-    </div>
-</a>
+<header id="header" class="header d-flex align-items-center fixed-top">
+  <div class="container-fluid container-xl position-relative d-flex align-items-center">
+    <a href="index.html" class="logo d-flex align-items-center me-auto">
+      <img src="assets/img/logo.png" alt="MAA Logo" class="logo-img">
+      <div class="sitename">
+        <div class="maa-logo">MAA</div>
+      </div>
+    </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="#hero" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="AlumniNetwork.html">Alumni Network</a></li>
+                    <!-- <li><a href="AlumniNetwork.html">Alumni Network</a></li> -->
                     <li><a href="NotableAlumni.html">Notable Alumni</a></li>
 
                     <li class="dropdown">
@@ -115,7 +114,7 @@
                 initializeUserDropdown();
             } else {
                 // Show login button
-                authSection.innerHTML = '<a class="cta-btn" href="login.html">Login</a>';
+                authSection.innerHTML = '<a class="cta-btn" href="login.html">Join Us</a>';
             }
         }
 
@@ -218,194 +217,179 @@
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
+<section id="hero" class="hero section dark-background">
 
-      <img src="https://media.licdn.com/dms/image/v2/C561BAQExxUD900OKGQ/company-background_10000/company-background_10000/0/1596008216141/mangalore_university_dakshina_kannada_cover?e=2147483647&v=beta&t=5-eums5hyrnl4wayN_Im9H-bUsHUd48Z9FwMouA2DiI" 
-      alt="" data-aos="fade-in">
+  <img src="https://media.licdn.com/dms/image/v2/C561BAQExxUD900OKGQ/company-background_10000/company-background_10000/0/1596008216141/mangalore_university_dakshina_kannada_cover?e=2147483647&v=beta&t=5-eums5hyrnl4wayN_Im9H-bUsHUd48Z9FwMouA2DiI" 
+  alt="" data-aos="fade-in">
 
- 
-  
-  
-<!-- Include Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Include Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-<div class="container d-flex flex-column align-items-center text-center">
-  <!-- Welcome Text -->
-  <p class="welcome-text" data-aos="fade-up" data-aos-delay="100" style="font-size: 50px;">Welcome To</p>
+  <div class="container d-flex flex-column align-items-center text-center">
+    <!-- Welcome Text -->
+    <p class="welcome-text" data-aos="fade-up" data-aos-delay="100" style="font-size: 45px;">Welcome To</p>
 
-  <!-- University Name Typing Effect -->
-  <h1 class="university-heading" data-aos="fade-up" data-aos-delay="200">
-    <span class="typed-text" id="typedUniversity"></span>
-    <span class="cursor">|</span>
-  </h1>
+    <!-- University Name Typing Effect -->
+    <h1 class="university-heading" data-aos="fade-up" data-aos-delay="200">
+      <span class="typed-text" id="typedUniversity"></span>
+      <span class="cursor" id="typingCursor"></span>
+    </h1>
 
-  <!-- Tagline -->
-  <p class="tagline" data-aos="fade-up" data-aos-delay="300" style="font-size:50px">Alumni Network</p>
-  <p class="sub-tagline" data-aos="fade-up" data-aos-delay="400">
-    Reconnect. Reminisce. Reignite.
-  </p>
+    <!-- Tagline -->
+    <!-- <p class="tagline" data-aos="fade-up" data-aos-delay="300" style="font-size:43px">Alumni Network</p> -->
+    <p class="sub-tagline" data-aos="fade-up" data-aos-delay="400">
+      Reconnect. Reminisce. Reignite.
+    </p>
 
-  <!-- Action Buttons -->
-  <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="500">
-    <a href="Membership.html" class="btn-get-started">Get Started</a>
-  
+    <!-- Action Buttons -->
+    <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="500" style="gap: 15px;">
+      <a href="#about" class="btn-get-started" id="readMoreBtn">Read More</a>
+      <a href="AlumniNetwork.html" class="btn-alumni-network">Alumni Network</a>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-container" data-aos="fade-up" data-aos-delay="600">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="alumniCount">0</div>
+          <div class="stat-label">Alumni Members</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="mentorshipCount">0</div>
+          <div class="stat-label">Mentorship Pairs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="eventsCount">0</div>
+          <div class="stat-label">Events Yearly</div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
-<style>
-  /* General Styles */
-  body {
-    font-family: "Poppins", sans-serif;
-  }
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const textToType = "Mangalore University Alumni Association";
+      const typedElement = document.getElementById("typedUniversity");
+      const cursorElement = document.getElementById("typingCursor");
+      let index = 0;
+      let typingSpeed = 120;
 
-  .welcome-text {
-    font-size: 4.6rem;
-    color: #6c757d;
-    font-weight: 400;
-    margin-bottom: 0.3rem;
-    letter-spacing: 1px;
-  }
-
-  .university-heading {
-    font-size: 5.8rem;
-    font-weight: 800;
-    /* color: #ffffff; */
-    line-height: 1.3;
-    position: relative;
-    min-height: 90px;
-  }
-
-  .typed-text {
-    background: linear-gradient(135deg, #ffffff, #ffffff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 700;
-  }
-
-  .cursor {
-    display: inline-block;
-    background-color: #1a56db;
-    margin-left: 0.15rem;
-    width: 3px;
-    height: 1.2em;
-    animation: blink 1s infinite;
-  }
-
-  @keyframes blink {
-    0%, 50%, 100% {
-      opacity: 1;
-    }
-    25%, 75% {
-      opacity: 0;
-    }
-  }
-
-  .tagline {
-    font-size: 3.8rem;
-    color: #2d3436;
-    font-weight: 600;
-    margin-top: 0.5rem;
-  }
-
-  .sub-tagline {
-    font-size: 1.2rem;
-    color: #495057;
-    font-weight: 400;
-    margin-bottom: 2rem;
-  }
-
-  /* Buttons */
-
-
-  .btn-watch-video {
-    color: #1a56db;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    padding: 12px 25px;
-  }
-
-  .btn-watch-video:hover {
-    color: #7e22ce;
-    transform: translateY(-2px);
-  }
-
-  .btn-watch-video i {
-    font-size: 1.5rem;
-    margin-right: 8px;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .university-heading {
-      font-size: 2.8rem;
-      min-height: 70px;
-    }
-
-    .tagline {
-      font-size: 1.4rem;
-    }
-
-    .sub-tagline {
-      font-size: 1rem;
-    }
-
-    .btn-get-started, .btn-watch-video {
-      width: 100%;
-      text-align: center;
-    }
-
-    .d-flex.mt-4 {
-      flex-direction: column;
-      gap: 1rem;
-    }
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const textToType = "Mangalore University";
-    const typedElement = document.getElementById("typedUniversity");
-    let index = 0;
-    let typingSpeed = 120;
-
-    function typeEffect() {
-      if (index < textToType.length) {
-        typedElement.textContent += textToType.charAt(index);
-        index++;
-        setTimeout(typeEffect, typingSpeed);
+      function typeEffect() {
+        if (index < textToType.length) {
+          typedElement.textContent += textToType.charAt(index);
+          index++;
+          setTimeout(typeEffect, typingSpeed);
+        } else {
+          // Remove cursor after typing is complete
+          cursorElement.style.display = 'none';
+        }
       }
-    }
 
-    // Start typing after short delay
-    setTimeout(typeEffect, 800);
-  });
-</script>
+      // Start typing after short delay
+      setTimeout(typeEffect, 800);
 
-    </section><!-- /Hero Section -->
+      // Smooth scroll for Read More button
+      const readMoreBtn = document.getElementById('readMoreBtn');
+      readMoreBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const aboutSection = document.getElementById('about');
+        const targetPosition = aboutSection.offsetTop;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        const duration = 1000;
+        let start = null;
+        
+        function animation(currentTime) {
+          if (start === null) start = currentTime;
+          const timeElapsed = currentTime - start;
+          const run = ease(timeElapsed, startPosition, distance, duration);
+          window.scrollTo(0, run);
+          if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+        
+        function ease(t, b, c, d) {
+          t /= d / 2;
+          if (t < 1) return c / 2 * t * t + b;
+          t--;
+          return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+        
+        requestAnimationFrame(animation);
+      });
+
+      // Counting animation for statistics
+      function startCountAnimation() {
+        const alumniCount = document.getElementById('alumniCount');
+        const mentorshipCount = document.getElementById('mentorshipCount');
+        const eventsCount = document.getElementById('eventsCount');
+
+        const targets = {
+          alumni: 10000,
+          mentorship: 500,
+          events: 100
+        };
+
+        const duration = 2000; // 2 seconds
+        const frameDuration = 1000 / 60; // 60fps
+        const totalFrames = Math.round(duration / frameDuration);
+
+        const animateCount = (element, target) => {
+          let frame = 0;
+          const countTo = target;
+          const counter = setInterval(() => {
+            frame++;
+            const progress = frame / totalFrames;
+            const currentCount = Math.round(countTo * progress);
+
+            // Format number with commas
+            element.textContent = currentCount.toLocaleString() + '+';
+
+            if (frame === totalFrames) {
+              clearInterval(counter);
+            }
+          }, frameDuration);
+        };
+
+        // Start animations with slight delays for better visual effect
+        setTimeout(() => animateCount(alumniCount, targets.alumni), 200);
+        setTimeout(() => animateCount(mentorshipCount, targets.mentorship), 400);
+        setTimeout(() => animateCount(eventsCount, targets.events), 600);
+      }
+
+      // Start counting animation when stats are in viewport
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            startCountAnimation();
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+
+      const statsContainer = document.querySelector('.stats-container');
+      observer.observe(statsContainer);
+    });
+  </script>
+
+</section><!-- /Hero Section -->
 
     <!-- About Section -->
 <section id="about" class="about section">
   <div class="container">
-    <!-- Hero Section -->
-    <!-- <div class="about-hero"> -->
-      <div class="about-content">
-        <div class="container section-title" data-aos="fade-up">
-        <h2>About us</h2>
-        <p>Our history<br></p>
-      </div><!-- End Section Title -->
-      </div>
-    <!-- </div> -->
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>About Us</h2>
+    </div><!-- End Section Title -->
 
-    <!-- University History & Objectives -->
+    <!-- University History & Image -->
     <div class="history-objectives-section">
       <div class="history-objectives-grid">
         <!-- Left Side - History -->
         <div class="left-content">
           <!-- University History -->
           <div class="history-content">
-            <h2 class="section-title">Our History</h2>
-            <div class="history-text">
+            <h2 class="section-title">Mangalore University Alumni Association (MAA)</h2>
+            <div class="history-text text-justify">
               <p class="fade-in-item">
                 The Mangala Alumni Association is a dedicated network for all post-graduates and researchers, fostering lifelong connections and championing the continued success of our alma mater. Our mission is to strengthen the bond between alumni and the institution through networking, events, and community-building initiatives.
               </p>
@@ -425,781 +409,767 @@
               class="university-image"
             />
           </div>
-
-          <!-- Mission & Vision Cards -->
-          <div class="mission-vision-cards">
-            <div class="mission-card-compact slide-up-item">
-              <div class="card-icon-large">🎯</div>
-              <div class="card-content">
-                <h4>Our Mission</h4>
-                <p>To foster lifelong relationships, mentorship, and collaboration among alumni while supporting the university's development and community impact.</p>
-              </div>
-            </div>
-            
-            <div class="vision-card-compact slide-up-item">
-              <div class="card-icon-large">🌟</div>
-              <div class="card-content">
-                <h4>Our Vision</h4>
-                <p>To build a strong global alumni network that connects, inspires, and contributes to the continued growth of Mangalore University.</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- Key Objectives Section - Full Width 3 Cards -->
-    <!-- <div class="objectives-full-section">
-      <div class="container">
-        <h2 class="section-title-center">Our Key Objectives</h2>
-        <p class="section-subtitle-center">Driving excellence and building lasting connections across our global alumni community</p>
-        
-        <div class="objectives-cards-full">
-          <div class="objective-card-full fade-in-item">
-            <div class="card-icon-full">
-              <i class="fas fa-handshake"></i>
-            </div>
-            <div class="card-number-full">01</div>
-            <h3 class="card-title-full">Build Strong Relationships</h3>
-            <p class="card-description-full">Foster lasting connections among alumni and strengthen bonds with the university through regular engagement and networking opportunities that span across generations and geographies.</p>
-            <div class="card-footer">
-              <span class="card-tag">Networking</span>
-              <span class="card-tag">Community</span>
-            </div>
-          </div>
-
-          <div class="objective-card-full fade-in-item">
-            <div class="card-icon-full">
-              <i class="fas fa-graduation-cap"></i>
-            </div>
-            <div class="card-number-full">02</div>
-            <h3 class="card-title-full">Mentorship & Career Growth</h3>
-            <p class="card-description-full">Provide comprehensive career guidance, mentorship programs, and professional development opportunities for current students and young alumni to navigate their professional journeys successfully.</p>
-            <div class="card-footer">
-              <span class="card-tag">Mentorship</span>
-              <span class="card-tag">Career</span>
-            </div>
-          </div>
-
-          <div class="objective-card-full fade-in-item">
-            <div class="card-icon-full">
-              <i class="fas fa-globe"></i>
-            </div>
-            <div class="card-number-full">03</div>
-            <h3 class="card-title-full">Global Network Development</h3>
-            <p class="card-description-full">Create and maintain a worldwide professional network that facilitates career growth, collaboration, knowledge sharing, and cross-cultural exchanges among alumni across different industries and continents.</p>
-            <div class="card-footer">
-              <span class="card-tag">Global</span>
-              <span class="card-tag">Network</span>
-            </div>
-          </div>
-        </div>
+    <!-- Mission & Vision Cards - Below both sections -->
+<div class="mission-vision-below-section">
+  <div class="mission-vision-cards-single-line">
+    <div class="mission-card-compact slide-up-item">
+      <div class="card-header">
+        <div class="card-icon-large"><img src="https://cdn-icons-png.flaticon.com/128/9541/9541346.png" alt=""></div>
+        <h4>Our Mission</h4>
       </div>
-    </div> -->
-
-    <!-- Leadership Messages Section -->
-    <div class="messages-section">
-      <div class="full-width-container">
-        <h2 class="section-title">Messages From</h2>
-        <div class="leadership-slider-full">
-          <div class="slider-container-full">
-            <div class="slider-track-full" id="sliderTrack">
-              <!-- Slides will be populated by JavaScript -->
-            </div>
-          </div>
-          
-          <!-- Slider Navigation Dots -->
-          <div class="slider-nav-full" id="sliderNav">
-            <!-- Dots will be populated by JavaScript -->
-          </div>
-
-          <!-- Manual Navigation Buttons -->
-          <div class="slider-controls-full">
-            <button class="slider-btn-full prev" id="prevSlide">‹</button>
-            <button class="slider-btn-full next" id="nextSlide">›</button>
-          </div>
-        </div>
+      <div class="card-content">
+        <p>To foster lifelong relationships, mentorship, and collaboration among alumni while supporting the university's development and community impact.</p>
+      </div>
+    </div>
+    
+    <div class="vision-card-compact slide-up-item">
+      <div class="card-header">
+        <div class="card-icon-large"><img src="https://cdn-icons-png.flaticon.com/128/14014/14014197.png" alt=""></div>
+        <h4>Our Vision</h4>
+      </div>
+      <div class="card-content">
+        <p>To build a strong global alumni network that connects, inspires, and contributes to the continued growth of Mangalore University.</p>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<style>
-  /* About Section Styles */
-  .about-hero {
+    <!-- Leadership Messages Section -->
+<div class="messages-section">
+  <div class="full-width-container">
+    <h2 class="section-title">Messages From Leadership</h2>
+    <div class="leadership-slider-full">
+      <div class="slider-container-full">
+        <div class="slider-track-full" id="sliderTrack">
+          <!-- Slides will be populated by JavaScript -->
+        </div>
+      </div>
+      
+      <!-- Slider Navigation Dots -->
+      <div class="slider-nav-full" id="sliderNav">
+        <!-- Dots will be populated by JavaScript -->
+      </div>
+
+      <!-- Manual Navigation Buttons -->
+      <div class="slider-controls-full">
+        <button class="slider-btn-full prev" id="prevSlide">‹</button>
+        <button class="slider-btn-full next" id="nextSlide">›</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Our Team Section -->
+<div class="our-team-section">
+  <div class="container">
+    <h2 class="section-title">Our Team</h2>
+    
+    <div class="team-grid" id="teamGrid">
+      <!-- Team members will be populated by JavaScript -->
+    </div>
+
+    <!-- Pagination -->
+    <div class="team-pagination" id="teamPagination">
+      <div class="pagination-info" id="teamPaginationInfo">
+        Showing <span id="teamCurrentRange">1-8</span> of <span id="teamTotalItems">0</span> members
+      </div>
+      <div class="pagination-controls">
+        <button class="pagination-btn prev" id="teamPaginationPrev" disabled>
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <div class="pagination-numbers" id="teamPaginationNumbers">
+          <!-- Page numbers will be generated by JavaScript -->
+        </div>
+        <button class="pagination-btn next" id="teamPaginationNext">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Team members data
+  const teamData = [
+    {
+      id: 1,
+      name: "Mr Ramakrishna Rao",
+      position: "President",
+      department: "Alumni Association",
+      photo: "assets/img/ramakrishna.jpg",
+      linkedin: "#",
+      email: "mailto:president@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 2,
+      name: "Mr Subramanya",
+      position: "Secretary",
+      department: "Alumni Association",
+      photo: "assets/img/subramanya.jpg",
+      linkedin: "#",
+      email: "mailto:secretary@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 3,
+      name: "Dr. Priya Sharma",
+      position: "Vice President",
+      department: "Alumni Relations",
+      photo: "assets/img/team3.jpg",
+      linkedin: "#",
+      email: "mailto:priya.sharma@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 4,
+      name: "Mr Arjun Patel",
+      position: "Treasurer",
+      department: "Finance & Operations",
+      photo: "assets/img/team4.jpg",
+      linkedin: "#",
+      email: "mailto:arjun.patel@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 5,
+      name: "Ms Ananya Reddy",
+      position: "Events Coordinator",
+      department: "Program Management",
+      photo: "assets/img/team5.jpg",
+      linkedin: "#",
+      email: "mailto:ananya.reddy@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 6,
+      name: "Dr. Sameer Joshi",
+      position: "Academic Liaison",
+      department: "University Relations",
+      photo: "assets/img/team6.jpg",
+      linkedin: "#",
+      email: "mailto:sameer.joshi@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 7,
+      name: "Dr. Meera Nair",
+      position: "Research Coordinator",
+      department: "Academic Affairs",
+      photo: "assets/img/team7.jpg",
+      linkedin: "#",
+      email: "mailto:meera.nair@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 8,
+      name: "Mr Vikram Singh",
+      position: "Outreach Manager",
+      department: "Community Relations",
+      photo: "assets/img/team8.jpg",
+      linkedin: "#",
+      email: "mailto:vikram.singh@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 9,
+      name: "Ms Deepa Krishnan",
+      position: "Digital Media Manager",
+      department: "Marketing & Communications",
+      photo: "assets/img/team9.jpg",
+      linkedin: "#",
+      email: "mailto:deepa.krishnan@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 10,
+      name: "Dr. Rohan Mehra",
+      position: "Student Liaison",
+      department: "Campus Relations",
+      photo: "assets/img/team10.jpg",
+      linkedin: "#",
+      email: "mailto:rohan.mehra@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 11,
+      name: "Ms Sneha Gupta",
+      position: "Membership Coordinator",
+      department: "Member Services",
+      photo: "assets/img/team11.jpg",
+      linkedin: "#",
+      email: "mailto:sneha.gupta@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 12,
+      name: "Mr Karthik Reddy",
+      position: "Technical Director",
+      department: "IT & Infrastructure",
+      photo: "assets/img/team12.jpg",
+      linkedin: "#",
+      email: "mailto:karthik.reddy@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    }
+  ];
+
+  const teamGrid = document.getElementById('teamGrid');
+  const teamPagination = document.getElementById('teamPagination');
+  const teamPaginationInfo = document.getElementById('teamPaginationInfo');
+  const teamCurrentRange = document.getElementById('teamCurrentRange');
+  const teamTotalItems = document.getElementById('teamTotalItems');
+  const teamPaginationNumbers = document.getElementById('teamPaginationNumbers');
+  const teamPaginationPrev = document.getElementById('teamPaginationPrev');
+  const teamPaginationNext = document.getElementById('teamPaginationNext');
+
+  let currentPage = 1;
+  const itemsPerPage = 8;
+
+  // Initialize team section
+  function initTeamSection() {
+    updateTeamGrid();
+    setupEventListeners();
+  }
+
+  // Create team member card (rectangular product style)
+  function createTeamMember(member) {
+    const card = document.createElement('div');
+    card.className = 'team-member-card';
+    
+    card.innerHTML = `
+      <div class="team-member-image">
+        <img src="${member.photo}" alt="${member.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="photo-fallback">
+          ${member.name.split(' ').map(n => n[0]).join('')}
+        </div>
+      </div>
+      <div class="team-member-content">
+        <h3 class="member-name">${member.name}</h3>
+        <p class="member-position">${member.position}</p>
+        <p class="member-department">${member.department}</p>
+        <div class="social-links">
+          <a href="${member.linkedin}" class="social-link linkedin" target="_blank">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a href="${member.email}" class="social-link email">
+            <i class="bi bi-envelope"></i>
+          </a>
+          <a href="${member.facebook}" class="social-link facebook" target="_blank">
+            <i class="bi bi-facebook"></i>
+          </a>
+        </div>
+      </div>
+    `;
+    
+    return card;
+  }
+
+  // Update team grid with pagination
+  function updateTeamGrid() {
+    // Calculate pagination
+    const totalPages = Math.ceil(teamData.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentItems = teamData.slice(startIndex, endIndex);
+    
+    // Update pagination info
+    teamTotalItems.textContent = teamData.length;
+    teamCurrentRange.textContent = `${startIndex + 1}-${Math.min(endIndex, teamData.length)}`;
+    
+    // Add shuffle animation
+    teamGrid.classList.add('shuffling');
+    
+    // Clear grid with fade out
+    const items = teamGrid.querySelectorAll('.team-member-card');
+    items.forEach((item, index) => {
+      item.style.animation = `shuffleOut 0.3s ease ${index * 0.05}s both`;
+    });
+    
+    // Re-render after delay
+    setTimeout(() => {
+      teamGrid.innerHTML = '';
+      
+      currentItems.forEach((member, index) => {
+        const memberCard = createTeamMember(member);
+        memberCard.style.animation = `shuffleIn 0.5s ease ${index * 0.1}s both`;
+        teamGrid.appendChild(memberCard);
+      });
+      
+      // Update pagination
+      updateTeamPagination(totalPages);
+      
+      // Remove shuffle class
+      setTimeout(() => {
+        teamGrid.classList.remove('shuffling');
+      }, 500);
+    }, 300);
+  }
+
+  // Update pagination
+  function updateTeamPagination(totalPages) {
+    teamPaginationNumbers.innerHTML = '';
+    
+    // Previous button
+    teamPaginationPrev.disabled = currentPage === 1;
+    
+    // Next button
+    teamPaginationNext.disabled = currentPage === totalPages;
+    
+    // Generate page numbers
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    // Adjust if we're at the end
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    // First page and ellipsis
+    if (startPage > 1) {
+      createTeamPageNumber(1);
+      if (startPage > 2) {
+        const ellipsis = document.createElement('span');
+        ellipsis.className = 'pagination-ellipsis';
+        ellipsis.textContent = '...';
+        teamPaginationNumbers.appendChild(ellipsis);
+      }
+    }
+    
+    // Page numbers
+    for (let i = startPage; i <= endPage; i++) {
+      createTeamPageNumber(i);
+    }
+    
+    // Last page and ellipsis
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        const ellipsis = document.createElement('span');
+        ellipsis.className = 'pagination-ellipsis';
+        ellipsis.textContent = '...';
+        teamPaginationNumbers.appendChild(ellipsis);
+      }
+      createTeamPageNumber(totalPages);
+    }
+  }
+
+  // Create page number button
+  function createTeamPageNumber(page) {
+    const pageBtn = document.createElement('button');
+    pageBtn.className = `pagination-number ${page === currentPage ? 'active' : ''}`;
+    pageBtn.textContent = page;
+    pageBtn.addEventListener('click', () => goToTeamPage(page));
+    teamPaginationNumbers.appendChild(pageBtn);
+  }
+
+  // Go to specific page
+  function goToTeamPage(page) {
+    if (page === currentPage) return;
+    
+    currentPage = page;
+    updateTeamGrid();
+    
+    // Scroll to top of team section
+    teamGrid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Next page
+  function nextTeamPage() {
+    if (currentPage < Math.ceil(teamData.length / itemsPerPage)) {
+      goToTeamPage(currentPage + 1);
+    }
+  }
+
+  // Previous page
+  function previousTeamPage() {
+    if (currentPage > 1) {
+      goToTeamPage(currentPage - 1);
+    }
+  }
+
+  // Setup event listeners
+  function setupEventListeners() {
+    // Pagination buttons
+    teamPaginationPrev.addEventListener('click', previousTeamPage);
+    teamPaginationNext.addEventListener('click', nextTeamPage);
+  }
+
+  // Add CSS for team section with product card style
+  const style = document.createElement('style');
+  style.textContent = `
+  .our-team-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+  }
+
+  .our-team-section .section-title {
     text-align: center;
-    padding: 4rem 0 2rem;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    margin-bottom: 3rem;
-    border-radius: 20px;
-  }
-
-  .main-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 1rem;
-    position: relative;
-  }
-
-  .underline-container {
-    position: relative;
-    margin-top: 1rem;
-  }
-
-  .underline-gradient {
-    height: 4px;
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    border-radius: 2px;
-    width: 100px;
-    margin: 0 auto;
-  }
-
-  .underline-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 8px;
-  }
-
-  .dot {
-    width: 6px;
-    height: 6px;
-    background: #1a56db;
-    border-radius: 50%;
-    opacity: 0.6;
-  }
-
-  /* History & Objectives Section */
-  .history-objectives-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-    margin-bottom: 4rem;
-  }
-
-  .section-title {
     font-size: 2.5rem;
-    font-weight: 600;
-    color: #1a202c;
-    margin-bottom: 2rem;
-    position: relative;
+    margin-bottom: 50px;
+    color: #2c3e50;
   }
 
-  .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    border-radius: 2px;
-  }
-
-  .history-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #4a5568;
-    margin-bottom: 3rem;
-  }
-
-  .history-text p {
-    margin-bottom: 1.5rem;
-  }
-
-  /* Full Width Objectives Section */
-  .objectives-full-section {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    padding: 5rem 0;
-    margin: 4rem 0;
-    border-radius: 20px;
-  }
-
-  .section-title-center {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #1a202c;
-    text-align: center;
-    margin-bottom: 1rem;
-    position: relative;
-  }
-
-  .section-title-center::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    border-radius: 2px;
-  }
-
-  .section-subtitle-center {
-    font-size: 1.3rem;
-    color: #4a5568;
-    text-align: center;
-    margin-bottom: 4rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-  }
-
-  .objectives-cards-full {
+  .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-    max-width: 1400px;
-    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    gap: 30px;
+    margin-bottom: 40px;
   }
 
-  .objective-card-full {
+  .team-member-card {
     background: white;
-    padding: 3rem 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e2e8f0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
+    border-radius: 15px;
     overflow: hidden;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+    opacity: 0;
+  }
+
+  .team-member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .team-member-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+  }
+
+  .team-member-image img {
+    width: 100%;
     height: 100%;
-    min-height: 480px;
-  }
-
-  .objective-card-full::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-
-  .objective-card-full:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-  }
-
-  .objective-card-full:hover::before {
-    transform: scaleX(1);
-  }
-
-  .card-icon-full {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
-  }
-
-  .objective-card-full:hover .card-icon-full {
-    transform: scale(1.1) rotate(5deg);
-  }
-
-  .card-number-full {
-    font-size: 4rem;
-    font-weight: 800;
-    color: #f1f5f9;
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    line-height: 1;
-    z-index: 1;
-    transition: all 0.3s ease;
-  }
-
-  .objective-card-full:hover .card-number-full {
-    color: #e2e8f0;
-    transform: scale(1.1);
-  }
-
-  .card-title-full {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 1.5rem;
-    line-height: 1.3;
-    position: relative;
-    z-index: 2;
-  }
-
-  .card-description-full {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #4a5568;
-    margin-bottom: 2rem;
-    flex-grow: 1;
-    position: relative;
-    z-index: 2;
-  }
-
-  .card-footer {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 2;
-  }
-
-  .card-tag {
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    color: white;
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  /* University Image */
-  .university-image-container {
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
-  }
-
-  .university-image {
-    width: 100%;
-    height: 300px;
     object-fit: cover;
     transition: transform 0.3s ease;
   }
 
-  .university-image:hover {
-    transform: scale(1.05);
+  .team-member-card:hover .team-member-image img {
+    transform: scale(1.1);
   }
 
-  /* Mission & Vision Cards */
-  .mission-vision-cards {
+  .team-member-image .photo-fallback {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .mission-card-compact,
-  .vision-card-compact {
-    background: white;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    transition: all 0.3s ease;
-  }
-
-  .mission-card-compact:hover,
-  .vision-card-compact:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  }
-
-  .card-icon-large {
-    font-size: 2.5rem;
-    flex-shrink: 0;
-  }
-
-  .card-content h4 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #1a202c;
-    margin-bottom: 0.8rem;
-  }
-
-  .card-content p {
-    color: #4a5568;
-    line-height: 1.6;
-    margin: 0;
-    font-size: 0.95rem;
-  }
-
-  /* Leadership Messages Section */
-  .messages-section {
-    /* background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); */
-    padding: 4rem 0;
-    border-radius: 20px;
-    margin-top: 4rem;
-  }
-
-  .full-width-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  .leadership-slider-full {
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .slider-container-full {
-    overflow: hidden;
-    border-radius: 20px;
-    background: white;
-    /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); */
-    width: 1400px;
-    margin-left: -200px;
-    padding: 10px ;
-  }
-
-  .slider-track-full {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
-
-  .slide-full {
-    min-width: 100%;
-    padding: 3rem;
-  }
-
-  .leader-card-full {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 3rem;
     align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    font-weight: 600;
   }
 
-  .leader-content-full {
-    display: contents;
+  /* ✅ Social icons displayed below the name */
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
   }
 
-  .leader-info {
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .social-link.linkedin {
+    background: #0077b5;
+    color: white;
+  }
+
+  .social-link.email {
+    background: #ea4335;
+    color: white;
+  }
+
+  .social-link.facebook {
+    background: #1877f2;
+    color: white;
+  }
+
+  .social-link:hover {
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .team-member-content {
+    padding: 25px;
     text-align: center;
   }
 
-  .leader-photo-container-full {
-    position: relative;
-    margin-bottom: 1.5rem;
-  }
-
-  .leader-photo-full {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #e2e8f0;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  }
-
-  .photo-overlay-full {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 50%;
-  }
-
-  .leader-details {
-    margin-top: 1rem;
-  }
-
-  .leader-title-full {
-    font-size: 1.1rem;
-    color: #1a56db;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .leader-name-full {
-    font-size: 1.5rem;
+  .member-name {
+    font-size: 1.3rem;
     font-weight: 700;
-    color: #1a202c;
-    margin: 0;
+    color: #2c3e50;
+    margin-bottom: 8px;
   }
 
-  .leader-message-full {
+  .member-position {
     font-size: 1.1rem;
-    line-height: 1.8;
-    color: #4a5568;
-    font-style: italic;
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 5px;
   }
 
-  .leader-message-full p {
-    margin: 0;
+  .member-department {
+    color: #6c757d;
+    font-size: 0.9rem;
   }
 
-  /* Slider Navigation */
-  .slider-nav-full {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
-  }
-
-  .nav-dot-full {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: none;
-    background: #cbd5e0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .nav-dot-full.active {
-    background: #1a56db;
-    transform: scale(1.2);
-  }
-
-  .nav-dot-full span {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: white;
-  }
-
-  .slider-controls-full {
-    position: absolute;
-    top: 50%;
-    left: -240px;
-    right: -240px;
+  /* Pagination Styles */
+  .team-pagination {
     display: flex;
     justify-content: space-between;
-    transform: translateY(-50%);
-    pointer-events: none;
+    align-items: center;
+    margin-top: 40px;
+    padding: 25px 0;
+    border-top: 1px solid #e9ecef;
   }
 
-  .slider-btn-full {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
+  .pagination-info {
+    color: #6c757d;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pagination-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
     background: white;
-    color: #1a56db;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    pointer-events: all;
+    color: #6c757d;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
   }
 
-  .slider-btn-full:hover {
-    background: #1a56db;
+  .pagination-btn:hover:not(:disabled) {
+    background: #667eea;
+    border-color: #667eea;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .pagination-numbers {
+    display: flex;
+    gap: 5px;
+  }
+
+  .pagination-number {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    background: white;
+    color: #6c757d;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .pagination-number:hover {
+    border-color: #667eea;
+    color: #667eea;
+    transform: translateY(-2px);
+  }
+
+  .pagination-number.active {
+    background: #667eea;
+    border-color: #667eea;
     color: white;
     transform: scale(1.1);
   }
 
-  /* Animation Classes */
-  .fade-in-item {
-    opacity: 0;
-    animation: fadeIn 0.8s ease forwards;
+  .pagination-ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    color: #6c757d;
   }
 
-  .zoom-in-item {
-    opacity: 0;
-    transform: scale(0.9);
-    animation: zoomIn 0.8s ease forwards;
-  }
-
-  .slide-up-item {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: slideUp 0.6s ease forwards;
-  }
-
-  @keyframes fadeIn {
-    to {
+  /* Shuffle Animations */
+  @keyframes shuffleIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.9);
+    }
+    100% {
       opacity: 1;
+      transform: translateY(0) scale(1);
     }
   }
 
-  @keyframes zoomIn {
-    to {
+  @keyframes shuffleOut {
+    0% {
       opacity: 1;
-      transform: scale(1);
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-30px) scale(0.9);
     }
   }
 
-  @keyframes slideUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  @media (max-width: 992px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  /* Responsive Design */
-  @media (max-width: 1200px) {
-    .objectives-cards-full {
-      gap: 2rem;
+  @media (max-width: 600px) {
+    .team-grid {
+      grid-template-columns: 1fr;
     }
+  }
+`;
+
+  document.head.appendChild(style);
+
+  // Initialize team section
+  initTeamSection();
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+
+  const sliderTrack = document.getElementById('sliderTrack');
+  const sliderNav = document.getElementById('sliderNav');
+  const prevBtn = document.getElementById('prevSlide');
+  const nextBtn = document.getElementById('nextSlide');
+
+  let currentSlide = 0;
+
+  // Create slides
+  function createSlides() {
+    leadershipData.forEach((leader, index) => {
+      // Create slide
+      const slide = document.createElement('div');
+      slide.className = 'slide-full';
+      slide.innerHTML = `
+        <div class="slide-content">
+          <div class="quote-icon">❝</div>
+          <h3 class="slide-title">${leader.title}</h3>
+          <div class="slide-message">
+            <p>${leader.message}</p>
+            <p class="extended-message">${leader.extendedMessage}</p>
+          </div>
+          <div class="separator"></div>
+          <div class="leader-info">
+            <div class="leader-avatar">${leader.avatar}</div>
+            <div class="leader-details">
+              <h4 class="leader-name">${leader.name}</h4>
+              <p class="leader-position">${leader.position}</p>
+            </div>
+          </div>
+        </div>
+      `;
+      sliderTrack.appendChild(slide);
+
+      // Create navigation dot
+      const dot = document.createElement('button');
+      dot.className = `slider-dot-full ${index === 0 ? 'active' : ''}`;
+      dot.setAttribute('data-slide', index);
+      dot.addEventListener('click', () => goToSlide(index));
+      sliderNav.appendChild(dot);
+    });
+  }
+
+  // Go to specific slide
+  function goToSlide(slideIndex) {
+    currentSlide = slideIndex;
+    const slideWidth = sliderTrack.children[0].offsetWidth;
+    sliderTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
     
-    .objective-card-full {
-      padding: 2.5rem 2rem;
-      min-height: 460px;
-    }
+    // Update active dot
+    document.querySelectorAll('.slider-dot-full').forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
   }
 
-  @media (max-width: 968px) {
-    .history-objectives-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-
-    .objectives-cards-full {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      max-width: 600px;
-    }
-
-    .objective-card-full {
-      min-height: auto;
-      padding: 3rem 2.5rem;
-    }
-
-    .leader-card-full {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      text-align: center;
-    }
-
-    .main-title {
-      font-size: 2.5rem;
-    }
-
-    .section-title {
-      font-size: 2rem;
-    }
-
-    .section-title-center {
-      font-size: 2.5rem;
-    }
+  // Next slide
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % leadershipData.length;
+    goToSlide(currentSlide);
   }
 
-  @media (max-width: 768px) {
-    .about-hero {
-      padding: 3rem 0 1rem;
-    }
-
-    .main-title {
-      font-size: 2rem;
-    }
-
-    .section-title {
-      font-size: 1.75rem;
-    }
-
-    .section-title-center {
-      font-size: 2rem;
-    }
-
-    .section-subtitle-center {
-      font-size: 1.1rem;
-    }
-
-    .slide-full {
-      padding: 2rem;
-    }
-
-    .slider-controls-full {
-      display: none;
-    }
-
-    .mission-card-compact,
-    .vision-card-compact {
-      padding: 1.5rem;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .objective-card-full {
-      padding: 2rem 1.5rem;
-    }
-
-    .card-icon-full {
-      width: 70px;
-      height: 70px;
-      font-size: 1.8rem;
-    }
-
-    .card-title-full {
-      font-size: 1.4rem;
-    }
+  // Previous slide
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + leadershipData.length) % leadershipData.length;
+    goToSlide(currentSlide);
   }
 
-  @media (max-width: 480px) {
-    .leader-photo-full {
-      width: 150px;
-      height: 150px;
-    }
+  // Event listeners
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
 
-    .slide-full {
-      padding: 1.5rem;
-    }
+  // Auto slide (optional)
+  let autoSlide = setInterval(nextSlide, 5000);
 
-    .objective-card-full {
-      padding: 1.5rem;
-    }
+  // Pause auto slide on hover
+  const sliderContainer = document.querySelector('.slider-container-full');
+  sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
+  sliderContainer.addEventListener('mouseleave', () => {
+    autoSlide = setInterval(nextSlide, 5000);
+  });
 
-    .card-number-full {
-      font-size: 3rem;
-      top: 1.5rem;
-      right: 1.5rem;
-    }
-  }
-</style>
+  // Initialize
+  createSlides();
+});
+</script>
+  </div>
+</section>
+
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // Leadership messages data
     const leadershipMessages = [
       {
-        id: 'chancellor',
-        title: "Chancellor",
-        name: "Dr. S. R. Niranjan",
-        photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-        content: "It gives me immense pleasure to witness the remarkable journey of Mangalore University and its alumni community. Our alumni are our greatest ambassadors, carrying forward the legacy of excellence and values instilled during their time at the university."
-      },
-      {
-        id: 'viceChancellor',
-        title: "Vice-Chancellor",
-        name: "Dr. P. S. Yadapadithaya",
-        photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-        content: "Mangalore University takes great pride in its alumni who have excelled in various fields across the globe. The Alumni Association plays a crucial role in fostering lifelong connections and contributing to the university's growth."
-      },
-      {
         id: 'president',
         title: "Alumni President",
-        name: "Mr. Rajesh Kumar",
-        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+        name: "Mr Ramakrishna Rao",
+        photo: "assets/img/ramakrishna.jpg",
         content: "As alumni, we carry the torch of Mangalore University's rich tradition wherever we go. Our association is committed to creating meaningful engagements and supporting the university's development initiatives."
       },
       {
         id: 'secretary',
         title: "Alumni Secretary",
-        name: "Ms. Priya Sharma",
-        photo: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+        name: "Mr Subramanya",
+        photo: "assets/img/subramanya.jpg",
         content: "The Alumni Association is dedicated to strengthening the bond between the university and its graduates. Through various programs and initiatives, we aim to create a vibrant community that supports professional growth and social responsibility."
       }
     ];
@@ -1230,7 +1200,7 @@
                 </div>
               </div>
               <div class="leader-message-full">
-                <p>${leader.content}</p>
+                <p>"${leader.content}"</p>
               </div>
             </div>
           </div>
@@ -1299,163 +1269,22 @@
     
 
     <!-- Services Section -->
-   <section id="services" class="services section">
+<section id="services" class="services section">
 
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
     <h2>Latest News</h2>
-    <p>Stay updated with the latest happenings from our alumni community</p>
-  </div><!-- End Section Title -->
+  </div>
+  <!-- End Section Title -->
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
 
     <!-- News Filters -->
-    <div class="news-filters" data-aos="fade-up" data-aos-delay="150">
-      <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">All News</button>
-        <button class="filter-btn" data-filter="university">University Updates</button>
-        <button class="filter-btn" data-filter="alumni">Alumni Spotlights</button>
-        <button class="filter-btn" data-filter="events">Events</button>
-        <button class="filter-btn" data-filter="career">Career Stories</button>
-        <button class="filter-btn" data-filter="achievements">Achievements</button>
-      </div>
-      
-      <!-- Search Box -->
-      <div class="search-box">
-        <input type="text" id="newsSearch" placeholder="Search news...">
-        <i class="bi bi-search"></i>
-      </div>
-    </div>
+
 
     <!-- News Grid -->
     <div class="news-grid" id="newsGrid" data-aos="fade-up" data-aos-delay="200">
-      
-      <!-- News Item 1 -->
-      <div class="news-item" data-category="university" data-tags="campus development research">
-        <div class="news-image">
-          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="New Research Center">
-          <div class="news-category">University Updates</div>
-          <div class="news-date">
-            <span class="date-day">15</span>
-            <span class="date-month">DEC</span>
-          </div>
-        </div>
-        <div class="news-content">
-          <h3 class="news-title">University Announces New Research Center for AI and Machine Learning</h3>
-          <p class="news-excerpt">Mangalore University establishes a state-of-the-art research facility focusing on artificial intelligence and machine learning applications.</p>
-          <div class="news-meta">
-            <span class="news-author"><i class="bi bi-person"></i> Dr. Ramesh Kumar</span>
-            <span class="news-read-time"><i class="bi bi-clock"></i> 3 min read</span>
-          </div>
-         <a href="news-description.html?id=1" class="read-more-btn">Read More</a>
-        </div>
-      </div>
-
-      <!-- News Item 2 -->
-      <div class="news-item" data-category="alumni" data-tags="success entrepreneurship technology">
-        <div class="news-image">
-          <img src="https://images.unsplash.com/photo-1551836026-d5c88ac5c4fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Alumni Success">
-          <div class="news-category">Alumni Spotlights</div>
-          <div class="news-date">
-            <span class="date-day">12</span>
-            <span class="date-month">DEC</span>
-          </div>
-        </div>
-        <div class="news-content">
-          <h3 class="news-title">Alumnus Rajesh Mehta's Startup Reaches $100M Valuation</h3>
-          <p class="news-excerpt">Computer Science graduate from 2010 batch achieves remarkable success with his AI-powered healthcare startup.</p>
-          <div class="news-meta">
-            <span class="news-author"><i class="bi bi-person"></i> Alumni Team</span>
-            <span class="news-read-time"><i class="bi bi-clock"></i> 4 min read</span>
-          </div>
-          <a href="news-description.html?id=1" class="read-more-btn">Read More</a>
-        </div>
-      </div>
-
-      <!-- News Item 3 -->
-      <div class="news-item" data-category="events" data-tags="reunion networking alumni-meet">
-        <div class="news-image">
-          <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Annual Reunion">
-          <div class="news-category">Events</div>
-          <div class="news-date">
-            <span class="date-day">08</span>
-            <span class="date-month">DEC</span>
-          </div>
-        </div>
-        <div class="news-content">
-          <h3 class="news-title">Annual Alumni Reunion 2024: Record-breaking Attendance</h3>
-          <p class="news-excerpt">Over 2000 alumni gathered for the annual reunion, creating unforgettable memories and strengthening bonds.</p>
-          <div class="news-meta">
-            <span class="news-author"><i class="bi bi-person"></i> Event Committee</span>
-            <span class="news-read-time"><i class="bi bi-clock"></i> 5 min read</span>
-          </div>
-         <a href="news-description.html?id=1" class="read-more-btn">Read More</a>
-        </div>
-      </div>
-
-      <!-- News Item 4 -->
-      <div class="news-item" data-category="career" data-tags="mentorship jobs placement">
-        <div class="news-image">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Career Guidance">
-          <div class="news-category">Career Stories</div>
-          <div class="news-date">
-            <span class="date-day">05</span>
-            <span class="date-month">DEC</span>
-          </div>
-        </div>
-        <div class="news-content">
-          <h3 class="news-title">Alumni Mentorship Program Helps 500+ Students Secure Jobs</h3>
-          <p class="news-excerpt">Our mentorship initiative connects experienced alumni with current students for career guidance and placement assistance.</p>
-          <div class="news-meta">
-            <span class="news-author"><i class="bi bi-person"></i> Career Cell</span>
-            <span class="news-read-time"><i class="bi bi-clock"></i> 3 min read</span>
-          </div>
-          <a href="news-description.html?id=1" class="read-more-btn">Read More</a>
-        </div>
-      </div>
-
-      <!-- News Item 5 -->
-      <div class="news-item" data-category="achievements" data-tags="awards recognition research">
-        <div class="news-image">
-          <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Research Award">
-          <div class="news-category">Achievements</div>
-          <div class="news-date">
-            <span class="date-day">01</span>
-            <span class="date-month">DEC</span>
-          </div>
-        </div>
-        <div class="news-content">
-          <h3 class="news-title">Professor Anjali Rao Wins National Award for Environmental Research</h3>
-          <p class="news-excerpt">Chemistry department professor recognized for groundbreaking research in sustainable environmental solutions.</p>
-          <div class="news-meta">
-            <span class="news-author"><i class="bi bi-person"></i> Research Desk</span>
-            <span class="news-read-time"><i class="bi bi-clock"></i> 4 min read</span>
-          </div>
-          <a href="news-description.html?id=1" class="read-more-btn">Read More</a>
-        </div>
-      </div>
-
-      <!-- News Item 6 -->
-      <div class="news-item" data-category="university" data-tags="infrastructure campus development">
-        <div class="news-image">
-          <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="New Library">
-          <div class="news-category">University Updates</div>
-          <div class="news-date">
-            <span class="date-day">28</span>
-            <span class="date-month">NOV</span>
-          </div>
-        </div>
-        <div class="news-content">
-          <h3 class="news-title">New Digital Library Inaugurated with 50,000+ Online Resources</h3>
-          <p class="news-excerpt">University enhances learning resources with state-of-the-art digital library accessible to students and alumni worldwide.</p>
-          <div class="news-meta">
-            <span class="news-author"><i class="bi bi-person"></i> Library Committee</span>
-            <span class="news-read-time"><i class="bi bi-clock"></i> 3 min read</span>
-          </div>
-          <a href="news-description.html?id=1" class="read-more-btn">Read More</a>
-        </div>
-      </div>
-
+      <!-- News items will be populated by JavaScript -->
     </div>
 
     <!-- Pagination -->
@@ -1463,7 +1292,7 @@
       <button class="pagination-btn prev" disabled>
         <i class="bi bi-chevron-left"></i> Previous
       </button>
-      
+
       <div class="pagination-numbers">
         <button class="page-number active">1</button>
         <button class="page-number">2</button>
@@ -1471,2342 +1300,2037 @@
         <span class="page-dots">...</span>
         <button class="page-number">8</button>
       </div>
-      
+
       <button class="pagination-btn next">
         Next <i class="bi bi-chevron-right"></i>
       </button>
     </div>
 
-    <!-- News Stats -->
-    <!-- <div class="news-stats" data-aos="fade-up" data-aos-delay="300">
-      <div class="stat-item">
-        <div class="stat-number">150+</div>
-        <div class="stat-label">News Articles</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">10K+</div>
-        <div class="stat-label">Monthly Readers</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">50+</div>
-        <div class="stat-label">Featured Alumni</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">25+</div>
-        <div class="stat-label">Categories</div>
-      </div>
-    </div> -->
-
   </div>
-
-</section><!-- /Services Section -->
-
-<style>
-  /* News Section Styles */
-  .services.section {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-  }
-
-  .section-title h2 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  .section-title p {
-    font-size: 1.2rem;
-    color: #4a5568;
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  /* News Filters */
-  .news-filters {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-
-  .filter-buttons {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .filter-btn {
-    padding: 0.75rem 1.5rem;
-    border: 2px solid #e2e8f0;
-    background: white;
-    color: #4a5568;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-  }
-
-  .filter-btn:hover {
-    border-color: #1a56db;
-    color: #1a56db;
-    transform: translateY(-2px);
-  }
-
-  .filter-btn.active {
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    color: white;
-    border-color: transparent;
-  }
-
-  .search-box {
-    position: relative;
-    min-width: 300px;
-  }
-
-  .search-box input {
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-  }
-
-  .search-box input:focus {
-    outline: none;
-    border-color: #1a56db;
-    box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
-  }
-
-  .search-box i {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #9ca3af;
-  }
-
-  /* News Grid */
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-
-  .news-item {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-
-  .news-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .news-image {
-    position: relative;
-    height: 220px;
-    overflow: hidden;
-  }
-
-  .news-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .news-item:hover .news-image img {
-    transform: scale(1.05);
-  }
-
-  .news-category {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    color: white;
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .news-date {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: white;
-    padding: 0.5rem;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .date-day {
-    display: block;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #1a202c;
-    line-height: 1;
-  }
-
-  .date-month {
-    display: block;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: #1a56db;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .news-content {
-    padding: 1.5rem;
-  }
-
-  .news-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #1a202c;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .news-excerpt {
-    color: #4a5568;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .news-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    font-size: 0.85rem;
-    color: #6b7280;
-  }
-
-  .news-author, .news-read-time {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
-
-  .read-more-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #1a56db;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  .read-more-btn:hover {
-    color: #7e22ce;
-    gap: 0.7rem;
-  }
-
-  /* Pagination */
-  .news-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-  }
-
-  .pagination-btn {
-    padding: 0.75rem 1.5rem;
-    border: 2px solid #e2e8f0;
-    background: white;
-    color: #4a5568;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .pagination-btn:hover:not(:disabled) {
-    border-color: #1a56db;
-    color: #1a56db;
-  }
-
-  .pagination-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .pagination-numbers {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .page-number {
-    width: 45px;
-    height: 45px;
-    border: 2px solid #e2e8f0;
-    background: white;
-    color: #4a5568;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .page-number:hover {
-    border-color: #1a56db;
-    color: #1a56db;
-  }
-
-  .page-number.active {
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    color: white;
-    border-color: transparent;
-  }
-
-  .page-dots {
-    display: flex;
-    align-items: center;
-    color: #9ca3af;
-    padding: 0 0.5rem;
-  }
-
-  /* News Stats */
-  .news-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    padding: 3rem;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
-  }
-
-  .stat-item {
-    text-align: center;
-  }
-
-  .stat-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #1a56db;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    font-size: 0.9rem;
-    color: #4a5568;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 968px) {
-    .news-filters {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .filter-buttons {
-      justify-content: center;
-    }
-
-    .search-box {
-      min-width: auto;
-    }
-
-    .news-grid {
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    }
-  }
-
-  @media (max-width: 768px) {
-    .section-title h2 {
-      font-size: 2.5rem;
-    }
-
-    .news-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .news-pagination {
-      flex-wrap: wrap;
-    }
-
-    .pagination-numbers {
-      order: 3;
-      width: 100%;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-
-    .news-stats {
-      grid-template-columns: repeat(2, 1fr);
-      padding: 2rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .section-title h2 {
-      font-size: 2rem;
-    }
-
-    .filter-buttons {
-      gap: 0.3rem;
-    }
-
-    .filter-btn {
-      padding: 0.6rem 1rem;
-      font-size: 0.8rem;
-    }
-
-    .news-content {
-      padding: 1.25rem;
-    }
-
-    .news-title {
-      font-size: 1.1rem;
-    }
-
-    .news-stats {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      padding: 1.5rem;
-    }
-
-    .stat-number {
-      font-size: 2rem;
-    }
-  }
-</style>
+</section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Filter functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const newsItems = document.querySelectorAll('.news-item');
-    const searchInput = document.getElementById('newsSearch');
-
-    // Filter by category
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
-        
-        // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        // Filter news items
-        newsItems.forEach(item => {
-          if (filter === 'all' || item.getAttribute('data-category') === filter) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // Search functionality
-    searchInput.addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-      
-      newsItems.forEach(item => {
-        const title = item.querySelector('.news-title').textContent.toLowerCase();
-        const excerpt = item.querySelector('.news-excerpt').textContent.toLowerCase();
-        const tags = item.getAttribute('data-tags').toLowerCase();
-        
-        if (title.includes(searchTerm) || excerpt.includes(searchTerm) || tags.includes(searchTerm)) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    });
-
-    // Pagination functionality (simplified)
-    const pageNumbers = document.querySelectorAll('.page-number');
-    const prevBtn = document.querySelector('.pagination-btn.prev');
-    const nextBtn = document.querySelector('.pagination-btn.next');
-
-    pageNumbers.forEach(number => {
-      number.addEventListener('click', () => {
-        pageNumbers.forEach(n => n.classList.remove('active'));
-        number.classList.add('active');
-        
-        // In a real implementation, you would fetch new data here
-        console.log('Loading page:', number.textContent);
-      });
-    });
-
-    prevBtn.addEventListener('click', () => {
-      const activePage = document.querySelector('.page-number.active');
-      const prevPage = activePage.previousElementSibling;
-      
-      if (prevPage && prevPage.classList.contains('page-number')) {
-        pageNumbers.forEach(n => n.classList.remove('active'));
-        prevPage.classList.add('active');
-        console.log('Loading previous page');
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
-      const activePage = document.querySelector('.page-number.active');
-      const nextPage = activePage.nextElementSibling;
-      
-      if (nextPage && nextPage.classList.contains('page-number')) {
-        pageNumbers.forEach(n => n.classList.remove('active'));
-        nextPage.classList.add('active');
-        console.log('Loading next page');
-      }
-    });
-
-    // Update pagination buttons state
-    function updatePaginationButtons() {
-      const activePage = document.querySelector('.page-number.active');
-      prevBtn.disabled = !activePage.previousElementSibling || !activePage.previousElementSibling.classList.contains('page-number');
-      nextBtn.disabled = !activePage.nextElementSibling || !activePage.nextElementSibling.classList.contains('page-number');
+document.addEventListener('DOMContentLoaded', function() {
+  // News data
+  const newsData = [
+    {
+      id: 1,
+      category: "university",
+      title: "University Announces New Research Center for AI and Machine Learning",
+      excerpt: "Mangalore University establishes a state-of-the-art research facility focusing on artificial intelligence and machine learning applications.",
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80",
+      date: { day: "15", month: "DEC" },
+      author: "Dr. Ramesh Kumar",
+      readTime: "3 min read",
+      tags: "campus development research"
+    },
+    {
+      id: 2,
+      category: "alumni",
+      title: "Alumnus Rajesh Mehta's Startup Reaches $100M Valuation",
+      excerpt: "Computer Science graduate from 2010 batch achieves remarkable success with his AI-powered healthcare startup.",
+      image: "https://images.unsplash.com/photo-1551836026-d5c88ac5c4fa?auto=format&fit=crop&w=1000&q=80",
+      date: { day: "12", month: "DEC" },
+      author: "Alumni Team",
+      readTime: "4 min read",
+      tags: "success entrepreneurship technology"
+    },
+    {
+      id: 3,
+      category: "events",
+      title: "Annual Alumni Reunion 2024: Record-breaking Attendance",
+      excerpt: "Over 2000 alumni gathered for the annual reunion, creating unforgettable memories and strengthening bonds.",
+      image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1000&q=80",
+      date: { day: "08", month: "DEC" },
+      author: "Event Committee",
+      readTime: "5 min read",
+      tags: "reunion networking alumni-meet"
+    },
+    {
+      id: 4,
+      category: "career",
+      title: "Alumni Mentorship Program Helps 500+ Students Secure Jobs",
+      excerpt: "Our mentorship initiative connects experienced alumni with current students for career guidance and placement assistance.",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1000&q=80",
+      date: { day: "05", month: "DEC" },
+      author: "Career Cell",
+      readTime: "3 min read",
+      tags: "mentorship jobs placement"
+    },
+    {
+      id: 5,
+      category: "achievements",
+      title: "Professor Anjali Rao Wins National Award for Environmental Research",
+      excerpt: "Chemistry department professor recognized for groundbreaking research in sustainable environmental solutions.",
+      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=1000&q=80",
+      date: { day: "01", month: "DEC" },
+      author: "Research Desk",
+      readTime: "4 min read",
+      tags: "awards recognition research"
+    },
+    {
+      id: 6,
+      category: "university",
+      title: "New Digital Library Inaugurated with 50,000+ Online Resources",
+      excerpt: "University enhances learning resources with state-of-the-art digital library accessible to students and alumni worldwide.",
+      image: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=1000&q=80",
+      date: { day: "28", month: "NOV" },
+      author: "Library Committee",
+      readTime: "3 min read",
+      tags: "infrastructure campus development"
     }
+  ];
 
-    // Initialize
-    updatePaginationButtons();
-  });
+  const newsGrid = document.getElementById('newsGrid');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const searchInput = document.getElementById('newsSearch');
+
+  let currentFilter = 'all';
+  let currentSearch = '';
+
+  // Initialize news
+  function initNews() {
+    renderNews(currentFilter, currentSearch);
+    setupEventListeners();
+  }
+
+  // Create news item (category removed)
+  function createNewsItem(news) {
+    const item = document.createElement('div');
+    item.className = `news-item shuffle-item`;
+    item.setAttribute('data-category', news.category);
+    item.setAttribute('data-tags', news.tags);
+    
+    item.innerHTML = `
+      <div class="news-image">
+        <img src="${news.image}" alt="${news.title}">
+        <div class="news-date">
+          <span class="date-day">${news.date.day}</span>
+          <span class="date-month">${news.date.month}</span>
+        </div>
+      </div>
+      <div class="news-content">
+        <h3 class="news-title">${news.title}</h3>
+        <p class="news-excerpt">${news.excerpt}</p>
+        <div class="news-meta">
+          <span class="news-author"><i class="bi bi-person"></i> ${news.author}</span>
+          <span class="news-read-time"><i class="bi bi-clock"></i> ${news.readTime}</span>
+        </div>
+        <a href="news-description.html?id=${news.id}" class="read-more-btn">Read More</a>
+      </div>
+    `;
+    
+    return item;
+  }
+
+  // Filter and search logic
+  function filterNews(filter, searchTerm = '') {
+    currentFilter = filter;
+    currentSearch = searchTerm.toLowerCase();
+    
+    newsGrid.classList.add('shuffling');
+    const items = newsGrid.querySelectorAll('.news-item');
+    items.forEach((item, index) => {
+      item.style.animation = `shuffleOut 0.3s ease ${index * 0.05}s both`;
+    });
+    
+    const filteredNews = newsData.filter(news => {
+      const matchesFilter = currentFilter === 'all' || news.category === currentFilter;
+      const matchesSearch = currentSearch === '' || 
+        news.title.toLowerCase().includes(currentSearch) ||
+        news.excerpt.toLowerCase().includes(currentSearch) ||
+        news.tags.toLowerCase().includes(currentSearch);
+      return matchesFilter && matchesSearch;
+    });
+    
+    setTimeout(() => {
+      newsGrid.innerHTML = '';
+      
+      if (filteredNews.length === 0) {
+        newsGrid.innerHTML = `
+          <div class="no-results">
+            <i class="bi bi-search"></i>
+            <h3>No news found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+          </div>
+        `;
+      } else {
+        filteredNews.forEach((news, index) => {
+          const newsItem = createNewsItem(news);
+          newsItem.style.animation = `shuffleIn 0.5s ease ${index * 0.1}s both`;
+          newsGrid.appendChild(newsItem);
+        });
+      }
+      setTimeout(() => newsGrid.classList.remove('shuffling'), 500);
+    }, 300);
+  }
+
+  // Render initial news
+  function renderNews(filter, searchTerm = '') {
+    const filteredNews = newsData.filter(news => {
+      const matchesFilter = filter === 'all' || news.category === filter;
+      const matchesSearch = searchTerm === '' || 
+        news.title.toLowerCase().includes(searchTerm) ||
+        news.excerpt.toLowerCase().includes(searchTerm) ||
+        news.tags.toLowerCase().includes(searchTerm);
+      return matchesFilter && matchesSearch;
+    });
+
+    newsGrid.innerHTML = '';
+    if (filteredNews.length === 0) {
+      newsGrid.innerHTML = `
+        <div class="no-results">
+          <i class="bi bi-search"></i>
+          <h3>No news found</h3>
+          <p>Try adjusting your search or filter criteria</p>
+        </div>
+      `;
+    } else {
+      filteredNews.forEach((news, index) => {
+        const newsItem = createNewsItem(news);
+        newsItem.style.animation = `shuffleIn 0.6s ease ${index * 0.1}s both`;
+        newsGrid.appendChild(newsItem);
+      });
+    }
+  }
+
+  // Setup filters & search
+  function setupEventListeners() {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterNews(filter, currentSearch);
+      });
+    });
+
+    let searchTimeout;
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => filterNews(currentFilter, e.target.value), 300);
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchInput.value = '';
+        filterNews(currentFilter, '');
+      }
+    });
+  }
+
+  // Add CSS animations
+  const style = document.createElement('style');
+  style.textContent = `
+    .shuffle-item { opacity: 0; }
+    @keyframes shuffleIn {
+      0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes shuffleOut {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-30px) scale(0.9); }
+    }
+    .news-grid.shuffling { position: relative; }
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: #6c757d;
+    }
+    .no-results i {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .no-results h3 {
+      color: #495057;
+      margin-bottom: 10px;
+    }
+  `;
+  document.head.appendChild(style);
+
+  initNews();
+});
 </script>
-    <!-- Clients Section -->
+
+    <!-- event Section -->
 <section id="clients" class="events section light-background">
-
   <div class="container">
-
     <!-- Events Header -->
     <div class="events-header">
       <div class="header-content">
         <h1 class="events-main-title">
           Events & Activities
-          <div class="events-title-underline"></div>
+          <!-- <div class="events-title-underline"></div> -->
         </h1>
-        <p class="events-subtitle">
-          Discover exciting events, activities, and opportunities to engage with our community throughout the year.
-        </p>
       </div>
     </div>
 
     <div class="events-container">
-      <!-- Category Dropdown for Mobile -->
-      <div class="category-dropdown">
-        <div class="dropdown-header" id="dropdownHeader">
-          <div class="dropdown-title">
-            <span class="category-icon">📅</span>
-            <span id="activeCategoryName">All Events</span>
-          </div>
-          <span class="dropdown-icon">▼</span>
-        </div>
-        <div class="dropdown-options" id="dropdownOptions">
-          <div class="dropdown-option active" data-category="all">
-            <span class="category-icon">📅</span>
-            All Events
-          </div>
-          <div class="dropdown-option" data-category="academic">
-            <span class="category-icon">📚</span>
-            ACADEMIC
-          </div>
-          <div class="dropdown-option" data-category="arts">
-            <span class="category-icon">🎨</span>
-            ARTS
-          </div>
-          <div class="dropdown-option" data-category="sports">
-            <span class="category-icon">⚽</span>
-            SPORTS
-          </div>
-          <div class="dropdown-option" data-category="community">
-            <span class="category-icon">👥</span>
-            COMMUNITY
-          </div>
-        </div>
-      </div>
-
-      <!-- Category Buttons for Desktop -->
-      <div class="events-categories">
-        <button class="category-filter-btn active" data-category="all">
-          All Events
-        </button>
-        <button class="category-filter-btn" data-category="academic">
-          ACADEMIC
-        </button>
-        <button class="category-filter-btn" data-category="arts">
-          ARTS
-        </button>
-        <button class="category-filter-btn" data-category="sports">
-          SPORTS
-        </button>
-        <button class="category-filter-btn" data-category="community">
-          COMMUNITY
-        </button>
-      </div>
-
       <!-- Events Grid -->
-      <div class="events-grid" id="eventsGrid">
+      <div class="events-grid" id="eventsGrid" data-aos="fade-up" data-aos-delay="150">
         <!-- Events will be dynamically populated -->
       </div>
 
       <!-- Pagination -->
-      <div class="pagination-container" id="paginationContainer">
-        <div class="pagination-info" id="paginationInfo">
-          Showing 1-4 of 8 events
-        </div>
-        <div class="pagination">
-          <button class="pagination-btn prev" disabled>
-            &lt;
-          </button>
-          <button class="pagination-btn active">1</button>
-          <button class="pagination-btn">2</button>
-          <button class="pagination-btn next">
-            &gt;
-          </button>
+      <div class="events-pagination" data-aos="fade-up" data-aos-delay="200">
+        <div class="pagination-container" id="eventsPagination">
+          <!-- Pagination buttons will be populated by JavaScript -->
         </div>
       </div>
     </div>
-
   </div>
-
 </section>
 
-<style>
-  /* Events Section Styles */
-  .events.section {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-  }
-
-  /* Events Header */
-  .events-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .events-main-title {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 1rem;
-    position: relative;
-  }
-
-  .events-title-underline {
-    height: 4px;
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    width: 80px;
-    margin: 0.5rem auto;
-    border-radius: 2px;
-  }
-
-  .events-subtitle {
-    font-size: 1.2rem;
-    color: #4a5568;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-
-  /* Events Container */
-  .events-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  /* Category Dropdown (Mobile) */
-  .category-dropdown {
-    display: none;
-    position: relative;
-    margin-bottom: 2rem;
-  }
-
-  .dropdown-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
-    background: white;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .dropdown-header.active {
-    border-color: #1a56db;
-  }
-
-  .dropdown-title {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 600;
-    color: #1a202c;
-  }
-
-  .category-icon {
-    font-size: 1.1rem;
-  }
-
-  .dropdown-icon {
-    transition: transform 0.3s ease;
-  }
-
-  .dropdown-header.active .dropdown-icon {
-    transform: rotate(180deg);
-  }
-
-  .dropdown-options {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    border: 2px solid #e2e8f0;
-    border-top: none;
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: none;
-    z-index: 10;
-  }
-
-  .dropdown-options.show {
-    display: block;
-  }
-
-  .dropdown-option {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid #f1f5f9;
-  }
-
-  .dropdown-option:last-child {
-    border-bottom: none;
-  }
-
-  .dropdown-option:hover {
-    background: #f8fafc;
-  }
-
-  .dropdown-option.active {
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    color: white;
-  }
-
-  /* Category Buttons (Desktop) */
-  .events-categories {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .category-filter-btn {
-    padding: 0.75rem 1.5rem;
-    border: 2px solid #e2e8f0;
-    background: white;
-    color: #4a5568;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-size: 0.9rem;
-  }
-
-  .category-filter-btn:hover {
-    border-color: #1a56db;
-    color: #1a56db;
-    transform: translateY(-2px);
-  }
-
-  .category-filter-btn.active {
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    color: white;
-    border-color: transparent;
-  }
-
-  /* Events Grid */
-  .events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-
-  .event-card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .event-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .event-category-tag {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    color: white;
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    z-index: 2;
-  }
-
-  .event-date-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: white;
-    padding: 0.75rem;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-  }
-
-  .date-month {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #1a56db;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .date-day {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #1a202c;
-    line-height: 1;
-    margin: 0.2rem 0;
-  }
-
-  .date-year {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #6b7280;
-  }
-
-  .event-content {
-    padding: 2rem;
-    padding-top: 4rem;
-  }
-
-  .event-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 1rem;
-    line-height: 1.3;
-  }
-
-  .event-description {
-    color: #4a5568;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .event-details {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .event-detail {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #6b7280;
-    font-size: 0.9rem;
-  }
-
-  .detail-time::before {
-    content: "🕒";
-    margin-right: 0.3rem;
-  }
-
-  .detail-location::before {
-    content: "📍";
-    margin-right: 0.3rem;
-  }
-
-  .event-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .interest-buttons {
-    display: flex;
-    gap: 0.75rem;
-  }
-
-  .interest-btn {
-    flex: 1;
-    padding: 0.75rem 1rem;
-    border: 2px solid #e2e8f0;
-    background: white;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-weight: 600;
-  }
-
-  .interest-btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .interested-btn:hover {
-    border-color: #10b981;
-    color: #10b981;
-  }
-
-  .not-interested-btn:hover {
-    border-color: #ef4444;
-    color: #ef4444;
-  }
-
-  .interest-btn.active {
-    border-color: transparent;
-    color: white;
-  }
-
-  .interested-btn.active {
-    background: #10b981;
-  }
-
-  .not-interested-btn.active {
-    background: #ef4444;
-  }
-
-  .btn-icon {
-    font-size: 1.1rem;
-  }
-
-  /* Pagination */
-  .pagination-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .pagination-info {
-    color: #6b7280;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-
-  .pagination {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .pagination-btn {
-    width: 45px;
-    height: 45px;
-    border: 2px solid #e2e8f0;
-    background: white;
-    color: #4a5568;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .pagination-btn:hover:not(:disabled) {
-    border-color: #1a56db;
-    color: #1a56db;
-  }
-
-  .pagination-btn.active {
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    color: white;
-    border-color: transparent;
-  }
-
-  .pagination-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  /* Animation Classes */
-  .shuffle-out {
-    animation: shuffleOut 0.5s ease forwards;
-  }
-
-  .shuffle-in {
-    animation: shuffleIn 0.5s ease forwards;
-  }
-
-  @keyframes shuffleOut {
-    from {
-      opacity: 1;
-      transform: translateY(0);
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Events data
+  const eventsData = [
+    {
+      id: 1,
+      category: 'sports',
+      title: 'Annual Sports Day',
+      description: 'Join us for a day filled with exciting sports activities, competitions, and team-building exercises. Open to all alumni and current students.',
+      time: '08:30 AM - 05:00 PM',
+      location: 'University Playground',
+      date: '2025-03-10'
+    },
+    {
+      id: 2,
+      category: 'academic',
+      title: 'Science Fair Exhibition',
+      description: 'Explore innovative projects and research from our science departments. Featuring cutting-edge technology and groundbreaking discoveries.',
+      time: '09:00 AM - 03:00 PM',
+      location: 'Main Auditorium',
+      date: '2025-03-15'
+    },
+    {
+      id: 3,
+      category: 'arts',
+      title: 'Spring Music Concert',
+      description: 'An evening of classical and contemporary music performances by talented students and alumni musicians.',
+      time: '07:00 PM - 09:00 PM',
+      location: 'Cultural Hall',
+      date: '2025-03-20'
+    },
+    {
+      id: 4,
+      category: 'community',
+      title: 'Alumni Networking Meet',
+      description: 'Connect with fellow alumni, share experiences, and build professional relationships in this exclusive networking event.',
+      time: '10:00 AM - 04:00 PM',
+      location: 'Conference Center',
+      date: '2025-04-02'
+    },
+    {
+      id: 5,
+      category: 'academic',
+      title: 'Tech Innovation Summit',
+      description: 'Explore the latest technological advancements and innovations in the field of computer science and engineering.',
+      time: '10:00 AM - 06:00 PM',
+      location: 'Tech Building',
+      date: '2025-04-10'
+    },
+    {
+      id: 6,
+      category: 'arts',
+      title: 'Art Gallery Opening',
+      description: 'Experience stunning artworks from talented students and featured artists in our annual gallery exhibition.',
+      time: '06:00 PM - 09:00 PM',
+      location: 'Art Gallery',
+      date: '2025-04-15'
+    },
+    {
+      id: 7,
+      category: 'sports',
+      title: 'Basketball Championship',
+      description: 'Witness the thrilling finals of our annual inter-college basketball championship tournament.',
+      time: '02:00 PM - 06:00 PM',
+      location: 'Sports Complex',
+      date: '2025-04-20'
+    },
+    {
+      id: 8,
+      category: 'community',
+      title: 'Community Service Day',
+      description: 'Join us for a day of giving back to the community through various service activities and initiatives.',
+      time: '09:00 AM - 02:00 PM',
+      location: 'Community Center',
+      date: '2025-04-25'
+    },
+    {
+      id: 9,
+      category: 'academic',
+      title: 'Research Symposium',
+      description: 'Annual research symposium showcasing groundbreaking work from faculty and students across all departments.',
+      time: '09:00 AM - 05:00 PM',
+      location: 'Research Center',
+      date: '2025-05-05'
     }
-    to {
-      opacity: 0;
-      transform: translateY(20px);
-    }
+  ];
+
+  const eventsGrid = document.getElementById('eventsGrid');
+  const paginationContainer = document.getElementById('eventsPagination');
+
+  let currentPage = 1;
+  const itemsPerPage = 3; // Changed to 3 cards per page
+  let userInterests = {};
+
+  // Initialize events
+  function initEvents() {
+    console.log('Initializing events...');
+    renderEvents();
+    setupEventListeners();
   }
 
-  @keyframes shuffleIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  // Format date
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const month = date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+    const day = date.getDate();
+    const year = date.getFullYear();
+    const weekday = date.toLocaleDateString('en-US', { weekday: 'short' }).toUpperCase();
+    return { month, day, year, weekday };
   }
 
-  /* Responsive Design */
-  @media (max-width: 768px) {
+  // Get category color
+  function getCategoryColor(category) {
+    const colors = {
+      'sports': '#e74c3c',
+      'academic': '#3498db',
+      'arts': '#9b59b6',
+      'community': '#2ecc71'
+    };
+    return colors[category] || '#667eea';
+  }
+
+  // Get category icon
+  function getCategoryIcon(category) {
+    const icons = {
+      'sports': '⚽',
+      'academic': '📚',
+      'arts': '🎨',
+      'community': '👥'
+    };
+    return icons[category] || '📅';
+  }
+
+  // Create event card
+  function createEventCard(event, index) {
+    const { month, day, year, weekday } = formatDate(event.date);
+    const userInterest = userInterests[event.id];
+    const categoryColor = getCategoryColor(event.category);
+    const categoryIcon = getCategoryIcon(event.category);
+    
+    const eventCard = document.createElement('div');
+    eventCard.className = `event-card ${event.category}`;
+    
+    eventCard.innerHTML = `
+      <div class="event-header">
+        <div class="event-category" style="background: ${categoryColor}">
+          <span class="category-icon">${categoryIcon}</span>
+          <span class="category-name">${event.category.toUpperCase()}</span>
+        </div>
+        <div class="event-date">
+          <div class="date-weekday">${weekday}</div>
+          <div class="date-main">
+            <span class="date-day">${day}</span>
+            <span class="date-month">${month}</span>
+          </div>
+          <div class="date-year">${year}</div>
+        </div>
+      </div>
+      
+      <div class="event-content">
+        <h3 class="event-title">${event.title}</h3>
+        <p class="event-description">${event.description}</p>
+        
+        <div class="event-details">
+          <div class="event-detail">
+            <i class="bi bi-clock"></i>
+            <span>${event.time}</span>
+          </div>
+          <div class="event-detail">
+            <i class="bi bi-geo-alt"></i>
+            <span>${event.location}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="event-footer">
+        <div class="interest-buttons">
+          <button class="interest-btn interested-btn ${userInterest === true ? 'active' : ''}" 
+                  data-event-id="${event.id}" data-interest="true">
+            <span class="btn-icon">👍</span>
+            <span class="btn-text">Interested</span>
+          </button>
+          <button class="interest-btn not-interested-btn ${userInterest === false ? 'active' : ''}" 
+                  data-event-id="${event.id}" data-interest="false">
+            <span class="btn-icon">👎</span>
+            <span class="btn-text">Not Interested</span>
+          </button>
+        </div>
+       
+      </div>
+    `;
+    
+    return eventCard;
+  }
+
+  // Render events
+  function renderEvents() {
+    console.log('Rendering events...');
+    
+    // Clear the grid first
+    eventsGrid.innerHTML = '';
+    
+    const totalPages = Math.ceil(eventsData.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const itemsToShow = eventsData.slice(startIndex, endIndex);
+    
+    console.log('Items to show:', itemsToShow.length);
+    
+    if (itemsToShow.length === 0) {
+      eventsGrid.innerHTML = `
+        <div class="no-events">
+          <i class="bi bi-calendar-x"></i>
+          <h3>No events found</h3>
+          <p>Check back later for upcoming events</p>
+        </div>
+      `;
+      paginationContainer.innerHTML = '';
+    } else {
+      itemsToShow.forEach((event, index) => {
+        const eventCard = createEventCard(event, startIndex + index);
+        eventCard.style.opacity = '1';
+        eventCard.style.animation = `cardAppear 0.6s ease ${index * 0.1}s both`;
+        eventsGrid.appendChild(eventCard);
+      });
+      
+      // Render pagination
+      renderPagination(totalPages);
+    }
+    
+    // Force a reflow to ensure rendering
+    eventsGrid.offsetHeight;
+  }
+
+  // Render pagination
+  function renderPagination(totalPages) {
+    if (totalPages <= 1) {
+      paginationContainer.innerHTML = '';
+      return;
+    }
+    
+    let paginationHTML = '';
+    
+    // Previous button
+    paginationHTML += `
+      <button class="pagination-btn prev ${currentPage === 1 ? 'disabled' : ''}" 
+              ${currentPage === 1 ? 'disabled' : ''} 
+              data-page="${currentPage - 1}">
+        <i class="bi bi-chevron-left"></i>
+        <span>Previous</span>
+      </button>
+    `;
+    
+    // Page numbers
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    // Adjust if we're at the end
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    // First page and ellipsis if needed
+    if (startPage > 1) {
+      paginationHTML += `
+        <button class="pagination-btn" data-page="1">1</button>
+        ${startPage > 2 ? '<span class="pagination-ellipsis">...</span>' : ''}
+      `;
+    }
+    
+    // Page numbers
+    for (let i = startPage; i <= endPage; i++) {
+      paginationHTML += `
+        <button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">
+          ${i}
+        </button>
+      `;
+    }
+    
+    // Last page and ellipsis if needed
+    if (endPage < totalPages) {
+      paginationHTML += `
+        ${endPage < totalPages - 1 ? '<span class="pagination-ellipsis">...</span>' : ''}
+        <button class="pagination-btn" data-page="${totalPages}">${totalPages}</button>
+      `;
+    }
+    
+    // Next button
+    paginationHTML += `
+      <button class="pagination-btn next ${currentPage === totalPages ? 'disabled' : ''}" 
+              ${currentPage === totalPages ? 'disabled' : ''} 
+              data-page="${currentPage + 1}">
+        <span>Next</span>
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    `;
+    
+    paginationContainer.innerHTML = paginationHTML;
+  }
+
+  // Change page
+  function changePage(page) {
+    if (page < 1 || page > Math.ceil(eventsData.length / itemsPerPage)) return;
+    
+    currentPage = page;
+    renderEvents();
+    
+    // Scroll to top of events
+    eventsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Handle interest
+  function handleInterest(eventId, isInterested) {
+    userInterests[eventId] = isInterested;
+    const event = eventsData.find(e => e.id === eventId);
+    
+    if (event) {
+      if (isInterested) {
+        alert(`Great! You're interested in "${event.title}". We'll keep you updated about this event.`);
+      } else {
+        alert(`Noted. You're not interested in "${event.title}".`);
+      }
+    }
+    
+    renderEvents();
+  }
+
+  // Setup event listeners
+  function setupEventListeners() {
+    // Pagination event delegation
+    paginationContainer.addEventListener('click', (e) => {
+      if (e.target.closest('.pagination-btn')) {
+        const button = e.target.closest('.pagination-btn');
+        if (!button.disabled) {
+          const page = parseInt(button.dataset.page);
+          changePage(page);
+        }
+      }
+    });
+
+    // Event card interactions
+    eventsGrid.addEventListener('click', (e) => {
+      // Interest buttons
+      if (e.target.closest('.interest-btn')) {
+        const button = e.target.closest('.interest-btn');
+        const eventId = parseInt(button.dataset.eventId);
+        const isInterested = button.dataset.interest === 'true';
+        handleInterest(eventId, isInterested);
+      }
+      
+      // Register button
+      if (e.target.closest('.register-btn')) {
+        const button = e.target.closest('.register-btn');
+        const card = button.closest('.event-card');
+        const title = card.querySelector('.event-title').textContent;
+        alert(`Thank you for your interest in "${title}"! Registration details will be sent to your email.`);
+      }
+    });
+  }
+
+  // Add CSS for events
+  const style = document.createElement('style');
+  style.textContent = `
+    .events {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      min-height: 100vh;
+    }
+
+    .events-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
     .events-main-title {
-      font-size: 2.5rem;
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+      background:#000000;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .events-categories {
-      display: none;
-    }
 
-    .category-dropdown {
-      display: block;
-    }
+
 
     .events-grid {
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 35px;
+      margin-bottom: 60px;
+      max-width: 1300px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .pagination-container {
-      flex-direction: column;
-      text-align: center;
+    .event-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      opacity: 1;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
     }
 
-    .event-content {
-      padding: 1.5rem;
-      padding-top: 3.5rem;
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
     }
-  }
 
-  @media (max-width: 480px) {
-    .events-main-title {
-      font-size: 2rem;
+    .event-card:hover::before {
+      transform: scaleX(1);
     }
 
-    .events-subtitle {
+    .event-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .event-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 25px 30px 20px;
+      background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .event-category {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 25px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-icon {
       font-size: 1rem;
     }
 
-    .interest-buttons {
-      flex-direction: column;
+    .category-name {
+      font-size: 0.7rem;
+    }
+
+    .event-date {
+      text-align: center;
+      background: white;
+      padding: 12px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      min-width: 80px;
+    }
+
+    .date-weekday {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #718096;
+      margin-bottom: 4px;
+    }
+
+    .date-main {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .date-day {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #2d3748;
+      line-height: 1;
+    }
+
+    .date-month {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .date-year {
+      font-size: 0.7rem;
+      color: #a0aec0;
+      font-weight: 600;
+    }
+
+    .event-content {
+      padding: 30px;
     }
 
     .event-title {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 15px;
+      line-height: 1.3;
+      background: linear-gradient(135deg, #2d3748, #4a5568);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-  }
-</style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Events data
-    const eventsData = [
-      {
-        id: 1,
-        category: 'sports',
-        title: 'Annual Sports Day',
-        description: 'Join us for a day filled with exciting sports activities, competitions, and team-building exercises. Open to all alumni and current students.',
-        time: '08:30 AM - 05:00 PM',
-        location: 'University Playground',
-        date: '2025-03-10'
-      },
-      {
-        id: 2,
-        category: 'academic',
-        title: 'Science Fair Exhibition',
-        description: 'Explore innovative projects and research from our science departments. Featuring cutting-edge technology and groundbreaking discoveries.',
-        time: '09:00 AM - 03:00 PM',
-        location: 'Main Auditorium',
-        date: '2025-03-15'
-      },
-      {
-        id: 3,
-        category: 'arts',
-        title: 'Spring Music Concert',
-        description: 'An evening of classical and contemporary music performances by talented students and alumni musicians.',
-        time: '07:00 PM - 09:00 PM',
-        location: 'Cultural Hall',
-        date: '2025-03-20'
-      },
-      {
-        id: 4,
-        category: 'community',
-        title: 'Alumni Networking Meet',
-        description: 'Connect with fellow alumni, share experiences, and build professional relationships in this exclusive networking event.',
-        time: '10:00 AM - 04:00 PM',
-        location: 'Conference Center',
-        date: '2025-04-02'
-      },
-      {
-        id: 5,
-        category: 'academic',
-        title: 'Tech Innovation Summit',
-        description: 'Explore the latest technological advancements and innovations in the field of computer science and engineering.',
-        time: '10:00 AM - 06:00 PM',
-        location: 'Tech Building',
-        date: '2025-04-10'
-      },
-      {
-        id: 6,
-        category: 'arts',
-        title: 'Art Gallery Opening',
-        description: 'Experience stunning artworks from talented students and featured artists in our annual gallery exhibition.',
-        time: '06:00 PM - 09:00 PM',
-        location: 'Art Gallery',
-        date: '2025-04-15'
-      },
-      {
-        id: 7,
-        category: 'sports',
-        title: 'Basketball Championship',
-        description: 'Witness the thrilling finals of our annual inter-college basketball championship tournament.',
-        time: '02:00 PM - 06:00 PM',
-        location: 'Sports Complex',
-        date: '2025-04-20'
-      },
-      {
-        id: 8,
-        category: 'community',
-        title: 'Community Service Day',
-        description: 'Join us for a day of giving back to the community through various service activities and initiatives.',
-        time: '09:00 AM - 02:00 PM',
-        location: 'Community Center',
-        date: '2025-04-25'
+    .event-description {
+      color: #718096;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      font-size: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .event-details {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .event-detail {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #4a5568;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .event-detail i {
+      color: #667eea;
+      width: 18px;
+      font-size: 1.1rem;
+    }
+
+    .event-footer {
+      padding: 0 30px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .interest-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .interest-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 2px solid #e2e8f0;
+      background: white;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 120px;
+      justify-content: center;
+    }
+
+    .interest-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .interested-btn {
+      color: #38a169;
+      border-color: #c6f6d5;
+    }
+
+    .interested-btn:hover,
+    .interested-btn.active {
+      background: #38a169;
+      color: white;
+      border-color: #38a169;
+    }
+
+    .not-interested-btn {
+      color: #e53e3e;
+      border-color: #fed7d7;
+    }
+
+    .not-interested-btn:hover,
+    .not-interested-btn.active {
+      background: #e53e3e;
+      color: white;
+      border-color: #e53e3e;
+    }
+
+    .btn-icon {
+      font-size: 1.1rem;
+    }
+
+    .register-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .register-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .register-btn i {
+      transition: transform 0.3s ease;
+    }
+
+    .register-btn:hover i {
+      transform: translateX(3px);
+    }
+
+    /* Pagination Styles */
+    .events-pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 60px;
+    }
+
+    .pagination-container {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      background: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      border: 1px solid #e2e8f0;
+    }
+
+    .pagination-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border: 2px solid #e2e8f0;
+      background: white;
+      color: #4a5568;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 50px;
+      justify-content: center;
+    }
+
+    .pagination-btn:hover:not(.disabled) {
+      border-color: #667eea;
+      color: #667eea;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    }
+
+    .pagination-btn.active {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .pagination-btn.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .pagination-ellipsis {
+      padding: 0 12px;
+      color: #a0aec0;
+      font-weight: 600;
+    }
+
+    .no-events {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 20px;
+      color: #a0aec0;
+    }
+
+    .no-events i {
+      font-size: 4rem;
+      margin-bottom: 25px;
+      display: block;
+      opacity: 0.5;
+    }
+
+    .no-events h3 {
+      color: #4a5568;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    /* Animations */
+    @keyframes cardAppear {
+      0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
       }
-    ];
-
-    const categories = [
-      { id: 'all', name: 'All Events', icon: '📅' },
-      { id: 'academic', name: 'ACADEMIC', icon: '📚' },
-      { id: 'arts', name: 'ARTS', icon: '🎨' },
-      { id: 'sports', name: 'SPORTS', icon: '⚽' },
-      { id: 'community', name: 'COMMUNITY', icon: '👥' }
-    ];
-
-    let activeCategory = 'all';
-    let currentPage = 1;
-    const itemsPerPage = 4;
-    let userInterests = {};
-
-    // DOM Elements
-    const eventsGrid = document.getElementById('eventsGrid');
-    const paginationContainer = document.getElementById('paginationContainer');
-    const paginationInfo = document.getElementById('paginationInfo');
-    const dropdownHeader = document.getElementById('dropdownHeader');
-    const dropdownOptions = document.getElementById('dropdownOptions');
-    const activeCategoryName = document.getElementById('activeCategoryName');
-
-    // Initialize events
-    function initEvents() {
-      renderEvents();
-      setupEventListeners();
-    }
-
-    // Format date
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      const month = date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
-      const day = date.getDate();
-      const year = date.getFullYear();
-      return { month, day, year };
-    }
-
-    // Filter events
-    function getFilteredEvents() {
-      return activeCategory === 'all' 
-        ? eventsData 
-        : eventsData.filter(event => event.category === activeCategory);
-    }
-
-    // Render events
-    function renderEvents() {
-      const filteredEvents = getFilteredEvents();
-      const indexOfLastItem = currentPage * itemsPerPage;
-      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-      const currentItems = filteredEvents.slice(indexOfFirstItem, indexOfLastItem);
-      const totalPages = Math.ceil(filteredEvents.length / itemsPerPage);
-
-      // Clear grid
-      eventsGrid.innerHTML = '';
-
-      // Add shuffle animation
-      eventsGrid.classList.add('shuffle-out');
-      setTimeout(() => {
-        eventsGrid.classList.remove('shuffle-out');
-        eventsGrid.classList.add('shuffle-in');
-
-        // Render events
-        currentItems.forEach((event, index) => {
-          const { month, day, year } = formatDate(event.date);
-          const userInterest = userInterests[event.id];
-          
-          const eventCard = document.createElement('div');
-          eventCard.className = 'event-card';
-          eventCard.style.animationDelay = `${index * 100}ms`;
-          eventCard.innerHTML = `
-            <div class="event-category-tag">${event.category.toUpperCase()}</div>
-            <div class="event-date-badge">
-              <div class="date-month">${month}</div>
-              <div class="date-day">${day}</div>
-              <div class="date-year">${year}</div>
-            </div>
-            <div class="event-content">
-              <h3 class="event-title">${event.title}</h3>
-              <p class="event-description">${event.description}</p>
-              <div class="event-details">
-                <div class="event-detail">
-                  <span class="detail-time">${event.time}</span>
-                </div>
-                <div class="event-detail">
-                  <span class="detail-location">${event.location}</span>
-                </div>
-              </div>
-              <div class="event-actions">
-                <div class="interest-buttons">
-                  <button class="interest-btn interested-btn ${userInterest === true ? 'active' : ''}" 
-                          data-event-id="${event.id}" data-interest="true">
-                    <span class="btn-icon">👍</span>
-                    <span class="btn-text">${userInterest === true ? 'Interested' : 'Interested'}</span>
-                  </button>
-                  <button class="interest-btn not-interested-btn ${userInterest === false ? 'active' : ''}" 
-                          data-event-id="${event.id}" data-interest="false">
-                    <span class="btn-icon">👎</span>
-                    <span class="btn-text">${userInterest === false ? 'Not Interested' : 'Not Interested'}</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          `;
-          eventsGrid.appendChild(eventCard);
-        });
-
-        setTimeout(() => {
-          eventsGrid.classList.remove('shuffle-in');
-        }, 500);
-      }, 300);
-
-      // Update pagination
-      updatePagination(filteredEvents.length, indexOfFirstItem, indexOfLastItem, totalPages);
-    }
-
-    // Update pagination
-    function updatePagination(totalItems, firstItem, lastItem, totalPages) {
-      paginationInfo.textContent = `Showing ${firstItem + 1}-${Math.min(lastItem, totalItems)} of ${totalItems} events`;
-      
-      // Show/hide pagination
-      if (totalItems <= itemsPerPage) {
-        paginationContainer.style.display = 'none';
-      } else {
-        paginationContainer.style.display = 'flex';
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
       }
-
-      // Update pagination buttons (simplified)
-      const pagination = document.querySelector('.pagination');
-      pagination.innerHTML = `
-        <button class="pagination-btn prev" ${currentPage === 1 ? 'disabled' : ''}>&lt;</button>
-        ${Array.from({ length: totalPages }, (_, i) => i + 1).map(page => `
-          <button class="pagination-btn ${currentPage === page ? 'active' : ''}">${page}</button>
-        `).join('')}
-        <button class="pagination-btn next" ${currentPage === totalPages ? 'disabled' : ''}>&gt;</button>
-      `;
     }
 
-    // Handle interest
-    function handleInterest(eventId, isInterested) {
-      userInterests[eventId] = isInterested;
-      const event = eventsData.find(e => e.id === eventId);
-      
-      if (event) {
-        if (isInterested) {
-          alert(`Great! You're interested in "${event.title}". We'll keep you updated about this event.`);
-        } else {
-          alert(`Noted. You're not interested in "${event.title}".`);
-        }
+    @media (max-width: 1200px) {
+      .events-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .events {
+        padding: 60px 0;
       }
       
-      renderEvents();
+      .events-main-title {
+        font-size: 2.5rem;
+      }
+      
+      .events-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        max-width: 500px;
+      }
+      
+      .event-header {
+        padding: 20px 25px 15px;
+      }
+      
+      .event-content {
+        padding: 25px;
+      }
+      
+      .event-footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+      }
+      
+      .interest-buttons {
+        justify-content: center;
+      }
+      
+      .pagination-container {
+        padding: 12px 20px;
+        border-radius: 40px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .pagination-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
     }
 
-    // Handle category change
-    function handleCategoryChange(categoryId) {
-      activeCategory = categoryId;
-      currentPage = 1;
+    @media (max-width: 480px) {
+      .events-main-title {
+        font-size: 2rem;
+      }
       
-      // Update active category name
-      const category = categories.find(cat => cat.id === categoryId);
-      activeCategoryName.textContent = category ? category.name : 'All Events';
+      .event-content {
+        padding: 20px;
+      }
       
-      // Update active buttons
-      document.querySelectorAll('.category-filter-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-category') === categoryId);
-      });
+      .event-title {
+        font-size: 1.3rem;
+      }
       
-      document.querySelectorAll('.dropdown-option').forEach(option => {
-        option.classList.toggle('active', option.getAttribute('data-category') === categoryId);
-      });
+      .pagination-container {
+        gap: 8px;
+      }
       
-      renderEvents();
+      .pagination-btn {
+        padding: 8px 12px;
+        min-width: 40px;
+      }
+      
+      .pagination-btn.prev,
+      .pagination-btn.next {
+        min-width: 100px;
+      }
     }
+  `;
+  document.head.appendChild(style);
 
-    // Setup event listeners
-    function setupEventListeners() {
-      // Category filter buttons
-      document.querySelectorAll('.category-filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          handleCategoryChange(btn.getAttribute('data-category'));
-        });
-      });
-
-      // Dropdown options
-      document.querySelectorAll('.dropdown-option').forEach(option => {
-        option.addEventListener('click', () => {
-          handleCategoryChange(option.getAttribute('data-category'));
-          dropdownOptions.classList.remove('show');
-          dropdownHeader.classList.remove('active');
-        });
-      });
-
-      // Dropdown toggle
-      dropdownHeader.addEventListener('click', () => {
-        dropdownOptions.classList.toggle('show');
-        dropdownHeader.classList.toggle('active');
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.category-dropdown')) {
-          dropdownOptions.classList.remove('show');
-          dropdownHeader.classList.remove('active');
-        }
-      });
-
-      // Pagination event delegation
-      document.addEventListener('click', (e) => {
-        // Interest buttons
-        if (e.target.closest('.interest-btn')) {
-          const btn = e.target.closest('.interest-btn');
-          const eventId = parseInt(btn.getAttribute('data-event-id'));
-          const isInterested = btn.getAttribute('data-interest') === 'true';
-          handleInterest(eventId, isInterested);
-        }
-
-        // Pagination buttons
-        if (e.target.closest('.pagination-btn')) {
-          const btn = e.target.closest('.pagination-btn');
-          
-          if (btn.classList.contains('prev')) {
-            if (currentPage > 1) {
-              currentPage--;
-              renderEvents();
-            }
-          } else if (btn.classList.contains('next')) {
-            const filteredEvents = getFilteredEvents();
-            const totalPages = Math.ceil(filteredEvents.length / itemsPerPage);
-            if (currentPage < totalPages) {
-              currentPage++;
-              renderEvents();
-            }
-          } else if (!isNaN(parseInt(btn.textContent))) {
-            currentPage = parseInt(btn.textContent);
-            renderEvents();
-          }
-        }
-      });
-    }
-
-    // Initialize
-    initEvents();
-  });
+  // Initialize events
+  initEvents();
+});
 </script>
 
-  
 
-    <!-- Team Section -->
+
+<!-- Gallery Section -->
 <section id="team" class="gallery section light-background">
 
   <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
     <h2>Our Gallery</h2>
-    <p>Relive the memorable moments from our alumni community</p>
+    <!-- <p>Relive the memorable moments from our alumni community</p> -->
   </div><!-- End Section Title -->
 
-  <div class="container-fluid">
+  <div class="container">
 
     <!-- Gallery Categories -->
-    <div class="gallery-categories" data-aos="fade-up" data-aos-delay="100">
+    <!-- <div class="gallery-categories" data-aos="fade-up" data-aos-delay="100">
       <button class="gallery-category-btn active" data-category="all">All Photos</button>
       <button class="gallery-category-btn" data-category="events">Events</button>
       <button class="gallery-category-btn" data-category="campus">Campus</button>
       <button class="gallery-category-btn" data-category="reunions">Reunions</button>
       <button class="gallery-category-btn" data-category="sports">Sports</button>
       <button class="gallery-category-btn" data-category="cultural">Cultural</button>
+    </div> -->
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid" id="galleryGrid" data-aos="fade-up" data-aos-delay="150">
+      <!-- Gallery items will be populated by JavaScript -->
     </div>
 
-    <!-- Gallery Container -->
-    <div class="gallery-container" data-aos="fade-up" data-aos-delay="150">
-      <div class="gallery-track" id="galleryTrack">
-        <!-- Gallery Items will be duplicated for seamless loop -->
+    <!-- Pagination - Now positioned at bottom right -->
+    <div class="gallery-pagination" data-aos="fade-up" data-aos-delay="200">
+      <div class="pagination-container" id="paginationContainer">
+        <!-- Pagination buttons will be populated by JavaScript -->
       </div>
     </div>
-
-    <!-- Gallery Navigation -->
-    <div class="gallery-nav" data-aos="fade-up" data-aos-delay="200">
-      <button class="gallery-nav-btn prev" id="galleryPrev">
-        <i class="bi bi-chevron-left"></i>
-      </button>
-      <div class="gallery-dots" id="galleryDots">
-        <!-- Dots will be generated by JavaScript -->
-      </div>
-      <button class="gallery-nav-btn next" id="galleryNext">
-        <i class="bi bi-chevron-right"></i>
-      </button>
-    </div>
-
-    <!-- Gallery Stats -->
-
 
   </div>
 
 </section><!-- /Gallery Section -->
 
-<style>
-  /* Gallery Section Styles */
-  .gallery.section {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-    overflow: hidden;
-  }
-
-  .section-title h2 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  .section-title p {
-    font-size: 1.2rem;
-    color: #4a5568;
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  /* Gallery Categories */
-  .gallery-categories {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .gallery-category-btn {
-    padding: 0.75rem 1.5rem;
-    border: 2px solid #e2e8f0;
-    background: white;
-    color: #4a5568;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-  }
-
-  .gallery-category-btn:hover {
-    border-color: #1a56db;
-    color: #1a56db;
-    transform: translateY(-2px);
-  }
-
-  .gallery-category-btn.active {
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    color: white;
-    border-color: transparent;
-  }
-
-  /* Gallery Container */
-  .gallery-container {
-    position: relative;
-    margin: 0 -2rem;
-    padding: 2rem 0;
-    overflow: hidden;
-  }
-
-  .gallery-track {
-    display: flex;
-    gap: 1.5rem;
-    animation: scrollGallery 30s linear infinite;
-  }
-
-  .gallery-track:hover {
-    animation-play-state: paused;
-  }
-
-  .gallery-item {
-    flex: 0 0 350px;
-    transition: all 0.3s ease;
-  }
-
-  .gallery-item:hover {
-    transform: scale(1.05);
-    z-index: 2;
-  }
-
-  .gallery-image {
-    position: relative;
-    height: 400px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  }
-
-  .gallery-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .gallery-item:hover .gallery-image img {
-    transform: scale(1.1);
-  }
-
-  .gallery-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-    display: flex;
-    align-items: flex-end;
-    padding: 2rem;
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-
-  .gallery-item:hover .gallery-overlay {
-    opacity: 1;
-  }
-
-  .gallery-content h4 {
-    color: white;
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  .gallery-content p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-  }
-
-  .gallery-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  /* Gallery Navigation */
-  .gallery-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    margin: 2rem 0;
-  }
-
-  .gallery-nav-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid #e2e8f0;
-    background: white;
-    color: #4a5568;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .gallery-nav-btn:hover {
-    border-color: #1a56db;
-    color: #1a56db;
-    transform: scale(1.1);
-  }
-
-  .gallery-nav-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  .gallery-dots {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .gallery-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #cbd5e0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .gallery-dot.active {
-    background: #1a56db;
-    transform: scale(1.2);
-  }
-
-  /* Gallery Stats */
-  .gallery-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
-    max-width: 600px;
-    margin: 3rem auto 0;
-    padding: 2rem;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
-  }
-
-  .stat-item {
-    text-align: center;
-  }
-
-  .stat-number {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1a56db;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    font-size: 0.9rem;
-    color: #4a5568;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  /* Automatic Scroll Animation */
-  @keyframes scrollGallery {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-350px * 10 - 1.5rem * 10));
-    }
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .section-title h2 {
-      font-size: 2.5rem;
-    }
-
-    .gallery-categories {
-      gap: 0.5rem;
-    }
-
-    .gallery-category-btn {
-      padding: 0.6rem 1rem;
-      font-size: 0.8rem;
-    }
-
-    .gallery-item {
-      flex: 0 0 300px;
-    }
-
-    .gallery-image {
-      height: 350px;
-    }
-
-    @keyframes scrollGallery {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-300px * 10 - 1.5rem * 10));
-      }
-    }
-
-    .gallery-stats {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      padding: 1.5rem;
-    }
-
-    .stat-number {
-      font-size: 1.5rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .section-title h2 {
-      font-size: 2rem;
-    }
-
-    .gallery-item {
-      flex: 0 0 280px;
-    }
-
-    .gallery-image {
-      height: 320px;
-    }
-
-    @keyframes scrollGallery {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-280px * 10 - 1.5rem * 10));
-      }
-    }
-
-    .gallery-content {
-      padding: 1.5rem;
-    }
-
-    .gallery-content h4 {
-      font-size: 1.1rem;
-    }
-
-    .gallery-stats {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightboxModal">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightboxClose">
+      <i class="bi bi-x-lg"></i>
+    </button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+    <div class="lightbox-image-container">
+      <img id="lightboxImage" src="" alt="">
+      <div class="lightbox-info">
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxDate"></p>
+        <span id="lightboxCategory" class="lightbox-category"></span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const galleryTrack = document.getElementById('galleryTrack');
-    const galleryPrev = document.getElementById('galleryPrev');
-    const galleryNext = document.getElementById('galleryNext');
-    const galleryDots = document.getElementById('galleryDots');
-    const categoryButtons = document.querySelectorAll('.gallery-category-btn');
+document.addEventListener('DOMContentLoaded', function() {
+  // Gallery data
+  const galleryData = [
+    {
+      id: 1,
+      category: "events",
+      image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Annual Alumni Meet 2024",
+      date: "15 Dec 2024"
+    },
+    {
+      id: 2,
+      category: "campus",
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "University Campus View",
+      date: "12 Dec 2024"
+    },
+    {
+      id: 3,
+      category: "reunions",
+      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Batch of 2010 Reunion",
+      date: "10 Dec 2024"
+    },
+    {
+      id: 4,
+      category: "sports",
+      image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Annual Sports Day",
+      date: "08 Dec 2024"
+    },
+    {
+      id: 5,
+      category: "cultural",
+      image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Cultural Fest Performance",
+      date: "05 Dec 2024"
+    },
+    {
+      id: 6,
+      category: "events",
+      image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Leadership Conference",
+      date: "03 Dec 2024"
+    },
+    {
+      id: 7,
+      category: "campus",
+      image: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Library Inauguration",
+      date: "01 Dec 2024"
+    },
+    {
+      id: 8,
+      category: "cultural",
+      image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Music Concert",
+      date: "28 Nov 2024"
+    },
+    {
+      id: 9,
+      category: "events",
+      image: "https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Career Fair 2024",
+      date: "25 Nov 2024"
+    },
+    {
+      id: 10,
+      category: "sports",
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Basketball Tournament",
+      date: "22 Nov 2024"
+    },
+    {
+      id: 11,
+      category: "reunions",
+      image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Class of 2005 Reunion",
+      date: "20 Nov 2024"
+    },
+    {
+      id: 12,
+      category: "cultural",
+      image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Drama Festival",
+      date: "18 Nov 2024"
+    },
+    {
+      id: 13,
+      category: "events",
+      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Graduation Ceremony",
+      date: "15 Nov 2024"
+    },
+    {
+      id: 14,
+      category: "campus",
+      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Science Laboratory",
+      date: "12 Nov 2024"
+    },
+    {
+      id: 15,
+      category: "sports",
+      image: "https://images.unsplash.com/photo-1536922246289-88c42f957773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Swimming Competition",
+      date: "10 Nov 2024"
+    },
+    {
+      id: 16,
+      category: "cultural",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Art Exhibition",
+      date: "08 Nov 2024"
+    },
+    {
+      id: 17,
+      category: "reunions",
+      image: "https://images.unsplash.com/photo-1551836026-d5c88ac5c4fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Faculty Reunion",
+      date: "05 Nov 2024"
+    },
+    {
+      id: 18,
+      category: "events",
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      title: "Research Symposium",
+      date: "02 Nov 2024"
+    }
+  ];
+
+  const galleryGrid = document.getElementById('galleryGrid');
+  const categoryBtns = document.querySelectorAll('.gallery-category-btn');
+  const paginationContainer = document.getElementById('paginationContainer');
+  const lightboxModal = document.getElementById('lightboxModal');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxDate = document.getElementById('lightboxDate');
+  const lightboxCategory = document.getElementById('lightboxCategory');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+
+  let currentCategory = 'all';
+  let currentPage = 1;
+  const itemsPerPage = 8;
+  let currentLightboxIndex = 0;
+  let currentFilteredItems = [];
+
+  // Initialize gallery
+  function initGallery() {
+    renderGallery();
+    setupEventListeners();
+  }
+
+  // Create gallery item
+  function createGalleryItem(item, index) {
+    const galleryItem = document.createElement('div');
+    galleryItem.className = `gallery-item ${item.category}`;
     
-    // Gallery data
-    const galleryData = [
-      {
-        id: 1,
-        category: 'events',
-        image: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-        title: 'Annual Alumni Meet 2024',
-        description: 'Over 2000 alumni gathered for the grand reunion',
-        date: 'Dec 15, 2024',
-        likes: 245
-      },
-      {
-        id: 2,
-        category: 'campus',
-        image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-        title: 'Beautiful Campus',
-        description: 'Sunset view of our main academic building',
-        date: 'Nov 28, 2024',
-        likes: 189
-      },
-      {
-        id: 3,
-        category: 'sports',
-        image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-        title: 'Annual Sports Day',
-        description: 'Students competing in various athletic events',
-        date: 'Mar 10, 2024',
-        likes: 312
-      },
-      {
-        id: 4,
-        category: 'cultural',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-        title: 'Cultural Festival',
-        description: 'Traditional dance performance at the annual fest',
-        date: 'Feb 20, 2024',
-        likes: 278
-      },
-      {
-        id: 5,
-        category: 'reunions',
-        image: 'https://images.unsplash.com/photo-1551836026-d5c88ac5c4fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-        title: '1995 Batch Reunion',
-        description: 'Silver jubilee celebration of the 1995 batch',
-        date: 'Jan 15, 2024',
-        likes: 156
-      },
-      {
-        id: 6,
-        category: 'events',
-        image: 'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-        title: 'Annual Convocation',
-        description: 'Graduating students receiving their degrees',
-        date: 'Apr 5, 2024',
-        likes: 421
-      },
-      {
-        id: 7,
-        category: 'campus',
-        image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-        title: 'Central Library',
-        description: 'Newly renovated library with modern facilities',
-        date: 'Oct 12, 2024',
-        likes: 198
-      },
-      {
-        id: 8,
-        category: 'sports',
-        image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-        title: 'Cricket Tournament',
-        description: 'Inter-college cricket championship finals',
-        date: 'Sep 8, 2024',
-        likes: 267
-      },
-      {
-        id: 9,
-        category: 'cultural',
-        image: 'https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-        title: 'Music Concert',
-        description: 'Student band performing at the annual fest',
-        date: 'Mar 25, 2024',
-        likes: 334
-      },
-      {
-        id: 10,
-        category: 'reunions',
-        image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
-        title: 'Alumni Dinner',
-        description: 'Formal dinner gathering for distinguished alumni',
-        date: 'Dec 20, 2024',
-        likes: 189
-      }
-    ];
-
-    // Initialize gallery
-    function initGallery() {
-      renderGallery();
-      createDots();
-      setupEventListeners();
-    }
-
-    // Render gallery items
-    function renderGallery() {
-      galleryTrack.innerHTML = '';
-      
-      // Duplicate items for seamless loop (2 sets)
-      const itemsToRender = [...galleryData, ...galleryData];
-      
-      itemsToRender.forEach((item, index) => {
-        const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item';
-        galleryItem.setAttribute('data-category', item.category);
-        galleryItem.innerHTML = `
-          <div class="gallery-image">
-            <img src="${item.image}" alt="${item.title}">
-            <div class="gallery-overlay">
-              <div class="gallery-content">
-                <h4>${item.title}</h4>
-                <p>${item.description}</p>
-                <div class="gallery-meta">
-                  <span class="gallery-date">${item.date}</span>
-                  <span class="gallery-likes">❤️ ${item.likes}</span>
-                </div>
-              </div>
-            </div>
+    galleryItem.innerHTML = `
+      <div class="gallery-image">
+        <img src="${item.image}" alt="${item.title}" loading="lazy">
+        <div class="gallery-overlay">
+          <div class="gallery-info">
+            <h4 class="gallery-title">${item.title}</h4>
+            <p class="gallery-date">${item.date}</p>
           </div>
-        `;
-        galleryTrack.appendChild(galleryItem);
-      });
-    }
+          <div class="gallery-actions">
+            <button class="view-btn" data-index="${index}">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+          <div class="gallery-category-tag">${item.category}</div>
+        </div>
+      </div>
+    `;
+    
+    return galleryItem;
+  }
 
-    // Create navigation dots
-    function createDots() {
-      galleryDots.innerHTML = '';
-      
-      galleryData.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.className = `gallery-dot ${index === 0 ? 'active' : ''}`;
-        dot.addEventListener('click', () => goToSlide(index));
-        galleryDots.appendChild(dot);
-      });
-    }
-
-    // Setup event listeners
-    function setupEventListeners() {
-      // Navigation buttons
-      galleryPrev.addEventListener('click', () => navigate(-1));
-      galleryNext.addEventListener('click', () => navigate(1));
-
-      // Category filters
-      categoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const category = button.getAttribute('data-category');
-          filterGallery(category);
-          
-          // Update active button
-          categoryButtons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-        });
-      });
-
-      // Pause animation on hover
-      galleryTrack.addEventListener('mouseenter', () => {
-        galleryTrack.style.animationPlayState = 'paused';
-      });
-
-      galleryTrack.addEventListener('mouseleave', () => {
-        galleryTrack.style.animationPlayState = 'running';
-      });
-    }
-
-    // Navigation functions
-    function navigate(direction) {
-      const dots = galleryDots.querySelectorAll('.gallery-dot');
-      let activeIndex = Array.from(dots).findIndex(dot => dot.classList.contains('active'));
-      
-      activeIndex += direction;
-      
-      if (activeIndex < 0) activeIndex = dots.length - 1;
-      if (activeIndex >= dots.length) activeIndex = 0;
-      
-      goToSlide(activeIndex);
-    }
-
-    function goToSlide(index) {
-      const dots = galleryDots.querySelectorAll('.gallery-dot');
-      
-      // Update dots
-      dots.forEach((dot, dotIndex) => {
-        dot.classList.toggle('active', dotIndex === index);
-      });
-    }
-
-    // Filter gallery
-    function filterGallery(category) {
-      const items = galleryTrack.querySelectorAll('.gallery-item');
-      
-      if (category === 'all') {
-        items.forEach(item => item.style.display = 'block');
-      } else {
-        items.forEach(item => {
-          if (item.getAttribute('data-category') === category) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      }
-      
-      // Reset to first slide
-      goToSlide(0);
-    }
-
-    // Initialize
-    initGallery();
-
-    // Infinite scroll reset (for seamless loop)
-    galleryTrack.addEventListener('animationiteration', () => {
-      // Reset position when animation completes one cycle
-      // This creates the infinite loop effect
+  // Filter gallery with shuffle effect
+  function filterGallery(category) {
+    currentCategory = category;
+    currentPage = 1; // Reset to first page
+    
+    // Add shuffle animation
+    galleryGrid.classList.add('shuffling');
+    
+    // Clear grid with fade out
+    const items = galleryGrid.querySelectorAll('.gallery-item');
+    items.forEach((item, index) => {
+      item.style.animation = `shuffleOut 0.3s ease ${index * 0.05}s both`;
     });
-  });
-</script>
-
-<style>
-  /* Gallery Section Styles */
-  .gallery.section {
-    padding: 80px 0;
-    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-    overflow: hidden;
+    
+    // Re-render after delay
+    setTimeout(() => {
+      renderGallery();
+      
+      // Remove shuffle class
+      setTimeout(() => {
+        galleryGrid.classList.remove('shuffling');
+      }, 500);
+    }, 300);
   }
 
-  .section-title h2 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  .section-title p {
-    font-size: 1.2rem;
-    color: #4a5568;
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  /* Gallery Categories */
-  .gallery-categories {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .gallery-category-btn {
-    padding: 0.75rem 1.5rem;
-    border: 2px solid #e2e8f0;
-    background: white;
-    color: #4a5568;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-  }
-
-  .gallery-category-btn:hover {
-    border-color: #1a56db;
-    color: #1a56db;
-    transform: translateY(-2px);
-  }
-
-  .gallery-category-btn.active {
-    background: linear-gradient(135deg, #1a56db, #7e22ce);
-    color: white;
-    border-color: transparent;
-  }
-
-  /* Gallery Container */
-  .gallery-container {
-    position: relative;
-    margin: 0 -2rem;
-    padding: 2rem 0;
-    overflow: hidden;
-  }
-
-  .gallery-track {
-    display: flex;
-    gap: 1.5rem;
-    transition: transform 0.3s ease;
-    padding: 0 2rem;
-    cursor: grab;
-  }
-
-  .gallery-track:active {
-    cursor: grabbing;
-  }
-
-  .gallery-item {
-    flex: 0 0 350px;
-    transition: all 0.3s ease;
-  }
-
-  .gallery-item:hover {
-    transform: scale(1.05);
-    z-index: 2;
-  }
-
-  .gallery-image {
-    position: relative;
-    height: 400px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  }
-
-  .gallery-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .gallery-item:hover .gallery-image img {
-    transform: scale(1.1);
-  }
-
-  .gallery-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-    display: flex;
-    align-items: flex-end;
-    padding: 2rem;
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-
-  .gallery-item:hover .gallery-overlay {
-    opacity: 1;
-  }
-
-  .gallery-content h4 {
-    color: white;
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  .gallery-content p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-  }
-
-  .gallery-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  /* Gallery Navigation */
-  .gallery-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    margin: 2rem 0;
-  }
-
-  .gallery-nav-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid #e2e8f0;
-    background: white;
-    color: #4a5568;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .gallery-nav-btn:hover {
-    border-color: #1a56db;
-    color: #1a56db;
-    transform: scale(1.1);
-  }
-
-  .gallery-nav-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  .gallery-dots {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .gallery-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #cbd5e0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .gallery-dot.active {
-    background: #1a56db;
-    transform: scale(1.2);
-  }
-
-  /* Gallery Stats */
-  .gallery-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
-    max-width: 600px;
-    margin: 3rem auto 0;
-    padding: 2rem;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
-  }
-
-  .stat-item {
-    text-align: center;
-  }
-
-  .stat-number {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1a56db;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    font-size: 0.9rem;
-    color: #4a5568;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  /* Horizontal Scroll Animation */
-  @keyframes scrollGallery {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-350px * 5));
+  // Render gallery
+  function renderGallery() {
+    galleryGrid.innerHTML = '';
+    
+    currentFilteredItems = currentCategory === 'all' 
+      ? galleryData 
+      : galleryData.filter(item => item.category === currentCategory);
+    
+    const totalPages = Math.ceil(currentFilteredItems.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const itemsToShow = currentFilteredItems.slice(startIndex, endIndex);
+    
+    if (itemsToShow.length === 0) {
+      galleryGrid.innerHTML = `
+        <div class="no-photos">
+          <i class="bi bi-images"></i>
+          <h3>No photos found</h3>
+          <p>Try selecting a different category</p>
+        </div>
+      `;
+      paginationContainer.innerHTML = '';
+    } else {
+      itemsToShow.forEach((item, index) => {
+        const galleryItem = createGalleryItem(item, startIndex + index);
+        galleryItem.style.animation = `shuffleIn 0.5s ease ${index * 0.1}s both`;
+        galleryGrid.appendChild(galleryItem);
+      });
+      
+      // Render pagination
+      renderPagination(totalPages);
     }
   }
 
-  .gallery-track.auto-scroll {
-    animation: scrollGallery 30s linear infinite;
+  // Render pagination
+  function renderPagination(totalPages) {
+    if (totalPages <= 1) {
+      paginationContainer.innerHTML = '';
+      return;
+    }
+    
+    let paginationHTML = '';
+    
+    // Previous button
+    paginationHTML += `
+      <button class="pagination-btn ${currentPage === 1 ? 'disabled' : ''}" 
+              ${currentPage === 1 ? 'disabled' : ''} 
+              data-page="${currentPage - 1}">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+    `;
+    
+    // Page numbers
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    // Adjust if we're at the end
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    // First page and ellipsis if needed
+    if (startPage > 1) {
+      paginationHTML += `
+        <button class="pagination-btn" data-page="1">1</button>
+        ${startPage > 2 ? '<span class="pagination-ellipsis">...</span>' : ''}
+      `;
+    }
+    
+    // Page numbers
+    for (let i = startPage; i <= endPage; i++) {
+      paginationHTML += `
+        <button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">
+          ${i}
+        </button>
+      `;
+    }
+    
+    // Last page and ellipsis if needed
+    if (endPage < totalPages) {
+      paginationHTML += `
+        ${endPage < totalPages - 1 ? '<span class="pagination-ellipsis">...</span>' : ''}
+        <button class="pagination-btn" data-page="${totalPages}">${totalPages}</button>
+      `;
+    }
+    
+    // Next button
+    paginationHTML += `
+      <button class="pagination-btn ${currentPage === totalPages ? 'disabled' : ''}" 
+              ${currentPage === totalPages ? 'disabled' : ''} 
+              data-page="${currentPage + 1}">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    `;
+    
+    paginationContainer.innerHTML = paginationHTML;
   }
 
-  .gallery-track.auto-scroll:hover {
-    animation-play-state: paused;
+  // Change page
+  function changePage(page) {
+    if (page < 1 || page > Math.ceil(currentFilteredItems.length / itemsPerPage)) return;
+    
+    currentPage = page;
+    renderGallery();
+    
+    // Scroll to top of gallery
+    galleryGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .section-title h2 {
-      font-size: 2.5rem;
+  // Open lightbox
+  function openLightbox(index) {
+    currentLightboxIndex = index;
+    const item = currentFilteredItems[index];
+    
+    lightboxImage.src = item.image;
+    lightboxTitle.textContent = item.title;
+    lightboxDate.textContent = item.date;
+    lightboxCategory.textContent = item.category;
+    
+    lightboxModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Update navigation buttons state
+    updateLightboxNav();
+  }
+
+  // Close lightbox
+  function closeLightbox() {
+    lightboxModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Navigate lightbox
+  function navigateLightbox(direction) {
+    if (direction === 'prev') {
+      currentLightboxIndex = (currentLightboxIndex - 1 + currentFilteredItems.length) % currentFilteredItems.length;
+    } else {
+      currentLightboxIndex = (currentLightboxIndex + 1) % currentFilteredItems.length;
+    }
+    
+    const item = currentFilteredItems[currentLightboxIndex];
+    lightboxImage.src = item.image;
+    lightboxTitle.textContent = item.title;
+    lightboxDate.textContent = item.date;
+    lightboxCategory.textContent = item.category;
+    
+    updateLightboxNav();
+  }
+
+  // Update lightbox navigation state
+  function updateLightboxNav() {
+    // You can add disabled states if needed
+  }
+
+  // Setup event listeners
+  function setupEventListeners() {
+    // Category buttons
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
+        
+        // Update active button
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Filter gallery
+        filterGallery(category);
+      });
+    });
+
+    // Pagination event delegation
+    paginationContainer.addEventListener('click', (e) => {
+      if (e.target.closest('.pagination-btn')) {
+        const button = e.target.closest('.pagination-btn');
+        if (!button.disabled) {
+          const page = parseInt(button.dataset.page);
+          changePage(page);
+        }
+      }
+    });
+
+    // Lightbox events
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => navigateLightbox('prev'));
+    lightboxNext.addEventListener('click', () => navigateLightbox('next'));
+
+    // Close lightbox on overlay click
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) {
+        closeLightbox();
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!lightboxModal.classList.contains('active')) return;
+      
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigateLightbox('prev');
+      if (e.key === 'ArrowRight') navigateLightbox('next');
+    });
+
+    // Delegate view button clicks
+    galleryGrid.addEventListener('click', (e) => {
+      if (e.target.closest('.view-btn')) {
+        const button = e.target.closest('.view-btn');
+        const index = parseInt(button.dataset.index);
+        openLightbox(index);
+      }
+    });
+  }
+
+  // Add CSS for gallery and lightbox
+  const style = document.createElement('style');
+  style.textContent = `
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+      gap: 25px;
+      margin-bottom: 40px;
     }
 
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+      opacity: 0;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-image img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-info {
+      color: white;
+    }
+
+    .gallery-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: white;
+    }
+
+    .gallery-date {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin: 0;
+    }
+
+    .gallery-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .view-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #2c3e50;
+    }
+
+    .view-btn:hover {
+      background: white;
+      transform: scale(1.1);
+      color: #667eea;
+    }
+
+    .gallery-category-tag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #2c3e50;
+    }
+
+    /* Pagination Styles - Updated for right alignment */
+    .gallery-pagination {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 40px;
+      padding-right: 10px;
+    }
+
+    .pagination-container {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 50px;
+    }
+
+    .pagination-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 2px solid #e9ecef;
+      background: white;
+      color: #6c757d;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .pagination-btn:hover:not(.disabled) {
+      border-color: #667eea;
+      color: #667eea;
+      transform: translateY(-2px);
+    }
+
+    .pagination-btn.active {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+    }
+
+    .pagination-btn.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .pagination-ellipsis {
+      padding: 0 8px;
+      color: #6c757d;
+      font-weight: 600;
+    }
+
+    /* Lightbox Styles */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-image-container {
+      position: relative;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .lightbox-image-container img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .lightbox-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+      color: white;
+      padding: 30px 20px 20px;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .lightbox-info h3 {
+      margin: 0 0 5px 0;
+      font-size: 1.3rem;
+    }
+
+    .lightbox-info p {
+      margin: 0 0 10px 0;
+      opacity: 0.8;
+    }
+
+    .lightbox-category {
+      background: rgba(255, 255, 255, 0.9);
+      color: #2c3e50;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.5rem;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .lightbox-prev {
+      left: -70px;
+    }
+
+    .lightbox-next {
+      right: -70px;
+    }
+
+    /* Rest of the existing gallery styles remain the same */
     .gallery-categories {
-      gap: 0.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
     }
 
     .gallery-category-btn {
-      padding: 0.6rem 1rem;
-      font-size: 0.8rem;
+      padding: 10px 20px;
+      border: 2px solid #e9ecef;
+      background: white;
+      color: #6c757d;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .gallery-item {
-      flex: 0 0 300px;
+    .gallery-category-btn:hover,
+    .gallery-category-btn.active {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-color: transparent;
     }
 
-    .gallery-image {
-      height: 350px;
+    .no-photos {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: #6c757d;
     }
 
-    .gallery-stats {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      padding: 1.5rem;
+    .no-photos i {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
     }
 
-    .stat-number {
-      font-size: 1.5rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .section-title h2 {
-      font-size: 2rem;
+    .no-photos h3 {
+      color: #495057;
+      margin-bottom: 10px;
     }
 
-    .gallery-item {
-      flex: 0 0 280px;
+    /* Shuffle Animations */
+    @keyframes shuffleIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
-    .gallery-image {
-      height: 320px;
+    @keyframes shuffleOut {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+      }
     }
 
-    .gallery-content {
-      padding: 1.5rem;
+    .gallery-grid.shuffling {
+      position: relative;
     }
 
-    .gallery-content h4 {
-      font-size: 1.1rem;
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
     }
 
-    .gallery-stats {
-      grid-template-columns: 1fr;
+    @media (max-width: 992px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
     }
-  }
-</style>
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .gallery-pagination {
+        justify-content: center;
+        padding-right: 0;
+      }
+      
+      .pagination-container {
+        padding: 10px 15px;
+        border-radius: 40px;
+      }
+      
+      .pagination-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+      }
+      
+      .lightbox-prev {
+        left: 10px;
+      }
+      
+      .lightbox-next {
+        right: 10px;
+      }
+      
+      .lightbox-close {
+        top: 10px;
+        right: 10px;
+      }
+      
+      .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .pagination-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 20px;
+        gap: 6px;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Initialize gallery
+  initGallery();
+});
+</script>
+
+
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
