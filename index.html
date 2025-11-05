@@ -469,6 +469,27 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // Full message content
+    const fullMessage = `A warm and heartfelt greeting to each of you from the very heart of our beloved institution. It is with immense pride and a sense of nostalgia that I reach out to you as the President of the Mangala Alumni Association. As Chairperson of the Alumni Committee I take utmost pleasure to thank you all and to look forward earnestly to your continuing involvement in the coming years as we march ahead together towards a new nova of achievements.
+
+Our journey together began decades ago when we embarked on an adventure that would shape not just our careers, but our lives. Today, standing at the helm of this remarkable association, I am both humbled and excited to connect with each of you once again.
+
+I am sure there are plenty of good reasons for alumni to stay in touch with their alma mater. The objective is to foster continuous engagement of the alumni with their alma mater. As the pioneering members of nascent university that our alma mater was, we were the torchbearers of a legacy that now spans far and wide. Our collective footsteps laid the foundation upon which the university has grown and flourished. It's a legacy of determination, innovation, and unwavering spirit, and one that we must carry forward for generations to come.
+
+This association isn't just an alumni network; it's a testament to the bonds we forged in the classrooms, hostels, and corridors of Mangalagangothri. It's a reflection of the dreams we nurtured, the challenges we overcame, and the victories we celebrated. Each of us has a unique story to tell, and together, our stories paint a vivid canvas of the shared Mangala experience.
+
+While time and distance may have taken us on different paths, the spirit of Mangala lives on within us. It's the resilience that propelled us through exams, the friendships that weathered the tests of time, and the knowledge that ignited our curiosity. It's this very spirit that we now harness to create a brighter future for ourselves and our beloved alma mater.
+
+Though the world has transformed since our days on campus, the essence of Mangala remains unchanged. We are a testament to the transformative power of education, and now, as we navigate the professional landscape, our responsibilities have grown. The Mangala Alumni Association is our conduit to stay connected, to collaborate, and to inspire.
+
+In the ever-evolving realm of careers and aspirations, this association serves as a beacon of support and growth. Our alumni community is a treasure trove of talent, expertise, and diverse experiences. It's a reservoir from which we can draw inspiration, knowledge, and mentorship. Together, we can drive innovation, lead industries, and contribute to society in meaningful ways.
+
+But beyond personal growth, there's an inherent responsibility that comes with being part of the Mangala family. Our insights, wisdom, and perspectives can guide the institution to even greater heights. Let's work hand in hand with the faculty, students, and fellow alumni to ensure that Mangala's legacy continues to shine brightly.
+
+As we embark on this exhilarating journey, I invite each of you to engage actively with the Alumni Association. Attend events, share your experiences, mentor the next generation, and contribute to the ongoing narrative of Sharda's success. Let's reconnect, reminisce, and reimagine the possibilities that lie ahead.
+
+Let us embrace our roles as ambassadors of Mangalore University's ethos and excellence. Let's celebrate the dreams we realized, the bonds we forged, and the incredible future that awaits us. Together, we are more than just alumni; we are a force of positive change, a testament to the power of education, and a living embodiment of Mangala's legacy.`;
+
     // Leadership messages data
     const leadershipMessages = [
       {
@@ -476,14 +497,16 @@
         title: "Alumni President",
         name: "Mr Ramakrishna Rao",
         photo: "assets/img/ramakrishna.jpg",
-        content: "As alumni, we carry the torch of Mangalore University's rich tradition wherever we go. Our association is committed to creating meaningful engagements and supporting the university's development initiatives."
+        content: "A warm and heartfelt greeting to each of you from the very heart of our beloved institution. It is with immense pride and a sense of nostalgia that I reach out to you as the President of the Mangala Alumni Association. As Chairperson of the Alumni Committee I take utmost pleasure to thank you all and to look forward earnestly to your continuing involvement in the coming years as we march ahead together towards a new nova of achievements.",
+        fullMessage: fullMessage
       },
       {
         id: 'secretary',
         title: "Alumni Secretary",
         name: "Mr Subramanya",
         photo: "assets/img/subramanya.jpg",
-        content: "The Alumni Association is dedicated to strengthening the bond between the university and its graduates. Through various programs and initiatives, we aim to create a vibrant community that supports professional growth and social responsibility."
+        content: "The Alumni Association is dedicated to strengthening the bond between the university and its graduates. Through various programs and initiatives, we aim to create a vibrant community that supports professional growth and social responsibility.",
+        fullMessage: fullMessage
       }
     ];
 
@@ -492,6 +515,11 @@
     const sliderNav = document.getElementById('sliderNav');
     const prevButton = document.getElementById('prevSlide');
     const nextButton = document.getElementById('nextSlide');
+    const popup = document.getElementById('messagePopup');
+    const closeBtn = document.querySelector('.close-btn');
+    const popupTitle = document.getElementById('popupTitle');
+    const popupName = document.getElementById('popupName');
+    const popupMessage = document.getElementById('popupMessage');
 
     // Initialize slider
     function initSlider() {
@@ -514,11 +542,20 @@
               </div>
               <div class="leader-message-full">
                 <p>"${leader.content}"</p>
+                <button class="read-more-btn" data-index="${index}">Read Full Message</button>
               </div>
             </div>
           </div>
         `;
         sliderTrack.appendChild(slide);
+      });
+
+      // Add event listeners to Read More buttons
+      document.querySelectorAll('.read-more-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const index = this.getAttribute('data-index');
+          openPopup(leadershipMessages[index]);
+        });
       });
 
       // Create navigation dots
@@ -533,6 +570,12 @@
       // Add event listeners for navigation buttons
       prevButton.addEventListener('click', () => goToSlide((currentSlide - 1 + leadershipMessages.length) % leadershipMessages.length));
       nextButton.addEventListener('click', () => goToSlide((currentSlide + 1) % leadershipMessages.length));
+
+      // Close popup events
+      closeBtn.addEventListener('click', closePopup);
+      popup.addEventListener('click', function(e) {
+        if (e.target === popup) closePopup();
+      });
 
       // Auto-slide
       setInterval(() => {
@@ -549,6 +592,21 @@
       document.querySelectorAll('.nav-dot-full').forEach((dot, i) => {
         dot.classList.toggle('active', i === currentSlide);
       });
+    }
+
+    // Open popup with full message
+    function openPopup(leader) {
+      popupTitle.textContent = leader.title;
+      popupName.textContent = leader.name;
+      popupMessage.textContent = leader.fullMessage;
+      popup.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close popup
+    function closePopup() {
+      popup.style.display = 'none';
+      document.body.style.overflow = 'auto';
     }
 
     // Initialize animations
@@ -589,9 +647,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const teamData = [
     {
       id: 1,
-      name: "Mr Ramakrishna Rao",
+      name: "Ramakrishna Rao",
       position: "President",
-      department: "Alumni Association",
+      // department: "Alumni Association",
       photo: "assets/img/ramakrishna.jpg",
       linkedin: "#",
       email: "mailto:president@alumni.mangaloreuniversity.edu",
@@ -599,114 +657,185 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 2,
-      name: "Mr Subramanya",
-      position: "Secretary",
-      department: "Alumni Association",
-      photo: "assets/img/subramanya.jpg",
+      name: "Jayappa",
+      position: "Vice President",
+      // department: "Alumni Association",
+      photo: "assets/img/jayappa.png",
       linkedin: "#",
       email: "mailto:secretary@alumni.mangaloreuniversity.edu",
       facebook: "#"
     },
-    {
+      {
       id: 3,
-      name: "Dr. Priya Sharma",
+      name: "Sudha K",
       position: "Vice President",
-      department: "Alumni Relations",
-      photo: "assets/img/team3.jpg",
-      linkedin: "#",
-      email: "mailto:priya.sharma@alumni.mangaloreuniversity.edu",
-      facebook: "#"
-    },
-    {
-      id: 4,
-      name: "Mr Arjun Patel",
-      position: "Treasurer",
-      department: "Finance & Operations",
-      photo: "assets/img/team4.jpg",
-      linkedin: "#",
-      email: "mailto:arjun.patel@alumni.mangaloreuniversity.edu",
-      facebook: "#"
-    },
-    {
-      id: 5,
-      name: "Ms Ananya Reddy",
-      position: "Events Coordinator",
-      department: "Program Management",
-      photo: "assets/img/team5.jpg",
-      linkedin: "#",
-      email: "mailto:ananya.reddy@alumni.mangaloreuniversity.edu",
-      facebook: "#"
-    },
-    {
-      id: 6,
-      name: "Dr. Sameer Joshi",
-      position: "Academic Liaison",
-      department: "University Relations",
-      photo: "assets/img/team6.jpg",
+      // department: "University Relations",
+      photo: "assets/img/sudha.jpg",
       linkedin: "#",
       email: "mailto:sameer.joshi@alumni.mangaloreuniversity.edu",
       facebook: "#"
     },
     {
+      id: 4,
+      name: "Deviprabha Alwa",
+      position: "Vice President",
+      // department: "Alumni Relations",
+      photo: "assets/img/deviprabha.png",
+      linkedin: "#",
+      email: "mailto:priya.sharma@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 5,
+      name: "Subramanya ",
+      position: "Organising Secretary",
+      // department: "Finance & Operations",
+      photo: "assets/img/Subramanya.jpg",
+      linkedin: "#",
+      email: "mailto:arjun.patel@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 6,
+      name: "Ganesh Sanjeev",
+      position: "Secretary",
+      // department: "Program Management",
+      photo: "assets/img/ganesh.png",
+      linkedin: "#",
+      email: "mailto:ananya.reddy@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+  
+    {
       id: 7,
-      name: "Dr. Meera Nair",
-      position: "Research Coordinator",
-      department: "Academic Affairs",
-      photo: "assets/img/team7.jpg",
+      name: "Chandru Hegde",
+      position: "Treasuer",
+      // department: "Academic Affairs",
+      photo: "assets/img/chandru.png",
       linkedin: "#",
       email: "mailto:meera.nair@alumni.mangaloreuniversity.edu",
       facebook: "#"
     },
     {
       id: 8,
-      name: "Mr Vikram Singh",
-      position: "Outreach Manager",
-      department: "Community Relations",
-      photo: "assets/img/team8.jpg",
+      name: "Venu Sharma",
+      position: "Member",
+      // department: "Community Relations",
+      photo: "assets/img/venu.png",
       linkedin: "#",
       email: "mailto:vikram.singh@alumni.mangaloreuniversity.edu",
       facebook: "#"
     },
     {
       id: 9,
-      name: "Ms Deepa Krishnan",
-      position: "Digital Media Manager",
-      department: "Marketing & Communications",
-      photo: "assets/img/team9.jpg",
+      name: "Rajaram Rao",
+      position: "Member",
+      // department: "Marketing & Communications",
+      photo: "assets/img/rajaram.png",
       linkedin: "#",
       email: "mailto:deepa.krishnan@alumni.mangaloreuniversity.edu",
       facebook: "#"
     },
     {
       id: 10,
-      name: "Dr. Rohan Mehra",
-      position: "Student Liaison",
-      department: "Campus Relations",
-      photo: "assets/img/team10.jpg",
+      name: "Pradeep D'souza",
+      position: "Member",
+      // department: "Campus Relations",
+      photo: "assets/img/praveen.jpg",
       linkedin: "#",
       email: "mailto:rohan.mehra@alumni.mangaloreuniversity.edu",
       facebook: "#"
     },
     {
       id: 11,
-      name: "Ms Sneha Gupta",
-      position: "Membership Coordinator",
-      department: "Member Services",
-      photo: "assets/img/team11.jpg",
+      name: "N.K Heregouder ",
+      position: "Member",
+      // department: "Member Services",
+      photo: "assets/img/NK.png",
       linkedin: "#",
       email: "mailto:sneha.gupta@alumni.mangaloreuniversity.edu",
       facebook: "#"
     },
     {
       id: 12,
-      name: "Mr Karthik Reddy",
-      position: "Technical Director",
-      department: "IT & Infrastructure",
-      photo: "assets/img/team12.jpg",
+      name: "V G Bhat",
+      position: "Member",
+      // department: "IT & Infrastructure",
+      photo: "assets/img/VG.jpg",
       linkedin: "#",
       email: "mailto:karthik.reddy@alumni.mangaloreuniversity.edu",
       facebook: "#"
-    }
+    },
+    {
+      id: 13,
+      name: "Prof. Iqbal",
+      position: "Member",
+      // department: "IT & Infrastructure",
+      photo: "assets/img/iqbal.jpg",
+      linkedin: "#",
+      email: "mailto:karthik.reddy@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 14,
+      name: "Manjunatha Pattabhi",
+      position: "Member",
+      // department: "IT & Infrastructure",
+      photo: "assets/img/manjunatha.jpg",
+      linkedin: "#",
+      email: "mailto:karthik.reddy@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 15,
+      name: "Dr Ismail B",
+      position: "Member",
+      // department: "IT & Infrastructure",
+      photo: "assets/img/ismail.jpg",
+      linkedin: "#",
+      email: "mailto:karthik.reddy@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 16,
+      name: "Sarojini",
+      position: "Member",
+      // department: "IT & Infrastructure",
+      photo: "assets/img/sarojini.png",
+      linkedin: "#",
+      email: "mailto:karthik.reddy@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+    {
+      id: 17,
+      name: "Sushma",
+      position: "Member",
+      // department: "IT & Infrastructure",
+      photo: "assets/img/sushma.png",
+      linkedin: "#",
+      email: "mailto:karthik.reddy@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+  {
+      id: 18,
+      name: "Harshitha",
+      position: "Member",
+      // department: "IT & Infrastructure",
+      photo: "assets/img/harshitha.png",
+      linkedin: "#",
+      email: "mailto:karthik.reddy@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
+      {
+      id: 19,
+      name: "Vanaja",
+      position: "Member",
+      // department: "IT & Infrastructure",
+      photo: "assets/img/vanaja.png",
+      linkedin: "#",
+      email: "mailto:karthik.reddy@alumni.mangaloreuniversity.edu",
+      facebook: "#"
+    },
   ];
 
   const teamGrid = document.getElementById('teamGrid');
@@ -936,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', function() {
   .team-member-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
     transition: transform 0.3s ease;
   }
 
@@ -1243,6 +1372,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
   </div>
 </section>
+
+
 <div class="messages-section">
   <div class="full-width-container">
     <h2 class="section-title">Messages From Leadership</h2>
@@ -1265,6 +1396,19 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
   </div>
+  <!-- Popup Modal -->
+<div id="messagePopup" class="popup-modal">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span>
+    <div class="popup-header">
+      <h3 id="popupTitle">Alumni President</h3>
+      <h4 id="popupName">Mr Ramakrishna Rao</h4>
+    </div>
+    <div class="popup-body">
+      <p id="popupMessage"></p>
+    </div>
+  </div>
+</div>
 </div>
 
 
@@ -3098,94 +3242,85 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section">
+   <!-- Contact Section -->
+<section id="contact" class="contact section">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Contact Us</h2>
+  </div>
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <!-- <p>Lets talk</p> -->
-      </div><!-- End Section Title -->
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4 align-items-stretch">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <!-- Left Side: Address + Google Map -->
+      <div class="col-lg-6">
+        
+        <div class="map-container">
+          <div class="address-block text-center mb-3">
+            <h3><i class="bi bi-geo-alt-fill" style="color: rgb(227, 21, 13);"></i> Address</h3>
+            <p>Mangalore University, Konaje, Dakshina Kannada, Karnataka 574199</p>
+          </div>
+          <iframe
+            src="https://www.google.com/maps?q=Mangalore+University,+Konaje,+Dakshina+Kannada,+Karnataka+574199&hl=en&z=15&output=embed"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
 
-        <div class="row gy-4">
-          <div class="col-lg-6 ">
-            <div class="row gy-4">
-
-              <div class="col-lg-12">
-                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
-                  <i class="bi bi-geo-alt"></i>
-                  <h3>Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="col-md-6">
-                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
-                  <i class="bi bi-telephone"></i>
-                  <h3>Call Us</h3>
-                  <p>+1 5589 55488 55</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="col-md-6">
-                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
-                  <i class="bi bi-envelope"></i>
-                  <h3>Email Us</h3>
-                  <p>info@example.com</p>
-                </div>
-              </div><!-- End Info Item -->
-
+      <!-- Right Side: Contact Form -->
+      <div class="col-lg-6">
+        <form action="forms/contact.php" method="post" class="php-email-form">
+          <div class="row gy-4">
+            <div class="col-md-6">
+              <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="col-md-6">
+              <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="col-md-12">
+              <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+            </div>
+            <div class="col-md-12">
+              <textarea class="form-control" name="message" rows="4" placeholder="Message" required></textarea>
+            </div>
+            <div class="col-md-12 text-center">
+              <button type="submit">Send Message</button>
             </div>
           </div>
 
-          <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="4" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
+          <!-- Contact Info Below Form -->
+          <div class="contact-extra">
+            <div class="info-card">
+              <i class="bi bi-telephone-fill"></i>
+              <div>
+                <h4>Call Us</h4>
+                <p>+91 824 228 7276</p>
               </div>
-            </form>
-          </div><!-- End Contact Form -->
+            </div>
 
-        </div>
-
+            <div class="info-card">
+              <i class="bi bi-envelope-fill"></i>
+              <div>
+                <h4>Email Us</h4>
+                <p>info@mangaloreuniversity.ac.in</p>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
+    </div>
+  </div>
+</section>
 
-    </section><!-- /Contact Section -->
 
-  </main>
 
-  <footer id="footer" class="footer dark-background">
+
+<footer id="footer" class="footer dark-background">
 
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">Mangalore University Alumni</span>
+            <span class="sitename">Mangalore University Alumni Association (MAA)</span>
           </a>
           <div class="footer-contact pt-3">
             <p>A108 Adam Street</p>
@@ -3193,35 +3328,40 @@ document.addEventListener('DOMContentLoaded', function() {
             <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
             <p><strong>Email:</strong> <span>info@example.com</span></p>
           </div>
-       
+          <div class="mt-3">
+            <a href="login.html" class="btn btn-primary">Join Us</a>
+          </div>
         </div>
 
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
-          </ul>
+        <div class="col-lg-4 col-md-6">
+          <div class="row">
+            <div class="col-6 footer-links">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#">About</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#">Team</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#">Notable Alumni</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#">Events</a></li>
+              </ul>
+            </div>
+            <div class="col-6 footer-links">
+              <h4>&nbsp;</h4>
+              <ul>
+                <li><i class="bi bi-chevron-right"></i> <a href="#">News</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#">Gallery</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#">Contact Us</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#">Alumni Network</a></li>
+                <!-- <li><i class="bi bi-chevron-right"></i> <a href="#">Donate</a></li> -->
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div class="col-lg-4 col-md-12 footer-newsletter">
-          <h4>Social Media</h4>
-          <!-- <p>Subscribe to our newsletter and receive the latest news about our products and services!</p> -->
-           <div class="social-links d-flex mt-4">
+          <h4>Connect With Us</h4>
+          <p>Stay updated with the latest news and events from Mangalore University Alumni Association</p>
+          <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>
             <a href=""><i class="bi bi-facebook"></i></a>
             <a href=""><i class="bi bi-instagram"></i></a>
@@ -3233,7 +3373,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Mangalore University Alumni</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Mangalore University Alumni Association(MAA)</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you've purchased the pro version. -->
@@ -3244,6 +3384,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
   </footer>
+  </main>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
