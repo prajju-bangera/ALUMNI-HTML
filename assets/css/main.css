@@ -761,7 +761,7 @@ h6 {
 
 .footer .copyright {
   padding: 25px 0;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  /* border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%); */
 }
 
 .footer .copyright p {
@@ -972,7 +972,7 @@ h6 {
 section,
 .section {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background-color: #f2f2f2;
   padding: 60px 0;
   scroll-margin-top: 90px;
   overflow: clip;
@@ -2052,8 +2052,8 @@ section,
 --------------------------------------------------------------*/
 
 #contact {
-  margin-top: 40px;
-  background: #f8fafc;
+  margin-top: 0px;
+  background: #f2f2f2;
   padding-bottom: 40px;
 }
 
@@ -2447,6 +2447,9 @@ section,
     font-size: 65.5px;
 
   }
+
+
+  
 
   .cursor {
     display: inline-block;
@@ -2931,6 +2934,8 @@ section,
   /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
   color: white;
   margin-top: -88px;
+  background-color: #f2f2f2;
+
 }
 
   .full-width-container {
@@ -2945,7 +2950,7 @@ section,
   max-width: 1200px;
   margin: 0 auto;
   border-radius: 30px;
-  background-color: #f6f7fd;
+  background-color: #ffffff;
 
   
 }
@@ -3092,6 +3097,7 @@ section,
     border: none;
     background: white;
     color: #1a56db;
+    font-weight: bold;
     font-size: 1.5rem;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -3100,6 +3106,7 @@ section,
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 3px;
   }
 
   .slider-btn-full:hover {
@@ -3269,6 +3276,7 @@ section,
   /* News Section Styles */
   .services.section {
     padding: 80px 0;
+    background: #f2f2f2;
     /* background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%); */
   }
 
@@ -3676,7 +3684,7 @@ section,
   /* Events Section Styles */
   .events.section {
     padding: 80px 0;
-    background: white;
+    background: #f2f2f2;
   }
 
   /* Events Header */
@@ -3872,6 +3880,19 @@ section,
     letter-spacing: 0.5px;
     z-index: 2;
   }
+
+  .event-date{
+     /* position: absolute; */
+  top: 15px;
+  left: 15px;
+  width: 22%;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+  
 
   .event-date-badge {
     position: absolute;
@@ -4178,6 +4199,8 @@ section,
   max-width: 800px;
 }
 
+
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -4255,7 +4278,7 @@ section,
 /* ======= Gallery Section ======= */
 .gallery {
   padding: 60px 0;
-  background: #f9fafb;
+  background: #f2f2f2;
 }
 
 .section-title {
