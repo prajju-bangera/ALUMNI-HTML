@@ -53,14 +53,16 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#team">Team</a></li>
                     <li><a href="NotableAlumni.html">Notable Alumni</a></li>
+                      <li><a href="#services">News</a></li>
+                            <li><a href="#clients">Events</a></li>
 
-                    <li class="dropdown">
+                    <!-- <li class="dropdown">
                         <a href="#"><span>Events & News</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="#services">News</a></li>
                             <li><a href="#clients">Events</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#contact">Contact Us</a></li>
                 </ul>
@@ -1105,6 +1107,17 @@ document.addEventListener('DOMContentLoaded', function() {
       padding: 8px 16px;
       font-size: 0.9rem;
     }
+
+  .team-pagination {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+
+  
+
+}
+
     
     .page-dots {
       padding: 0 8px;
@@ -1862,6 +1875,13 @@ I am sure there are plenty of good reasons for alumni to stay in touch with thei
   .news-image {
     height: 160px;
   }
+
+  .news-pagination{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
 }
 </style>
 
@@ -2178,8 +2198,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .events-main-title {
   font-size: 2.4rem;
-  font-weight: 600;
-  color: #1a202c;
+  font-weight: 700;
+  color: #12161f;
   margin-bottom: 25px;
   position: relative;
   display: inline-block;
@@ -2547,6 +2567,14 @@ document.addEventListener('DOMContentLoaded', function() {
   .page-dots {
     padding: 0 8px;
   }
+  .events-pagination {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  
+  }
+  
 }
 
 /* Animation for cards */
@@ -3259,7 +3287,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     .gallery-grid {
-      grid-template-columns: 1fr;
+     grid-template-columns: repeat(2, 1fr);
+
       gap: 15px;
     }
     
@@ -3278,7 +3307,13 @@ document.addEventListener('DOMContentLoaded', function() {
       padding: 8px 16px;
       font-size: 0.9rem;
     }
+        .gallery-pagination {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;  
   }
+}
 </style>
 
 <script>
@@ -3930,14 +3965,25 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 300px;
   }
   
-  .contact-cards {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    max-width: 400px;
+ .contact {
+    padding: 60px 0 100px 0; /* extra bottom padding to avoid overlap */
   }
-  
+
+  .contact-cards {
+    display: grid;
+    grid-template-columns: 1fr; /* one card per line */
+    gap: 25px; /* spacing between cards */
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    height: auto; /* allow full expansion */
+  }
+
   .contact-card {
-    padding: 30px 20px;
+    width: 100%;
+    height: auto; /* remove fixed height */
+    padding: 25px 20px;
+    box-sizing: border-box;
   }
   
   .card-icon {
@@ -3959,9 +4005,18 @@ document.addEventListener('DOMContentLoaded', function() {
   .contact {
     padding: 40px 0;
   }
+
+  .container{
+    margin-bottom: -20px;
+  }
   
   .section-title h2 {
     font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+    /* margin-bottom: 0px; */
   }
   
   .centered-map {
@@ -3973,9 +4028,16 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 250px;
   }
   
-  .contact-card {
-    padding: 25px 20px;
+ .contact-cards {
+    grid-template-columns: 1fr;
+    width: 90%;
+    gap: 20px;
   }
+
+  .contact-card {
+    padding: 20px 15px;
+  }
+  
   
   .card-icon {
     width: 60px;
@@ -4289,6 +4351,7 @@ document.addEventListener('DOMContentLoaded', function() {
   .footer-links ul li a {
     font-size: 0.9rem;
   }
+  
 
   /* Make quick links columns stack on very small screens */
   @media (max-width: 576px) {
@@ -4396,7 +4459,19 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 38px;
     font-size: 1rem;
   }
+
+
 }
+
+@media (max-width: 768px) {
+  .footer {
+    padding-bottom: 90px !important;
+  }
+  .copyright {
+    margin-top: 25px;
+  }
+}
+
 </style>
   </main>
 
