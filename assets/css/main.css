@@ -1142,6 +1142,15 @@ section,
   animation: textGlow 1s infinite   alternate;
 }
 
+@media (max-width: 480px) {
+.hero .btn-get-started{
+  padding-top: 16px;
+  width: 48%;
+}
+
+
+}
+
 .btn-get-started:hover {
   animation: none;
   transform: scale(1.1);
@@ -1240,6 +1249,7 @@ section,
   .hero h2 {
     font-size: 32px;
   }
+
 
   .hero p {
     font-size: 18px;
@@ -1369,6 +1379,12 @@ section,
   
   .card-header h4 {
     font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 361px) {
+  .card-header h4 {
+    font-size: 0.1rem;
   }
 }
 /* University image styling */
@@ -1863,6 +1879,19 @@ section,
 @media (min-width: 992px) {
   .testimonials .testimonial-item p {
     width: 80%;
+  }
+}
+
+
+@media (max-width: 361px) {
+  .card-header h4 {
+    font-size: 1.1rem;
+    margin-left: 80px;
+  }
+  .card-icon-large img{
+    width: 30px;
+    height: 30px;
+    margin-left: -20px;
   }
 }
 
@@ -2603,8 +2632,11 @@ section,
             }
             
             .btn-get-started, .btn-alumni-network {
-                padding: 10px 25px;
+                padding: 5px 25px;
                 font-size: 14px;
+                margin-left: -10px;
+                height: 54px;
+          
             }
             
             .stats-grid {

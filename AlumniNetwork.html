@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumni Network - Mangalore University</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Reset and Base Styles */
         * {
@@ -17,6 +18,7 @@
             background: #f8fafc;
             color: #2d3748;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Alumni Network Page Styles */
@@ -24,88 +26,173 @@
             min-height: 100vh;
         }
 
-        /* Hero Section */
-        .an-hero {
+        /* Header with Navigation */
+        .an-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 5rem 2rem;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .an-nav-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .an-nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .an-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .an-header-title {
+            font-size: 1.4rem;
+            font-weight: 700;
             text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        /* Hero Section */
+        .an-hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .an-hero-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .an-hero-title {
-            font-size: 3.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease;
+            line-height: 1.2;
         }
 
         .an-hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1rem;
             opacity: 0.9;
             max-width: 600px;
             margin: 0 auto;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            line-height: 1.5;
         }
 
-        /* Tabs Section */
-        .an-tabs-section {
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stats Section */
+        .an-stats-section {
             background: white;
-            border-bottom: 1px solid #e2e8f0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
         }
 
-        .an-tabs-container {
-            display: flex;
+        .an-stats-container {
             max-width: 1200px;
             margin: 0 auto;
-            overflow-x: auto;
         }
 
-        .an-tab {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1.5rem 2rem;
-            background: none;
-            border: none;
-            border-bottom: 3px solid transparent;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #718096;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
+        .an-stats-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
         }
 
-        .an-tab:hover {
-            color: #4a5568;
-            background: #f7fafc;
+        .an-location-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
         }
 
-        .an-tab.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
-        }
-
-        .an-tab-badge {
-            background: #667eea;
+        .an-location-stat {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 10px;
             color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .an-location-stat:hover {
+            transform: translateY(-3px);
+        }
+
+        .an-stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .an-stat-label {
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
         /* Main Content */
         .an-main-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 0 1rem 2rem;
         }
 
         /* Section Headers */
@@ -113,28 +200,77 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
             gap: 1rem;
+            padding-top: 1.5rem;
         }
 
         .an-section-title {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #2d3748;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Filter Toggle Button (Mobile Only) */
+        .an-filter-toggle-container {
+            display: none;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .an-filter-toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+        
+        .an-filter-toggle-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .an-filter-toggle-btn.active {
+            background: #5a67d8;
+        }
+        
+        .an-filter-toggle-btn i {
+            transition: transform 0.3s ease;
+        }
+        
+        .an-filter-toggle-btn.active i {
+            transform: rotate(180deg);
         }
 
         /* Search and Filters */
         .an-search-filters {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             align-items: center;
             flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            transition: all 0.3s ease;
         }
 
         .an-search-box {
             position: relative;
-            min-width: 300px;
+            width: 100%;
+            max-width: 400px;
         }
 
         .an-search-input {
@@ -168,6 +304,8 @@
             background: white;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 100%;
+            max-width: 200px;
         }
 
         .an-filter-select:focus {
@@ -175,65 +313,143 @@
             border-color: #667eea;
         }
 
-        /* Loading State */
-        .an-loading {
+        /* Custom Select Container */
+        .an-custom-select {
+            position: relative;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .an-custom-select-header {
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 4rem;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
-        .an-loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #e2e8f0;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .an-custom-select-header:hover {
+            border-color: #667eea;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .an-custom-select-header.open {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .an-custom-select-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .an-custom-select-options.open {
+            display: block;
+        }
+
+        .an-custom-select-search {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .an-custom-select-search input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .an-custom-select-search input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .an-custom-select-option {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .an-custom-select-option:hover {
+            background: #f7fafc;
+        }
+
+        .an-custom-select-option.selected {
+            background: #667eea;
+            color: white;
         }
 
         /* Alumni Grid */
         .an-alumni-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
         /* Alumni Card */
         .an-alumni-card {
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07);
             border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             cursor: pointer;
             animation: fadeInUp 0.5s ease forwards;
             opacity: 0;
             transform: translateY(20px);
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .an-alumni-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .an-alumni-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .an-alumni-card:hover::before {
+            transform: scaleX(1);
         }
 
         .an-card-header {
-            display: flex;
-            gap: 1rem;
-            padding: 1.5rem;
+            padding: 1.25rem;
+            text-align: center;
             border-bottom: 1px solid #f1f5f9;
+            flex: 1;
+            position: relative;
         }
 
         .an-profile-image {
@@ -242,350 +458,158 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #f1f5f9;
+            transition: transform 0.3s ease;
+            margin: 0 auto 0.75rem;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .an-profile-info {
-            flex: 1;
+        .an-alumni-card:hover .an-profile-image {
+            transform: scale(1.05);
         }
 
         .an-profile-name {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
             color: #2d3748;
             margin-bottom: 0.5rem;
-        }
-
-        .an-profile-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
+            line-height: 1.3;
         }
 
         .an-profile-batch {
-            background: #edf2f7;
-            color: #4a5568;
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            /* background: linear-gradient(135deg, #667eea, #764ba2); */
+            color: rgb(81, 78, 78);
+            padding: 0.2rem 0.6rem;
+            /* border-radius: 16px; */
+            font-size: 0.75rem;
             font-weight: 600;
-        }
-
-        .an-profile-usn {
-            color: #718096;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .an-profile-degree {
-            color: #667eea;
-            font-weight: 500;
+            display: inline-block;
             margin-bottom: 0.5rem;
         }
 
-        .an-profile-location {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .an-profile-occupation {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .an-profile-email {
             color: #718096;
-            font-size: 0.9rem;
-        }
-
-        .an-card-body {
-            padding: 1.5rem;
-        }
-
-        .an-contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .an-contact-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            font-size: 0.9rem;
-        }
-
-        .an-contact-label {
-            color: #718096;
-            font-weight: 500;
-            min-width: 80px;
-        }
-
-        .an-contact-value {
-            color: #4a5568;
-            flex: 1;
-            text-align: right;
-        }
-
-        .an-address-item {
-            align-items: flex-start;
-        }
-
-        .an-address-content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 0.5rem;
-            flex: 1;
-        }
-
-        .an-address {
-            text-align: right;
+            font-size: 0.8rem;
+            word-break: break-word;
+            margin-bottom: 0.5rem;
             line-height: 1.4;
         }
 
-        .an-private-badge {
-            background: #fed7d7;
-            color: #c53030;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-left: 0.5rem;
-        }
-
-        .an-view-more-btn {
-            background: none;
-            border: none;
-            color: #667eea;
-            font-size: 0.8rem;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        .an-card-footer {
-            padding: 1rem 1.5rem;
-            border-top: 1px solid #f1f5f9;
-        }
-
-        .an-connect-btn {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .an-profile-location {
+            color: #a0aec0;
+            font-size: 0.75rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 0.25rem;
+        }
+
+        .an-card-footer {
+            padding: 0.75rem 1.25rem;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: center;
+        }
+
+        .an-view-btn {
+            display: flex;
+            align-items: center;
             gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            justify-content: center;
         }
 
-        .an-connect-btn:hover {
+        .an-view-btn:hover {
             background: #5a67d8;
-            transform: translateY(-1px);
-        }
-
-        .an-connect-btn.connected {
-            background: #48bb78;
-        }
-
-        .an-connect-btn.connected:hover {
-            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
         }
 
         /* No Results */
         .an-no-results {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 3rem 1rem;
             color: #718096;
+            grid-column: 1 / -1;
         }
 
         .an-no-results-icon {
-            font-size: 4rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
         .an-no-results-text {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
         .an-no-results-subtext {
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
-        /* Map Section */
-        .an-map-section {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        /* Pagination */
+        .an-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        .an-map-container {
-            margin-bottom: 2rem;
-        }
-
-        .an-map-placeholder {
-            background: #f7fafc;
-            border: 2px dashed #cbd5e0;
-            border-radius: 12px;
-            padding: 4rem 2rem;
-            text-align: center;
-            color: #718096;
-        }
-
-        .an-location-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .an-location-stat {
-            text-align: center;
-            padding: 1.5rem;
-            background: #f7fafc;
-            border-radius: 8px;
-        }
-
-        .an-stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .an-stat-label {
-            color: #718096;
-            font-weight: 500;
-        }
-
-        /* Chapters Section */
-        .an-chapters-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .an-chapter-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        .an-pagination-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
             border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
-            animation: fadeInUp 0.5s ease forwards;
-            opacity: 0;
-            transform: translateY(20px);
+            font-size: 0.85rem;
         }
 
-        .an-chapter-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .an-chapter-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .an-chapter-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 0.5rem;
-        }
-
-        .an-chapter-members {
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .an-chapter-btn {
+        .an-pagination-btn:hover {
             background: #667eea;
             color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            border-color: #667eea;
         }
 
-        .an-chapter-btn:hover {
-            background: #5a67d8;
-            transform: translateY(-1px);
-        }
-
-        /* Mentors Section */
-        .an-mentors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .an-mentor-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            animation: fadeInUp 0.5s ease forwards;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .an-mentor-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .an-mentor-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #f1f5f9;
-            margin: 0 auto 1rem;
-        }
-
-        .an-mentor-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 0.5rem;
-        }
-
-        .an-mentor-degree {
-            color: #667eea;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .an-mentor-contact {
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-            color: #718096;
-        }
-
-        .an-mentor-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .an-pagination-btn.active {
+            background: #667eea;
             color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
+            border-color: #667eea;
         }
 
-        .an-mentor-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        .an-pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .an-pagination-btn.disabled:hover {
+            background: white;
+            color: inherit;
+            border-color: #e2e8f0;
         }
 
         /* Popup Styles */
@@ -600,12 +624,12 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            padding: 2rem;
+            padding: 1rem;
         }
 
         .an-popup-content {
             background: white;
-            border-radius: 16px;
+            border-radius: 12px;
             max-width: 500px;
             width: 100%;
             max-height: 90vh;
@@ -627,15 +651,15 @@
 
         .an-popup-close {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 0.75rem;
+            right: 0.75rem;
             background: none;
             border: none;
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: #718096;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -651,17 +675,20 @@
 
         .an-popup-header {
             display: flex;
-            gap: 1.5rem;
-            padding: 2rem;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.5rem;
             border-bottom: 1px solid #f1f5f9;
+            text-align: center;
         }
 
         .an-popup-image {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #f1f5f9;
+            border: 3px solid #f1f5f9;
+            margin: 0 auto;
         }
 
         .an-popup-info {
@@ -669,7 +696,7 @@
         }
 
         .an-popup-name {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: #2d3748;
             margin-bottom: 0.5rem;
@@ -677,30 +704,26 @@
 
         .an-popup-meta {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             margin-bottom: 0.5rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .an-popup-batch {
             background: #edf2f7;
             color: #4a5568;
-            padding: 0.25rem 0.5rem;
+            padding: 0.2rem 0.5rem;
             border-radius: 6px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
-        }
-
-        .an-popup-usn {
-            color: #718096;
-            font-size: 0.8rem;
-            font-weight: 500;
         }
 
         .an-popup-degree {
             color: #667eea;
             font-weight: 500;
             margin-bottom: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .an-popup-location {
@@ -708,37 +731,49 @@
             align-items: center;
             gap: 0.5rem;
             color: #718096;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            justify-content: center;
         }
 
         .an-popup-contact {
-            padding: 2rem;
+            padding: 1.5rem;
             border-bottom: 1px solid #f1f5f9;
         }
 
         .an-popup-contact-item {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap: 0.25rem;
             margin-bottom: 1rem;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .an-popup-contact-label {
             color: #718096;
             font-weight: 500;
-            min-width: 80px;
         }
 
         .an-popup-contact-value {
             color: #4a5568;
-            flex: 1;
-            text-align: right;
+            text-align: left;
+            word-break: break-word;
+        }
+
+        .an-private-badge {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
         }
 
         .an-popup-footer {
-            padding: 1.5rem 2rem;
+            padding: 1.25rem 1.5rem;
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
+            flex-direction: column;
         }
 
         .an-popup-connect-btn {
@@ -755,6 +790,7 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .an-popup-connect-btn:hover {
@@ -762,163 +798,410 @@
             transform: translateY(-1px);
         }
 
-        .an-popup-connect-btn.connected {
-            background: #48bb78;
-        }
-
-        .an-popup-connect-btn.connected:hover {
-            background: #38a169;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        /* Enhanced Mobile Responsiveness */
+        
+        /* Small phones (320px - 480px) */
+        @media (max-width: 480px) {
+            .an-header {
+                padding: 0.75rem;
+            }
+            
+            .an-nav-buttons {
+                gap: 0.5rem;
+            }
+            
+            .an-nav-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+            
+            .an-header-title {
+                font-size: 1.2rem;
+            }
+            
+            .an-hero {
+                padding: 2rem 0.75rem;
+            }
+            
             .an-hero-title {
-                font-size: 2.5rem;
+                font-size: 1.6rem;
             }
-
+            
             .an-hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .an-tabs-container {
-                padding: 0 1rem;
-            }
-
-            .an-tab {
-                padding: 1rem 1.5rem;
                 font-size: 0.9rem;
             }
-
-            .an-section-header {
-                flex-direction: column;
-                align-items: stretch;
+            
+            .an-stats-section {
+                padding: 1.5rem 0.75rem;
             }
-
-            .an-search-filters {
-                flex-direction: column;
+            
+            .an-stats-title {
+                font-size: 1.3rem;
             }
-
-            .an-search-box {
-                min-width: auto;
-            }
-
-            .an-alumni-grid {
+            
+            .an-location-stats {
                 grid-template-columns: 1fr;
+                gap: 0.75rem;
             }
-
+            
+            .an-location-stat {
+                padding: 1.25rem 0.75rem;
+            }
+            
+            .an-stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .an-stat-label {
+                font-size: 0.85rem;
+            }
+            
+            .an-main-content {
+                padding: 0 0.75rem 1.5rem;
+            }
+            
+            .an-section-header {
+                padding-top: 1rem;
+            }
+            
+            .an-section-title {
+                font-size: 1.3rem;
+            }
+            
+            .an-search-filters {
+                gap: 0.5rem;
+            }
+            
+            .an-search-input,
+            .an-filter-select,
+            .an-custom-select-header {
+                padding: 0.6rem 0.75rem;
+                font-size: 0.85rem;
+            }
+            
+            .an-search-icon {
+                left: 0.6rem;
+            }
+            
+            .an-alumni-grid {
+                gap: 1rem;
+            }
+            
             .an-card-header {
-                flex-direction: column;
-                text-align: center;
+                padding: 1rem;
             }
-
-            .an-profile-info {
-                text-align: center;
+            
+            .an-profile-image {
+                width: 70px;
+                height: 70px;
             }
-
-            .an-contact-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.25rem;
+            
+            .an-profile-name {
+                font-size: 1rem;
             }
-
-            .an-contact-value {
-                text-align: left;
+            
+            .an-popup-content {
+                max-width: 100%;
             }
-
-            .an-address-content {
-                align-items: flex-start;
-            }
-
-            .an-address {
-                text-align: left;
-            }
-
+            
             .an-popup-header {
-                flex-direction: column;
-                text-align: center;
+                padding: 1.25rem;
             }
-
-            .an-popup-contact-item {
-                flex-direction: column;
-                gap: 0.25rem;
+            
+            .an-popup-contact {
+                padding: 1.25rem;
             }
-
-            .an-popup-contact-value {
-                text-align: left;
-            }
-
+            
             .an-popup-footer {
-                flex-direction: column;
+                padding: 1rem 1.25rem;
             }
         }
 
-        @media (max-width: 480px) {
-            .an-hero {
-                padding: 3rem 1rem;
+        /* Tablets and larger phones (481px - 768px) */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .an-alumni-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-
-            .an-hero-title {
-                font-size: 2rem;
+            
+            .an-header {
+                flex-direction: row;
             }
-
-            .an-main-content {
-                padding: 2rem 1rem;
+            
+            .an-nav-buttons {
+                justify-content: flex-end;
             }
-
+            
+            .an-section-header {
+                flex-direction: row;
+            }
+            
             .an-section-title {
-                font-size: 1.5rem;
+                text-align: left;
+                width: auto;
             }
+            
+            .an-search-filters {
+                justify-content: flex-start;
+            }
+            
+            .an-popup-header {
+                flex-direction: row;
+                text-align: left;
+            }
+            
+            .an-popup-contact-item {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .an-popup-contact-value {
+                text-align: right;
+            }
+            
+            .an-popup-footer {
+                flex-direction: row;
+            }
+        }
 
+        /* Medium devices (769px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .an-alumni-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Large devices (1025px - 1200px) */
+        @media (min-width: 1025px) {
+            .an-alumni-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Extra small devices (landscape phones) */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .an-hero {
+                padding: 1.5rem 1rem;
+            }
+            
+            .an-hero-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .an-hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
             .an-popup-overlay {
+                padding: 0.5rem;
+            }
+            
+            .an-popup-content {
+                max-height: 95vh;
+            }
+        }
+
+        /* High DPI screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .an-profile-image,
+            .an-popup-image {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .an-alumni-card,
+            .an-hero-title,
+            .an-hero-subtitle {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1a202c;
+                color: #e2e8f0;
+            }
+            
+            .an-stats-section,
+            .an-alumni-card,
+            .an-popup-content {
+                background: #2d3748;
+                color: #e2e8f0;
+            }
+            
+            .an-search-input,
+            .an-filter-select,
+            .an-custom-select-header,
+            .an-custom-select-options {
+                background: #2d3748;
+                border-color: #4a5568;
+                color: #e2e8f0;
+            }
+            
+            .an-search-input:focus,
+            .an-filter-select:focus,
+            .an-custom-select-header.open {
+                border-color: #667eea;
+            }
+            
+            .an-custom-select-option:hover {
+                background: #4a5568;
+            }
+            
+            .an-profile-name,
+            .an-popup-name {
+                color: #e2e8f0;
+            }
+            
+            .an-profile-email,
+            .an-profile-location,
+            .an-popup-contact-label {
+                color: #a0aec0;
+            }
+            
+            .an-popup-contact-value {
+                color: #e2e8f0;
+            }
+        }
+
+        /* Mobile-specific styles for filter button */
+        @media (max-width: 768px) {
+            .an-filter-toggle-container {
+                display: flex;
+            }
+            
+            .an-search-filters {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
                 padding: 1rem;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                border: 1px solid #e2e8f0;
+                margin-top: 0.5rem;
+            }
+            
+            .an-search-filters.show {
+                display: flex;
+                animation: fadeInDown 0.3s ease;
+            }
+            
+            .an-search-box,
+            .an-filter-select,
+            .an-custom-select {
+                width: 100%;
+                max-width: none;
+            }
+            
+            .an-section-header {
+                flex-direction: column;
+            }
+            
+            .an-section-title {
+                text-align: center;
+                width: 100%;
+            }
+        }
+
+        /* Animation for filter dropdown */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
     <div class="an-page">
+        <!-- Header with Navigation -->
+        <header class="an-header">
+            <h1 class="an-header-title">Alumni Network</h1>
+            <div class="an-nav-buttons">
+                <a href="index.html" class="an-nav-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+                <a href="JoinNow.html" class="an-nav-btn">
+                    <i class="fas fa-user-plus"></i>
+                    Join Now
+                </a>
+            </div>
+        </header>
+
         <!-- Hero Section -->
         <section class="an-hero">
             <div class="an-hero-content">
-                <h1 class="an-hero-title">Alumni Network</h1>
-                <p class="an-hero-subtitle">
-                    Connect with fellow Mangalore University alumni worldwide. 
-                    Explore opportunities, find mentors, and join regional chapters to strengthen our community.
-                </p>
+                <h1 class="an-hero-title">Mangalore University Alumni Network</h1>
+                <!-- <p class="an-hero-subtitle">
+                    Connect with fellow alumni worldwide. Explore opportunities, find mentors, 
+                    and join regional chapters to strengthen our community.
+                </p> -->
             </div>
         </section>
 
-        <!-- Tabs Navigation -->
-        <section class="an-tabs-section">
-            <div class="an-tabs-container">
-                <button class="an-tab active" data-tab="directory">
-                    Alumni Directory
-                    <span class="an-tab-badge" id="directoryBadge">6</span>
-                </button>
-                <button class="an-tab" data-tab="map">
-                    Alumni Map
-                </button>
-                <button class="an-tab" data-tab="chapters">
-                    Regional Chapters
-                    <span class="an-tab-badge" id="chaptersBadge">4</span>
-                </button>
-                <button class="an-tab" data-tab="mentors">
-                    Alumni Mentors
-                    <span class="an-tab-badge" id="mentorsBadge">4</span>
-                </button>
+        <!-- Stats Section -->
+        <!-- <section class="an-stats-section">
+            <div class="an-stats-container">
+                <h2 class="an-stats-title">Alumni Distribution</h2>
+                <div class="an-location-stats">
+                    <div class="an-location-stat">
+                        <div class="an-stat-number" id="bangaloreCount">0</div>
+                        <div class="an-stat-label">Alumni in Bangalore</div>
+                    </div>
+                    <div class="an-location-stat">
+                        <div class="an-stat-number" id="mangaloreCount">0</div>
+                        <div class="an-stat-label">Alumni in Mangalore</div>
+                    </div>
+                    <div class="an-location-stat">
+                        <div class="an-stat-number" id="mumbaiCount">0</div>
+                        <div class="an-stat-label">Alumni in Mumbai</div>
+                    </div>
+                    <div class="an-location-stat">
+                        <div class="an-stat-number" id="internationalCount">0</div>
+                        <div class="an-stat-label">International Alumni</div>
+                    </div>
+                </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- Main Content -->
         <main class="an-main-content">
-            <!-- Directory Section (Default) -->
+            <!-- Directory Section -->
             <div class="an-directory-section" id="directorySection">
                 <div class="an-section-header">
                     <h2 class="an-section-title">Alumni Directory</h2>
-                    <div class="an-search-filters">
+                    
+                    <!-- Filter Toggle Button (Mobile Only) -->
+                    <div class="an-filter-toggle-container">
+                        <button class="an-filter-toggle-btn" id="filterToggleBtn">
+                            <i class="fas fa-filter"></i>
+                            Filters
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="an-search-filters" id="searchFilters">
                         <div class="an-search-box">
                             <input type="text" class="an-search-input" id="searchInput" 
-                                   placeholder="Search alumni by name, USN, degree, or location...">
+                                   placeholder="Search alumni by name, batch, or occupation...">
                             <div class="an-search-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -934,76 +1217,29 @@
                             <option value="2011-2020">2011-2020</option>
                         </select>
 
-                        <select class="an-filter-select" id="chapterFilter">
-                            <option value="all">All Chapters</option>
-                            <option value="Bangalore">Bangalore</option>
-                            <option value="Mangalore">Mangalore</option>
-                            <option value="Mumbai">Mumbai</option>
-                            <option value="Abroad">International</option>
-                        </select>
+                        <!-- Custom Department Select -->
+                        <div class="an-custom-select" id="departmentSelect">
+                            <div class="an-custom-select-header" id="departmentHeader">
+                                <span id="departmentSelected">All Departments</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="an-custom-select-options" id="departmentOptions">
+                                <div class="an-custom-select-search">
+                                    <input type="text" id="departmentSearch" placeholder="Search departments...">
+                                </div>
+                                <!-- Department options will be populated by JavaScript -->
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="an-alumni-grid" id="alumniGrid">
                     <!-- Alumni cards will be populated by JavaScript -->
                 </div>
-            </div>
 
-            <!-- Map Section (Hidden by default) -->
-            <div class="an-map-section" id="mapSection" style="display: none;">
-                <div class="an-section-header">
-                    <h2 class="an-section-title">Alumni Map by Location</h2>
-                </div>
-                
-                <div class="an-map-container">
-                    <div class="an-map-placeholder">
-                        <div>
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">🗺️</div>
-                            <p>Interactive Alumni Map Coming Soon</p>
-                            <p style="font-size: 0.9rem; opacity: 0.7;">Visualize alumni distribution worldwide</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="an-location-stats">
-                    <div class="an-location-stat">
-                        <div class="an-stat-number">1,250+</div>
-                        <div class="an-stat-label">Alumni in Bangalore</div>
-                    </div>
-                    <div class="an-location-stat">
-                        <div class="an-stat-number">850+</div>
-                        <div class="an-stat-label">Alumni in Mangalore</div>
-                    </div>
-                    <div class="an-location-stat">
-                        <div class="an-stat-number">920+</div>
-                        <div class="an-stat-label">Alumni in Mumbai</div>
-                    </div>
-                    <div class="an-location-stat">
-                        <div class="an-stat-number">2,100+</div>
-                        <div class="an-stat-label">International Alumni</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chapters Section (Hidden by default) -->
-            <div class="an-chapters-section" id="chaptersSection" style="display: none;">
-                <div class="an-section-header">
-                    <h2 class="an-section-title">Regional Chapters</h2>
-                </div>
-                
-                <div class="an-chapters-grid" id="chaptersGrid">
-                    <!-- Chapter cards will be populated by JavaScript -->
-                </div>
-            </div>
-
-            <!-- Mentors Section (Hidden by default) -->
-            <div class="an-mentors-section" id="mentorsSection" style="display: none;">
-                <div class="an-section-header">
-                    <h2 class="an-section-title">Alumni Mentors Directory</h2>
-                </div>
-                
-                <div class="an-mentors-grid" id="mentorsGrid">
-                    <!-- Mentor cards will be populated by JavaScript -->
+                <!-- Pagination -->
+                <div class="an-pagination" id="pagination">
+                    <!-- Pagination buttons will be populated by JavaScript -->
                 </div>
             </div>
         </main>
@@ -1017,175 +1253,363 @@
     </div>
 
     <script>
-        // Sample data
+        // All departments
+        const allDepartments = [
+            "Applied Zoology",
+            "Biochemistry",
+            "Biosciences",
+            "Chemistry",
+            "Computer Science",
+            "Electronics",
+            "Geography",
+            "Human Consciousness and Yogic Sciences",
+            "Industrial Chemistry",
+            "Library and Information Science",
+            "Marine Geology",
+            "Materials Science",
+            "Mathematics",
+            "Microbiology",
+            "Physics",
+            "Statistics",
+            "Kannada",
+            "History",
+            "Economics",
+            "Political Science",
+            "Sociology",
+            "Master of Social Work",
+            "English",
+            "MEd",
+            "Physical Education",
+            "Commerce",
+            "MBA",
+            "MBA Tourism",
+            "Social Science",
+            "Other"
+        ];
+
+        // Sample data with additional fields
         const sampleAlumni = [
             {
                 id: 1,
                 name: 'Dr. Rajesh Kumar',
-                usn: '4MU95CS001',
                 batch: '1995',
-                location: 'Bangalore, India',
-                chapter: 'Bangalore',
-                isMentor: true,
                 email: 'rajesh.kumar@email.com',
                 phone: '9876543210',
                 phoneVisibility: 'public',
                 address: '123 Tech Park, Koramangala, Bangalore - 560034, Karnataka, India',
                 degree: 'B.E. Computer Science',
+                department: 'Computer Science',
+                occupation: 'Senior Software Architect',
                 image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face'
             },
             {
                 id: 2,
                 name: 'Prof. Anjali Sharma',
-                usn: '4MU88PH002',
                 batch: '1988',
-                location: 'Boston, USA',
-                chapter: 'Abroad',
-                isMentor: true,
                 email: 'anjali.sharma@mit.edu',
                 phone: '9123456789',
                 phoneVisibility: 'private',
                 address: '456 University Avenue, Boston, Massachusetts 02139, United States of America',
                 degree: 'M.Sc. Physics',
+                department: 'Physics',
+                occupation: 'Professor of Physics',
                 image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face'
             },
             {
                 id: 3,
                 name: 'Mr. Vikram Patel',
-                usn: '4MU05BA003',
                 batch: '2005',
-                location: 'Mumbai, India',
-                chapter: 'Mumbai',
-                isMentor: false,
                 email: 'vikram.patel@greenenergy.com',
                 phone: '9988776655',
                 phoneVisibility: 'public',
                 address: '789 Business Tower, Bandra Kurla Complex, Mumbai - 400051, Maharashtra, India',
                 degree: 'MBA',
+                department: 'Business Administration',
+                occupation: 'CEO, Green Energy Solutions',
                 image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face'
             },
             {
                 id: 4,
                 name: 'Dr. Priya Nair',
-                usn: '4MU98MD004',
                 batch: '1998',
-                location: 'Delhi, India',
-                chapter: 'Mangalore',
-                isMentor: true,
                 email: 'priya.nair@nhi.gov.in',
                 phone: '9876512345',
                 phoneVisibility: 'private',
                 address: '321 Medical Complex, Saket, New Delhi - 110017, India',
                 degree: 'MBBS, MD',
+                department: 'Medicine',
+                occupation: 'Chief Medical Officer',
                 image: 'https://images.unsplash.com/photo-1551836026-d5c88ac5c4fa?w=300&h=300&fit=crop&crop=face'
             },
             {
                 id: 5,
                 name: 'Ms. Meera Krishnan',
-                usn: '4MU10FA005',
                 batch: '2010',
-                location: 'London, UK',
-                chapter: 'Abroad',
-                isMentor: false,
                 email: 'meera.krishnan@artist.com',
                 phone: '9123487654',
                 phoneVisibility: 'public',
                 address: '567 Art Studio, Kensington, London SW7 2AZ, United Kingdom',
                 degree: 'BFA Fine Arts',
+                department: 'Fine Arts',
+                occupation: 'Professional Artist & Curator',
                 image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop&crop=face'
             },
             {
                 id: 6,
                 name: 'Dr. Arjun Menon',
-                usn: '4MU00CH006',
                 batch: '2000',
-                location: 'Bangalore, India',
-                chapter: 'Bangalore',
-                isMentor: true,
                 email: 'arjun.menon@globalpharma.com',
                 phone: '9876598765',
                 phoneVisibility: 'private',
                 address: '654 Research Park, Whitefield, Bangalore - 560066, Karnataka, India',
                 degree: 'M.Sc. Chemistry, PhD',
+                department: 'Chemistry',
+                occupation: 'Research Director',
                 image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face'
-            }
-        ];
-
-        const regionalChapters = [
-            {
-                id: 1,
-                name: 'Bangalore Chapter',
-                location: 'Bangalore, India',
-                members: 1250,
-                icon: '🏙️',
-                description: 'Largest alumni community with active networking events'
             },
             {
-                id: 2,
-                name: 'Mangalore Chapter',
-                location: 'Mangalore, India',
-                members: 850,
-                icon: '🌴',
-                description: 'Home chapter with strong local connections'
+                id: 7,
+                name: 'Ms. Sanjana Rao',
+                batch: '2015',
+                email: 'sanjana.rao@techcorp.com',
+                phone: '9123456780',
+                phoneVisibility: 'public',
+                address: '789 Innovation Hub, Hitech City, Hyderabad - 500081, Telangana, India',
+                degree: 'B.Tech Computer Science',
+                department: 'Computer Science',
+                occupation: 'Product Manager',
+                image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop&crop=face'
             },
             {
-                id: 3,
-                name: 'Mumbai Chapter',
-                location: 'Mumbai, India',
-                members: 920,
-                icon: '🌊',
-                description: 'Thriving business and corporate network'
+                id: 8,
+                name: 'Mr. Rohan Desai',
+                batch: '2012',
+                email: 'rohan.desai@finance.com',
+                phone: '9123456781',
+                phoneVisibility: 'private',
+                address: '456 Business Bay, Downtown Dubai, UAE',
+                degree: 'MBA Finance',
+                department: 'Business Administration',
+                occupation: 'Investment Banker',
+                image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face'
             },
             {
-                id: 4,
-                name: 'International Chapter',
-                location: 'Global Network',
-                members: 2100,
-                icon: '✈️',
-                description: 'Connecting alumni across 45+ countries'
+                id: 9,
+                name: 'Dr. Suresh Iyer',
+                batch: '1992',
+                email: 'suresh.iyer@research.org',
+                phone: '9123456782',
+                phoneVisibility: 'public',
+                address: '123 Science Avenue, Mangalore - 575001, Karnataka, India',
+                degree: 'PhD in Biotechnology',
+                department: 'Biotechnology',
+                occupation: 'Research Scientist',
+                image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=300&h=300&fit=crop&crop=face'
+            },
+            {
+                id: 10,
+                name: 'Ms. Priyanka Joshi',
+                batch: '2018',
+                email: 'priyanka.joshi@designstudio.com',
+                phone: '9123456783',
+                phoneVisibility: 'public',
+                address: '456 Creative Lane, Mumbai - 400001, Maharashtra, India',
+                degree: 'B.Des in Graphic Design',
+                department: 'Design',
+                occupation: 'Creative Director',
+                image: 'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=300&h=300&fit=crop&crop=face'
+            },
+            {
+                id: 11,
+                name: 'Mr. Amit Verma',
+                batch: '2008',
+                email: 'amit.verma@consulting.com',
+                phone: '9123456784',
+                phoneVisibility: 'private',
+                address: '789 Corporate Tower, Bangalore - 560001, Karnataka, India',
+                degree: 'MBA in Finance',
+                department: 'Business Administration',
+                occupation: 'Management Consultant',
+                image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face'
+            },
+            {
+                id: 12,
+                name: 'Dr. Neha Gupta',
+                batch: '2013',
+                email: 'neha.gupta@hospital.org',
+                phone: '9123456785',
+                phoneVisibility: 'public',
+                address: '321 Health Complex, Mangalore - 575002, Karnataka, India',
+                degree: 'MD in Pediatrics',
+                department: 'Medicine',
+                occupation: 'Pediatrician',
+                image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&crop=face'
             }
         ];
 
         // State management
-        let activeTab = 'directory';
+        let currentPage = 1;
+        const alumniPerPage = 8;
         let filteredAlumni = [...sampleAlumni];
-        let connectedUsers = new Set();
-        let expandedAddresses = new Set();
         let selectedAlumni = null;
+        let selectedDepartment = 'all';
+        let filtersVisible = false;
 
         // DOM Elements
-        const tabs = document.querySelectorAll('.an-tab');
-        const sections = {
-            directory: document.getElementById('directorySection'),
-            map: document.getElementById('mapSection'),
-            chapters: document.getElementById('chaptersSection'),
-            mentors: document.getElementById('mentorsSection')
-        };
         const alumniGrid = document.getElementById('alumniGrid');
-        const chaptersGrid = document.getElementById('chaptersGrid');
-        const mentorsGrid = document.getElementById('mentorsGrid');
+        const pagination = document.getElementById('pagination');
         const popupOverlay = document.getElementById('popupOverlay');
         const popupContent = document.getElementById('popupContent');
         const searchInput = document.getElementById('searchInput');
         const batchFilter = document.getElementById('batchFilter');
-        const chapterFilter = document.getElementById('chapterFilter');
+        const departmentHeader = document.getElementById('departmentHeader');
+        const departmentSelected = document.getElementById('departmentSelected');
+        const departmentOptions = document.getElementById('departmentOptions');
+        const departmentSearch = document.getElementById('departmentSearch');
+        const bangaloreCount = document.getElementById('bangaloreCount');
+        const mangaloreCount = document.getElementById('mangaloreCount');
+        const mumbaiCount = document.getElementById('mumbaiCount');
+        const internationalCount = document.getElementById('internationalCount');
+        const filterToggleBtn = document.getElementById('filterToggleBtn');
+        const searchFilters = document.getElementById('searchFilters');
 
         // Initialize the page
         function init() {
+            updateLocationCounts();
+            renderDepartmentOptions();
             renderAlumniGrid();
-            renderChaptersGrid();
-            renderMentorsGrid();
             setupEventListeners();
+        }
+
+        // Toggle filters visibility on mobile
+        function toggleFilters() {
+            filtersVisible = !filtersVisible;
+            
+            if (filtersVisible) {
+                searchFilters.classList.add('show');
+                filterToggleBtn.classList.add('active');
+            } else {
+                searchFilters.classList.remove('show');
+                filterToggleBtn.classList.remove('active');
+            }
+        }
+
+        // Render department options
+        function renderDepartmentOptions(filterText = '') {
+            departmentOptions.innerHTML = '';
+            
+            // Add "All Departments" option
+            const allOption = document.createElement('div');
+            allOption.className = `an-custom-select-option ${selectedDepartment === 'all' ? 'selected' : ''}`;
+            allOption.textContent = 'All Departments';
+            allOption.addEventListener('click', () => {
+                selectDepartment('all');
+            });
+            departmentOptions.appendChild(allOption);
+            
+            // Add filtered department options
+            const filteredDepartments = allDepartments.filter(dept => 
+                dept.toLowerCase().includes(filterText.toLowerCase())
+            );
+            
+            filteredDepartments.forEach(dept => {
+                const option = document.createElement('div');
+                option.className = `an-custom-select-option ${selectedDepartment === dept ? 'selected' : ''}`;
+                option.textContent = dept;
+                option.addEventListener('click', () => {
+                    selectDepartment(dept);
+                });
+                departmentOptions.appendChild(option);
+            });
+        }
+
+        // Select department
+        function selectDepartment(dept) {
+            selectedDepartment = dept;
+            departmentSelected.textContent = dept === 'all' ? 'All Departments' : dept;
+            departmentHeader.classList.remove('open');
+            departmentOptions.classList.remove('open');
+            filterAlumni();
+        }
+
+        // Update location counts with animation
+        function updateLocationCounts() {
+            const counts = {
+                bangalore: 0,
+                mangalore: 0,
+                mumbai: 0,
+                international: 0
+            };
+
+            sampleAlumni.forEach(alum => {
+                const location = extractLocation(alum.address);
+                if (location.includes('Bangalore')) counts.bangalore++;
+                else if (location.includes('Mangalore')) counts.mangalore++;
+                else if (location.includes('Mumbai')) counts.mumbai++;
+                else counts.international++;
+            });
+
+            // Animate counting up
+            animateCount(bangaloreCount, counts.bangalore);
+            animateCount(mangaloreCount, counts.mangalore);
+            animateCount(mumbaiCount, counts.mumbai);
+            animateCount(internationalCount, counts.international);
+        }
+
+        // Animate counting effect
+        function animateCount(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = Math.round(target) + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.round(current) + '+';
+                }
+            }, 30);
+        }
+
+        // Extract location from address
+        function extractLocation(address) {
+            if (address.includes('Bangalore')) return 'Bangalore, India';
+            if (address.includes('Mangalore')) return 'Mangalore, India';
+            if (address.includes('Mumbai')) return 'Mumbai, India';
+            if (address.includes('Delhi')) return 'Delhi, India';
+            if (address.includes('Hyderabad')) return 'Hyderabad, India';
+            return 'International';
         }
 
         // Render alumni grid
         function renderAlumniGrid() {
             alumniGrid.innerHTML = '';
             
-            filteredAlumni.forEach((alum, index) => {
+            if (filteredAlumni.length === 0) {
+                alumniGrid.innerHTML = `
+                    <div class="an-no-results">
+                        <div class="an-no-results-icon">🔍</div>
+                        <div class="an-no-results-text">No Alumni Found</div>
+                        <div class="an-no-results-subtext">Try adjusting your search or filters</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Calculate pagination
+            const totalPages = Math.ceil(filteredAlumni.length / alumniPerPage);
+            const startIndex = (currentPage - 1) * alumniPerPage;
+            const endIndex = Math.min(startIndex + alumniPerPage, filteredAlumni.length);
+            const alumniToShow = filteredAlumni.slice(startIndex, endIndex);
+            
+            // Render alumni cards
+            alumniToShow.forEach((alum, index) => {
                 const card = createAlumniCard(alum, index);
                 alumniGrid.appendChild(card);
             });
+            
+            // Render pagination
+            renderPagination(totalPages);
         }
 
         // Create alumni card
@@ -1194,162 +1618,86 @@
             card.className = 'an-alumni-card';
             card.style.animationDelay = `${index * 0.1}s`;
             
-            const isExpanded = expandedAddresses.has(alum.id);
-            const addressLines = alum.address.split(', ');
-            const displayAddress = addressLines.length <= 2 || isExpanded ? 
-                alum.address : addressLines.slice(0, 2).join(', ');
+            const location = extractLocation(alum.address);
             
             card.innerHTML = `
                 <div class="an-card-header">
                     <img src="${alum.image}" alt="${alum.name}" class="an-profile-image"
                          onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(alum.name)}&background=667eea&color=fff&size=300'">
-                    <div class="an-profile-info">
-                        <h3 class="an-profile-name">${alum.name}</h3>
-                        <div class="an-profile-meta">
-                            <div class="an-profile-batch">Batch ${alum.batch}</div>
-                            <div class="an-profile-usn">USN: ${alum.usn}</div>
-                        </div>
-                        <div class="an-profile-degree">${alum.degree}</div>
-                        <div class="an-profile-location">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/>
-                            </svg>
-                            ${alum.location}
-                        </div>
-                    </div>
-                </div>
-                <div class="an-card-body">
-                    <div class="an-contact-info">
-                        <div class="an-contact-item">
-                            <span class="an-contact-label">Email:</span>
-                            <span class="an-contact-value">${alum.email}</span>
-                        </div>
-                        <div class="an-contact-item">
-                            <span class="an-contact-label">Phone:</span>
-                            <span class="an-contact-value">
-                                ${formatPhoneNumber(alum.phone, alum.phoneVisibility)}
-                                ${alum.phoneVisibility === 'private' ? 
-                                    '<span class="an-private-badge">Private</span>' : ''}
-                            </span>
-                        </div>
-                        <div class="an-contact-item an-address-item">
-                            <span class="an-contact-label">Address:</span>
-                            <div class="an-address-content">
-                                <span class="an-contact-value an-address">${displayAddress}</span>
-                                ${addressLines.length > 2 ? 
-                                    `<button class="an-view-more-btn" data-id="${alum.id}">
-                                        ${isExpanded ? 'View Less' : 'View More'}
-                                    </button>` : ''}
-                            </div>
-                        </div>
+                    <h3 class="an-profile-name">${alum.name}</h3>
+                    <div class="an-profile-batch">Batch ${alum.batch}</div>
+                    <div class="an-profile-occupation">${alum.occupation}</div>
+                    <div class="an-profile-email">${alum.email}</div>
+                    <div class="an-profile-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${location}
                     </div>
                 </div>
                 <div class="an-card-footer">
-                    <button class="an-connect-btn ${connectedUsers.has(alum.id) ? 'connected' : ''}" 
-                            data-id="${alum.id}">
-                        ${connectedUsers.has(alum.id) ? 
-                            '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Connected' : 
-                            'Connect'}
+                    <button class="an-view-btn" data-id="${alum.id}">
+                        <i class="fas fa-eye"></i>
+                        View Details
                     </button>
                 </div>
             `;
             
             // Add event listeners
-            card.addEventListener('click', () => showAlumniPopup(alum));
-            
-            const connectBtn = card.querySelector('.an-connect-btn');
-            connectBtn.addEventListener('click', (e) => {
+            const viewBtn = card.querySelector('.an-view-btn');
+            viewBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                handleConnect(alum.id);
+                showAlumniPopup(alum);
             });
-            
-            const viewMoreBtn = card.querySelector('.an-view-more-btn');
-            if (viewMoreBtn) {
-                viewMoreBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    toggleAddress(alum.id);
-                });
-            }
             
             return card;
         }
 
-        // Render chapters grid
-        function renderChaptersGrid() {
-            chaptersGrid.innerHTML = '';
+        // Render pagination
+        function renderPagination(totalPages) {
+            pagination.innerHTML = '';
             
-            regionalChapters.forEach((chapter, index) => {
-                const card = document.createElement('div');
-                card.className = 'an-chapter-card';
-                card.style.animationDelay = `${index * 0.1}s`;
-                
-                card.innerHTML = `
-                    <div class="an-chapter-icon">${chapter.icon}</div>
-                    <h3 class="an-chapter-name">${chapter.name}</h3>
-                    <div class="an-chapter-members">${chapter.members.toLocaleString()} Members</div>
-                    <p style="color: #718096; font-size: 0.9rem; margin-bottom: 1.5rem;">
-                        ${chapter.description}
-                    </p>
-                    <button class="an-chapter-btn" data-id="${chapter.id}">Join Chapter</button>
-                `;
-                
-                const joinBtn = card.querySelector('.an-chapter-btn');
-                joinBtn.addEventListener('click', () => handleJoinChapter(chapter.id));
-                
-                chaptersGrid.appendChild(card);
+            if (totalPages <= 1) return;
+            
+            // Previous button
+            const prevBtn = document.createElement('button');
+            prevBtn.className = `an-pagination-btn ${currentPage === 1 ? 'disabled' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderAlumniGrid();
+                }
             });
-        }
-
-        // Render mentors grid
-        function renderMentorsGrid() {
-            mentorsGrid.innerHTML = '';
+            pagination.appendChild(prevBtn);
             
-            const mentors = sampleAlumni.filter(alum => alum.isMentor);
-            
-            mentors.forEach((mentor, index) => {
-                const card = document.createElement('div');
-                card.className = 'an-mentor-card';
-                card.style.animationDelay = `${index * 0.1}s`;
-                
-                card.innerHTML = `
-                    <div class="an-mentor-content">
-                        <img src="${mentor.image}" alt="${mentor.name}" class="an-mentor-image"
-                             onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(mentor.name)}&background=667eea&color=fff&size=300'">
-                        <h3 class="an-mentor-name">${mentor.name}</h3>
-                        <div class="an-profile-meta">
-                            <div class="an-profile-batch">Batch ${mentor.batch}</div>
-                            <div class="an-profile-usn">USN: ${mentor.usn}</div>
-                        </div>
-                        <div class="an-mentor-degree">${mentor.degree}</div>
-                        <div class="an-mentor-contact">
-                            <div class="an-contact-item">
-                                <span>Email: ${mentor.email}</span>
-                            </div>
-                            <div class="an-contact-item">
-                                <span>Phone: ${formatPhoneNumber(mentor.phone, mentor.phoneVisibility)}</span>
-                                ${mentor.phoneVisibility === 'private' ? 
-                                    '<span class="an-private-badge">Private</span>' : ''}
-                            </div>
-                        </div>
-                        <button class="an-mentor-btn" data-id="${mentor.id}">Request Mentorship</button>
-                    </div>
-                `;
-                
-                card.addEventListener('click', () => showAlumniPopup(mentor));
-                
-                const mentorBtn = card.querySelector('.an-mentor-btn');
-                mentorBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    handleRequestMentorship(mentor.id);
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = `an-pagination-btn ${i === currentPage ? 'active' : ''}`;
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i;
+                    renderAlumniGrid();
                 });
-                
-                mentorsGrid.appendChild(card);
+                pagination.appendChild(pageBtn);
+            }
+            
+            // Next button
+            const nextBtn = document.createElement('button');
+            nextBtn.className = `an-pagination-btn ${currentPage === totalPages ? 'disabled' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderAlumniGrid();
+                }
             });
+            pagination.appendChild(nextBtn);
         }
 
         // Show alumni popup
         function showAlumniPopup(alum) {
             selectedAlumni = alum;
+            const location = extractLocation(alum.address);
             
             popupContent.innerHTML = `
                 <button class="an-popup-close" id="popupClose">×</button>
@@ -1360,14 +1708,13 @@
                         <h3 class="an-popup-name">${alum.name}</h3>
                         <div class="an-popup-meta">
                             <div class="an-popup-batch">Batch ${alum.batch}</div>
-                            <div class="an-popup-usn">USN: ${alum.usn}</div>
                         </div>
                         <div class="an-popup-degree">${alum.degree}</div>
                         <div class="an-popup-location">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/>
                             </svg>
-                            ${alum.location}
+                            ${location}
                         </div>
                     </div>
                 </div>
@@ -1385,21 +1732,23 @@
                         </span>
                     </div>
                     <div class="an-popup-contact-item">
+                        <span class="an-popup-contact-label">Department:</span>
+                        <span class="an-popup-contact-value">${alum.department}</span>
+                    </div>
+                    <div class="an-popup-contact-item">
+                        <span class="an-popup-contact-label">Occupation:</span>
+                        <span class="an-popup-contact-value">${alum.occupation}</span>
+                    </div>
+                    <div class="an-popup-contact-item">
                         <span class="an-popup-contact-label">Address:</span>
                         <span class="an-popup-contact-value">${alum.address}</span>
                     </div>
                 </div>
                 <div class="an-popup-footer">
-                    <button class="an-popup-connect-btn ${connectedUsers.has(alum.id) ? 'connected' : ''}" 
-                            data-id="${alum.id}">
-                        ${connectedUsers.has(alum.id) ? 
-                            '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Connected' : 
-                            'Connect'}
+                    <button class="an-popup-connect-btn" data-id="${alum.id}">
+                        <i class="fas fa-envelope"></i>
+                        Send Message
                     </button>
-                    ${alum.isMentor ? 
-                        `<button class="an-popup-connect-btn" data-id="${alum.id}" style="background: linear-gradient(135deg, #667eea, #764ba2)">
-                            Request Mentorship
-                        </button>` : ''}
                 </div>
             `;
             
@@ -1412,18 +1761,9 @@
             const connectBtn = popupContent.querySelector('.an-popup-connect-btn');
             connectBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                handleConnect(alum.id);
+                handleSendMessage(alum.id);
                 closePopup();
             });
-            
-            if (alum.isMentor) {
-                const mentorBtn = popupContent.querySelector('.an-popup-connect-btn:last-child');
-                mentorBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    handleRequestMentorship(alum.id);
-                    closePopup();
-                });
-            }
         }
 
         // Close popup
@@ -1432,42 +1772,9 @@
             selectedAlumni = null;
         }
 
-        // Handle connect
-        function handleConnect(alumniId) {
-            if (connectedUsers.has(alumniId)) {
-                connectedUsers.delete(alumniId);
-                alert('Connection removed successfully!');
-            } else {
-                connectedUsers.add(alumniId);
-                alert('Connection request sent successfully!');
-            }
-            
-            // Re-render affected sections
-            renderAlumniGrid();
-            if (selectedAlumni) {
-                showAlumniPopup(selectedAlumni);
-            }
-        }
-
-        // Handle mentorship request
-        function handleRequestMentorship(mentorId) {
-            alert('Mentorship request feature coming soon!');
-        }
-
-        // Handle chapter join
-        function handleJoinChapter(chapterId) {
-            alert('Chapter joining feature coming soon!');
-        }
-
-        // Toggle address expansion
-        function toggleAddress(alumniId) {
-            if (expandedAddresses.has(alumniId)) {
-                expandedAddresses.delete(alumniId);
-            } else {
-                expandedAddresses.add(alumniId);
-            }
-            
-            renderAlumniGrid();
+        // Handle send message
+        function handleSendMessage(alumniId) {
+            alert('Message feature coming soon!');
         }
 
         // Format phone number
@@ -1482,15 +1789,14 @@
         function filterAlumni() {
             const searchTerm = searchInput.value.toLowerCase();
             const batchFilterValue = batchFilter.value;
-            const chapterFilterValue = chapterFilter.value;
             
             filteredAlumni = sampleAlumni.filter(alum => {
                 // Search filter
                 if (searchTerm && !(
                     alum.name.toLowerCase().includes(searchTerm) ||
-                    alum.location.toLowerCase().includes(searchTerm) ||
-                    alum.usn.toLowerCase().includes(searchTerm) ||
-                    alum.degree.toLowerCase().includes(searchTerm)
+                    alum.batch.includes(searchTerm) ||
+                    alum.occupation.toLowerCase().includes(searchTerm) ||
+                    alum.department.toLowerCase().includes(searchTerm)
                 )) {
                     return false;
                 }
@@ -1504,31 +1810,47 @@
                     }
                 }
                 
-                // Chapter filter
-                if (chapterFilterValue !== 'all' && alum.chapter !== chapterFilterValue) {
+                // Department filter
+                if (selectedDepartment !== 'all' && alum.department !== selectedDepartment) {
                     return false;
                 }
                 
                 return true;
             });
             
+            currentPage = 1;
             renderAlumniGrid();
         }
 
         // Setup event listeners
         function setupEventListeners() {
-            // Tab switching
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const tabId = tab.getAttribute('data-tab');
-                    switchTab(tabId);
-                });
-            });
-            
             // Search and filter events
             searchInput.addEventListener('input', filterAlumni);
             batchFilter.addEventListener('change', filterAlumni);
-            chapterFilter.addEventListener('change', filterAlumni);
+            
+            // Filter toggle button
+            filterToggleBtn.addEventListener('click', toggleFilters);
+            
+            // Department dropdown events
+            departmentHeader.addEventListener('click', () => {
+                departmentHeader.classList.toggle('open');
+                departmentOptions.classList.toggle('open');
+                if (departmentOptions.classList.contains('open')) {
+                    departmentSearch.focus();
+                }
+            });
+            
+            departmentSearch.addEventListener('input', (e) => {
+                renderDepartmentOptions(e.target.value);
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.an-custom-select')) {
+                    departmentHeader.classList.remove('open');
+                    departmentOptions.classList.remove('open');
+                }
+            });
             
             // Popup close events
             popupOverlay.addEventListener('click', (e) => {
@@ -1540,30 +1862,6 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && popupOverlay.style.display === 'flex') {
                     closePopup();
-                }
-            });
-        }
-
-        // Switch tab
-        function switchTab(tabId) {
-            // Update active tab
-            activeTab = tabId;
-            
-            // Update tab buttons
-            tabs.forEach(tab => {
-                if (tab.getAttribute('data-tab') === tabId) {
-                    tab.classList.add('active');
-                } else {
-                    tab.classList.remove('active');
-                }
-            });
-            
-            // Show/hide sections
-            Object.keys(sections).forEach(sectionId => {
-                if (sectionId === tabId) {
-                    sections[sectionId].style.display = 'block';
-                } else {
-                    sections[sectionId].style.display = 'none';
                 }
             });
         }

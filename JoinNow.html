@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us - Enrollment Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #1e293b;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .sitename {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .maa-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #1a2a6c;
+        }
+
+        .navmenu {
+            display: flex;
+            align-items: center;
+        }
+
+        .navmenu ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navmenu a {
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navmenu a:hover {
+            color: #1a2a6c;
+        }
+
+        .navmenu a.active {
+            color: #1a2a6c;
+            font-weight: 600;
+        }
+
+        /* User Profile Styles */
+        .user-profile {
+            position: relative;
+        }
+
+        .user-profile-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .user-profile-btn:hover {
+            background-color: #f1f5f9;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .profile-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 0.5rem 0;
+            min-width: 200px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .user-profile.active .profile-dropdown-menu {
+            display: block;
+        }
+
+        .profile-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #1e293b;
+            transition: background-color 0.3s ease;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .profile-dropdown-item:hover {
+            background-color: #f1f5f9;
+        }
+
+        .profile-dropdown-divider {
+            height: 1px;
+            background-color: #e2e8f0;
+            margin: 0.5rem 0;
+        }
+
+        .logout-btn {
+            color: #ef4444;
+        }
+
+        .logout-btn:hover {
+            background-color: #fef2f2;
+        }
+
+        .cta-btn {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 42, 108, 0.3);
+        }
+
+        /* Form Container Styles */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+            margin: 2rem auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-header {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+            animation: slideIn 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #1a2a6c;
+            box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.2);
+            outline: none;
+            background-color: white;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        .privacy-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .privacy-option input {
+            width: auto;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            color: #666;
+        }
+
+        .file-upload-label:hover {
+            background: #e0e0e0;
+            border-color: #1a2a6c;
+        }
+
+        .file-upload-label i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(26, 42, 108, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(26, 42, 108, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Custom department dropdown with search */
+        .department-container {
+            position: relative;
+        }
+
+        .department-search {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .department-search:focus {
+            border-color: #1a2a6c;
+            box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.2);
+            outline: none;
+            background-color: white;
+        }
+
+        .department-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .department-list.show {
+            display: block;
+        }
+
+        .department-option {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .department-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .department-option.selected {
+            background-color: #e6f2ff;
+        }
+
+        .other-department {
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Animation delays for form groups */
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        .form-group:nth-child(7) { animation-delay: 0.7s; }
+        .form-group:nth-child(8) { animation-delay: 0.8s; }
+        .form-group:nth-child(9) { animation-delay: 0.9s; }
+
+        /* Success Message */
+        .success-message {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 2rem auto;
+            max-width: 600px;
+            display: none;
+        }
+
+        .success-message i {
+            font-size: 4rem;
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+
+        .success-message h2 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .success-message p {
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .redirect-btn {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .redirect-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 42, 108, 0.3);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .form-header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-container {
+                padding: 25px;
+            }
+            
+            .privacy-option {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .navmenu ul {
+                display: none;
+            }
+
+            .header-content {
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Enrollment Form -->
+    <div class="container" id="enrollmentContainer">
+        <div class="form-header">
+            <h1><i class="fas fa-user-plus"></i> Join Our Community</h1>
+            <p>Complete the form below to enroll in our program</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="enrollmentForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name <span style="color: red;">*</span></label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address <span style="color: red;">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactNo">Contact Number <span style="color: red;">*</span></label>
+                    <input type="tel" id="contactNo" name="contactNo" placeholder="Enter your contact number" required>
+                    <div class="privacy-option">
+                        <input type="radio" id="contactPrivate" name="contactPrivacy" value="private" checked>
+                        <label for="contactPrivate">Keep my contact private</label>
+                        <input type="radio" id="contactPublic" name="contactPrivacy" value="public">
+                        <label for="contactPublic">Display my contact publicly</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address <span style="color: red;">*</span></label>
+                    <textarea id="address" name="address" rows="3" placeholder="Enter your complete address" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="batch">Batch <span style="color: red;">*</span></label>
+                            <input type="text" id="batch" name="batch" placeholder="Enter your batch (e.g., 2023A, 2024B)" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="department">Department <span style="color: red;">*</span></label>
+                            <div class="department-container">
+                                <input type="text" id="departmentSearch" class="department-search" placeholder="Search department...">
+                                <div id="departmentList" class="department-list"></div>
+                                <input type="hidden" id="department" name="department" required>
+                            </div>
+                            <div id="otherDepartment" class="other-department">
+                                <input type="text" id="otherDeptInput" placeholder="Please specify your department">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="occupation">Present Occupation <span style="color: red;">*</span></label>
+                    <input type="text" id="occupation" name="occupation" placeholder="Enter your current occupation" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profilePicture">Profile Picture</label>
+                    <div class="file-upload">
+                        <label for="profilePicture" class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span id="file-name">Choose a profile picture (Max 5MB)</span>
+                        </label>
+                        <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Complete Enrollment</button>
+                
+                <div class="form-footer">
+                    <p>By submitting this form, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Message (Hidden by default) -->
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        <h2>Enrollment Successful!</h2>
+        <p>Thank you for joining our community. You are now a registered member.</p>
+        <p>You will be redirected to the home page shortly.</p>
+        <button class="redirect-btn" onclick="redirectToHome()">Go to Home Page Now</button>
+    </div>
+
+<script>
+    // Department data
+    const departments = [
+        "Applied Zoology",
+        "Biochemistry",
+        "Biosciences",
+        "Chemistry",
+        "Computer Science",
+        "Electronics",
+        "Geography",
+        "Human Consciousness and Yogic Sciences",
+        "Industrial Chemistry",
+        "Library and Information Science",
+        "Marine Geology",
+        "Materials Science",
+        "Mathematics",
+        "Microbiology",
+        "Physics",
+        "Statistics",
+        "Kannada",
+        "History",
+        "Economics",
+        "Political Science",
+        "Sociology",
+        "Master of Social Work",
+        "English",
+        "MEd",
+        "Physical Education",
+        "Commerce",
+        "MBA",
+        "MBA Tourism",
+        "Social Science",
+        "Other"
+    ];
+
+    // DOM elements
+    const departmentSearch = document.getElementById('departmentSearch');
+    const departmentList = document.getElementById('departmentList');
+    const departmentInput = document.getElementById('department');
+    const otherDepartment = document.getElementById('otherDepartment');
+    const otherDeptInput = document.getElementById('otherDeptInput');
+
+    // Initialize department list
+    function populateDepartmentList(filter = '') {
+        departmentList.innerHTML = '';
+        const filteredDepartments = departments.filter(dept => 
+            dept.toLowerCase().includes(filter.toLowerCase())
+        );
+        
+        if (filteredDepartments.length === 0) {
+            const noResult = document.createElement('div');
+            noResult.className = 'department-option';
+            noResult.textContent = 'No departments found';
+            departmentList.appendChild(noResult);
+        } else {
+            filteredDepartments.forEach(dept => {
+                const option = document.createElement('div');
+                option.className = 'department-option';
+                option.textContent = dept;
+                option.addEventListener('click', () => {
+                    departmentSearch.value = dept;
+                    departmentInput.value = dept;
+                    departmentList.classList.remove('show');
+                    
+                    // Show other department input if "Other" is selected
+                    if (dept === "Other") {
+                        otherDepartment.style.display = 'block';
+                        otherDeptInput.required = true;
+                    } else {
+                        otherDepartment.style.display = 'none';
+                        otherDeptInput.required = false;
+                    }
+                });
+                departmentList.appendChild(option);
+            });
+        }
+    }
+
+    // Event listeners for department search
+    departmentSearch.addEventListener('focus', () => {
+        populateDepartmentList();
+        departmentList.classList.add('show');
+    });
+
+    departmentSearch.addEventListener('input', (e) => {
+        populateDepartmentList(e.target.value);
+    });
+
+    departmentSearch.addEventListener('blur', () => {
+        // Use setTimeout to allow click event on options to fire first
+        setTimeout(() => {
+            departmentList.classList.remove('show');
+        }, 200);
+    });
+
+    // File upload name display
+    document.getElementById('profilePicture').addEventListener('change', function(e) {
+        const fileName = e.target.files[0] ? e.target.files[0].name : 'Choose a profile picture (Max 5MB)';
+        document.getElementById('file-name').textContent = fileName;
+    });
+
+    // Form submission
+    document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validate department selection
+        if (!departmentInput.value) {
+            alert('Please select a department from the list');
+            departmentSearch.focus();
+            return;
+        }
+        
+        // If "Other" is selected, validate the other department input
+        if (departmentInput.value === "Other" && !otherDeptInput.value.trim()) {
+            alert('Please specify your department in the "Other" field');
+            otherDeptInput.focus();
+            return;
+        }
+        
+        // Get form data
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        
+        // Store user data in localStorage
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userName', fullName);
+        localStorage.setItem('userEmail', email);
+        
+        // Navigate directly to index.html
+        window.location.href = 'index.html';
+    });
+
+    // Add animation to form elements when they come into view
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            }
+        });
+    }, observerOptions);
+
+    // Observe all form groups
+    document.querySelectorAll('.form-group').forEach((el) => {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
+    });
+</script>
+</body>
+</html>

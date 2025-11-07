@@ -52,7 +52,7 @@
                     <li><a href="#hero" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#team">Team</a></li>
-                    <li><a href="NotableAlumni.html">Notable Alumni</a></li>
+                    <li><a href="NotableAlumni.html">Alumni Achievers</a></li>
                       <li><a href="#services">News</a></li>
                             <li><a href="#clients">Events</a></li>
 
@@ -106,7 +106,7 @@
                             <div class="profile-dropdown-divider"></div>
                             <button class="profile-dropdown-item logout-btn" onclick="logout()">
                                 <i class="bi bi-box-arrow-right"></i>
-                                Logout
+                                Remove Enrolement 
                             </button>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                 initializeUserDropdown();
             } else {
                 // Show login button
-                authSection.innerHTML = '<a class="cta-btn" href="login.html">Join Us</a>';
+                authSection.innerHTML = '<a class="cta-btn" href="JoinNow.html">Join Us</a>';
             }
         }
 
@@ -154,7 +154,7 @@
             localStorage.removeItem('userName');
             
             // Redirect to login page
-            window.location.href = 'login.html';
+            window.location.href = 'JoinNow.html';
         }
 
         // Mobile navigation toggle
@@ -1089,7 +1089,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .team-grid {
       grid-template-columns: 1fr;
       gap: 20px;
-      max-width: 400px;
+      max-width: 320px;
     }
     
     .pagination-numbers {
@@ -1107,6 +1107,8 @@ document.addEventListener('DOMContentLoaded', function() {
       padding: 8px 16px;
       font-size: 0.9rem;
     }
+
+
 
   .team-pagination {
   flex-direction: row;
@@ -4078,7 +4080,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <li><i class="bi bi-chevron-right"></i> <a href="#hero">Home</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#about">About</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#team">Team</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="NotableAlumni.html">Notable Alumni</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="NotableAlumni.html">Alumni Achievers</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#clients">Events</a></li>
             </ul>
           </div>
@@ -4459,8 +4461,6 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 38px;
     font-size: 1rem;
   }
-
-
 }
 
 @media (max-width: 768px) {
