@@ -1134,25 +1134,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Full message content
-   const fullMessage = ``;
-    // Leadership messages data
+    // Leadership messages data with proper full messages
     const leadershipMessages = [
       {
         id: 'president',
-        title: "Alumni President",
+        title: "President",
         name: "Mr Ramakrishna Rao",
         photo: "assets/img/ramakrishna.jpg",
-        content: "A warm and heartfelt greeting to each of you from the very heart of our beloved institution. It is with immense pride and a sense of nostalgia that I reach out to you as the President of the Mangala Alumni Association. As Chairperson of the Alumni Committee I take utmost pleasure to thank you all and to look forward earnestly to your continuing involvement in the coming years as we march ahead together towards a new nova of achievements.",
-        fullMessage: fullMessage
-      },
+        content: "A warm and heartfelt greeting to each of you from the very heart of our beloved institution. It is with immense pride and a sense of nostalgia that I reach out to you as the President of the Mangala Alumni Association...",
+        fullMessage: `A warm and heartfelt greeting to each of you from the very heart of our beloved institution. It is with immense pride and a sense of nostalgia that I reach out to you as the President of the Mangala Alumni Association. As Chairperson of the Alumni Committee I take utmost pleasure to thank you all and to look forward earnestly to your continuing involvement in the coming years as we march ahead together towards a new nova of achievements.
+Our journey together began decades ago when we embarked on an adventure that would shape not just our careers, but our lives. Today, standing at the helm of this remarkable association, I am both humbled and excited to connect with each of you once again.
+I am sure there are plenty of good reasons for alumni to stay in touch with their alma mater. The objective is to foster continuous engagement of the alumni with their alma mater. As the pioneering members of nascent university that our alme mater was, we were the torchbearers of a legacy that now spans far and wide. Our collective footsteps laid the foundation upon which the university has grown and flourished. It's a legacy of determination, innovation, and unwavering spirit, and one that we must carry forward for generations to come.
+
+This association isn't just an alumni network; it's a testament to the bonds we forged in the classrooms, hostels, and corridors of Mangalagangothri. It's a reflection of the dreams we nurtured, the challenges we overcame, and the victories we celebrated. Each of us has a unique story to tell, and together, our stories paint a vivid canvas of the shared Mangala experience.
+
+While time and distance may have taken us on different paths, the spirit of Mangala lives on within us. It's the resilience that propelled us through exams, the friendships that weathered the tests of time, and the knowledge that ignited our curiosity. It's this very spirit that we now harness to create a brighter future for ourselves and our beloved alma mater.
+
+Though the world has transformed since our days on campus, the essence of Mangala remains unchanged. We are a testament to the transformative power of education, and now, as we navigate the professional landscape, our responsibilities have grown. The Mangala Alumni Association is our conduit to stay connected, to collaborate, and to inspire.
+
+In the ever-evolving realm of careers and aspirations, this association serves as a beacon of support and growth. Our alumni community is a treasure trove of talent, expertise, and diverse experiences. It's a reservoir from which we can draw inspiration, knowledge, and mentorship. Together, we can drive innovation, lead industries, and contribute to society in meaningful ways.
+
+But beyond personal growth, there's an inherent responsibility that comes with being part of the Mangala family. Our insights, wisdom, and perspectives can guide the institution to even greater heights. Let's work hand in hand with the faculty, students, and fellow alumni to ensure that Mangala's legacy continues to shine brightly.
+
+As we embark on this exhilarating journey, I invite each of you to engage actively with the Alumni Association. Attend events, share your experiences, mentor the next generation, and contribute to the ongoing narrative of Sharda's success. Let's reconnect, reminisce, and reimagine the possibilities that lie ahead.
+
+Let us embrace our roles as ambassadors of Mangalore University's ethos and excellence. Let's celebrate the dreams we realized, the bonds we forged, and the incredible future that awaits us. Together, we are more than just alumni; we are a force of positive change, a testament to the power of education, and a living embodiment of Mangala's legacy.` },
       {
-        id: 'secretary',
-        title: "Alumni Secretary",
-        name: "Mr Subramanya",
-        photo: "assets/img/subramanya.jpg",
-        content: "The Alumni Association is dedicated to strengthening the bond between the university and its graduates. Through various programs and initiatives, we aim to create a vibrant community that supports professional growth and social responsibility.",
-        fullMessage: fullMessage
+        id: 'vc',
+        title: "Vice Chancellor",
+        name: "Prof. P L Dharma",
+        photo: "assets/img/Dharma.jpg",
+        content: "It gives me immense pleasure to convey my heartfelt greetings to all members of the Mangala Alumni Association (MAA) and to every proud alumnus of Mangalore University. I believe, a University's true achievement is reflected in the success and contribution of its alumni...",
+        fullMessage: `It gives me immense pleasure to convey my heartfelt greetings to all members of the Mangala Alumni Association (MAA) and to every proud alumnus of Mangalore University. I believe, a University's true achievement is reflected in the success and contribution of its alumni. The mutual pride shared between a University and its former students forms the foundation of its enduring legacy. In this spirit, the coming together of our alumni under the banner of the Mangala Alumni Association, formally registered on 10 May 2007, marks a significant step in strengthening this invaluable bond.
+
+Today, the Mangalagangothri family comprises more than 20,000 alumni spread across the globe - scholars, professionals, entrepreneurs, administrators, and social leaders - all contributing in their own way to the progress of our society. Their achievements bring immense pride to the University and serve as an inspiration to the younger generation of students.
+
+Having had the privilege of serving as the Vice President of MAA for over eight years, I have personally witnessed the dedication and enthusiasm with which the Association fosters meaningful engagement between the University and its alumni. The MAA has also played an active and commendable role during all cycles of NAAC accreditation, extending valuable support and sharing very positive feedback about the University with the NAAC Peer Team. This active participation has significantly highlighted the University's strengths, achievements, and community involvement. I cannot forget the major contribution of MAA in training the young faculty through series of FDP's.
+
+I also take this opportunity to appreciate the contributions of MAA in building a beautiful and regularly used bus shelter at the main stop near the Mangala Auditorium, which stands as a visible symbol of alumni commitment to the University. Furthermore, the proposals submitted by MAA to develop a "MAA Garden" and a "MAA Bhavan" near the Mangala Auditorium reflect their continued dedication to enhancing the campus environment and fostering a sense of belonging among the alumni community. My appeal to MAA through this message is that MAA can be an extended body of our University where MAA can serve as a Data Centre of all our Alumnus.
+
+The initiatives of MAA in creating platforms for collaboration, knowledge sharing, and community development are truly praiseworthy. I invite all alumni to continue their active association with MAA and Mangalore University, to contribute ideas, expertise, and goodwill toward our shared vision of academic excellence and social responsibility. Together, let us uphold the spirit of Mangala and strengthen the global network that binds us all to our beloved alma mater.`
       }
     ];
 
@@ -1169,6 +1190,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize slider
     function initSlider() {
+      // Clear existing slides
+      sliderTrack.innerHTML = '';
+      sliderNav.innerHTML = '';
+
       // Create slides
       leadershipMessages.forEach((leader, index) => {
         const slide = document.createElement('div');
@@ -1178,7 +1203,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="leader-content-full">
               <div class="leader-info">
                 <div class="leader-photo-container-full">
-                  <img src="${leader.photo}" alt="${leader.name}" class="leader-photo-full">
+                  <img src="${leader.photo}" alt="${leader.name}" class="leader-photo-full" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9Ijc1IiB5PSI3NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOTk5Ij5QaG90bzwvdGV4dD48L3N2Zz4='">
                   <div class="photo-overlay-full"></div>
                 </div>
                 <div class="leader-details">
@@ -1244,7 +1269,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function openPopup(leader) {
       popupTitle.textContent = leader.title;
       popupName.textContent = leader.name;
-      popupMessage.textContent = leader.fullMessage;
+      popupMessage.innerHTML = leader.fullMessage.replace(/\n/g, '<br>');
       popup.style.display = 'block';
       document.body.style.overflow = 'hidden';
     }
@@ -1255,126 +1280,12 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.style.overflow = 'auto';
     }
 
-    // Initialize animations
-    function initAnimations() {
-      const observerOptions = {
-        threshold: 0.3,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.animationPlayState = 'running';
-          }
-        });
-      }, observerOptions);
-
-      // Observe all animated elements
-      document.querySelectorAll('.fade-in-item, .zoom-in-item, .slide-up-item').forEach(el => {
-        observer.observe(el);
-      });
-    }
-
     // Initialize everything
     initSlider();
-    initAnimations();
   });
 </script>
 
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-
-
-  const sliderTrack = document.getElementById('sliderTrack');
-  const sliderNav = document.getElementById('sliderNav');
-  const prevBtn = document.getElementById('prevSlide');
-  const nextBtn = document.getElementById('nextSlide');
-
-  let currentSlide = 0;
-
-  // Create slides
-  function createSlides() {
-    leadershipData.forEach((leader, index) => {
-      // Create slide
-      const slide = document.createElement('div');
-      slide.className = 'slide-full';
-      slide.innerHTML = `
-        <div class="slide-content">
-          <div class="quote-icon">❝</div>
-          <h3 class="slide-title">${leader.title}</h3>
-          <div class="slide-message">
-            <p>${leader.message}</p>
-            <p class="extended-message">${leader.extendedMessage}</p>
-          </div>
-          <div class="separator"></div>
-          <div class="leader-info">
-            <div class="leader-avatar">${leader.avatar}</div>
-            <div class="leader-details">
-              <h4 class="leader-name">${leader.name}</h4>
-              <p class="leader-position">${leader.position}</p>
-            </div>
-          </div>
-        </div>
-      `;
-      sliderTrack.appendChild(slide);
-
-      // Create navigation dot
-      const dot = document.createElement('button');
-      dot.className = `slider-dot-full ${index === 0 ? 'active' : ''}`;
-      dot.setAttribute('data-slide', index);
-      dot.addEventListener('click', () => goToSlide(index));
-      sliderNav.appendChild(dot);
-    });
-  }
-
-  // Go to specific slide
-  function goToSlide(slideIndex) {
-    currentSlide = slideIndex;
-    const slideWidth = sliderTrack.children[0].offsetWidth;
-    sliderTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-    
-    // Update active dot
-    document.querySelectorAll('.slider-dot-full').forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentSlide);
-    });
-  }
-
-  // Next slide
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % leadershipData.length;
-    goToSlide(currentSlide);
-  }
-
-  // Previous slide
-  function prevSlide() {
-    currentSlide = (currentSlide - 1 + leadershipData.length) % leadershipData.length;
-    goToSlide(currentSlide);
-  }
-
-  // Event listeners
-  prevBtn.addEventListener('click', prevSlide);
-  nextBtn.addEventListener('click', nextSlide);
-
-  // Auto slide (optional)
-  let autoSlide = setInterval(nextSlide, 5000);
-
-  // Pause auto slide on hover
-  const sliderContainer = document.querySelector('.slider-container-full');
-  sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
-  sliderContainer.addEventListener('mouseleave', () => {
-    autoSlide = setInterval(nextSlide, 5000);
-  });
-
-  // Initialize
-  createSlides();
-});
-</script>
-  </div>
-</section>
-
-
+<!-- HTML Structure -->
 <div class="messages-section">
   <div class="full-width-container">
     <h2 class="section-title">Messages From Leadership</h2>
@@ -1397,7 +1308,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
   </div>
-  <!-- Popup Modal -->
+</div>
+
 <!-- Popup Modal -->
 <div id="messagePopup" class="popup-modal">
   <div class="popup-content">
@@ -1406,58 +1318,12 @@ document.addEventListener('DOMContentLoaded', function() {
       <h3 id="popupTitle">Alumni President</h3>
       <h4 id="popupName">Mr. Ramakrishna Rao</h4>
     </div>
-    <div class="popup-body" id="popupBody">
-      <p id="popupMessage">
-  A warm and heartfelt greeting to each of you from the very heart of our beloved institution. It is with immense pride and a sense of nostalgia that I reach out to you as the President of the Mangala Alumni Association. As Chairperson of the Alumni Committee I take utmost pleasure to thank you all and to look forward earnestly to your continuing involvement in the coming years as we march ahead together towards a new nova of achievements. <br>
-Our journey together began decades ago when we embarked on an adventure that would shape not just our careers, but our lives. Today, standing at the helm of this remarkable association, I am both humbled and excited to connect with each of you once again. <br>
-I am sure there are plenty of good reasons for alumni to stay in touch with their alma mater. The objective is to foster continuous engagement of the alumni with their alma mater. As the pioneering members of nascent university that our alme mater was, we were the torchbearers of a legacy that now spans far and wide. Our collective footsteps laid the foundation upon which the university has grown and flourished. It's a legacy of determination, innovation, and unwavering spirit, and one that we must carry forward for generations to come.
-<br>
-      </p>
-
-        <p id="popupMessage">
-  A warm and heartfelt greeting to each of you from the very heart of our beloved institution. It is with immense pride and a sense of nostalgia that I reach out to you as the President of the Mangala Alumni Association. As Chairperson of the Alumni Committee I take utmost pleasure to thank you all and to look forward earnestly to your continuing involvement in the coming years as we march ahead together towards a new nova of achievements. <br>
-Our journey together began decades ago when we embarked on an adventure that would shape not just our careers, but our lives. Today, standing at the helm of this remarkable association, I am both humbled and excited to connect with each of you once again. <br>
-I am sure there are plenty of good reasons for alumni to stay in touch with their alma mater. The objective is to foster continuous engagement of the alumni with their alma mater. As the pioneering members of nascent university that our alme mater was, we were the torchbearers of a legacy that now spans far and wide. Our collective footsteps laid the foundation upon which the university has grown and flourished. It's a legacy of determination, innovation, and unwavering spirit, and one that we must carry forward for generations to come.
-<br>
-      </p>
-      <p id="popupMessage">
-       This association isn't just an alumni network; it's a testament to the bonds we forged in the classrooms, hostels, and corridors of Mangalagangothri. It's a reflection of the dreams we nurtured, the challenges we overcame, and the victories we celebrated. Each of us has a unique story to tell, and together, our stories paint a vivid canvas of the shared Mangala experience.
-      </p>
-        <p id="popupMessage">
-        While time and distance may have taken us on different paths, the spirit of Mangala lives on within us. It's the resilience that propelled us through exams, the friendships that weathered the tests of time, and the knowledge that ignited our curiosity. It's this very spirit that we now harness to create a brighter future for ourselves and our beloved alma mater.
-      </p>
-      <p id="popupMessage">
-
-        Though the world has transformed since our days on campus, the essence of Mangala remains unchanged. We are a testament to the transformative power of education, and now, as we navigate the professional landscape, our responsibilities have grown. The Mangala Alumni Association is our conduit to stay connected, to collaborate, and to inspire.
-      </p>
-
-        <p id="popupMessage">
-
-      In the ever-evolving realm of careers and aspirations, this association serves as a beacon of support and growth. Our alumni community is a treasure trove of talent, expertise, and diverse experiences. It's a reservoir from which we can draw inspiration, knowledge, and mentorship. Together, we can drive innovation, lead industries, and contribute to society in meaningful ways.
-            </p>
-
-            <p id="popupMessage">
-
-      But beyond personal growth, there's an inherent responsibility that comes with being part of the Mangala family. Our insights, wisdom, and perspectives can guide the institution to even greater heights. Let's work hand in hand with the faculty, students, and fellow alumni to ensure that Mangala's legacy continues to shine brightly.
-            </p>
-
-            <p id="popupMessage">
-
-      As we embark on this exhilarating journey, I invite each of you to engage actively with the Alumni Association. Attend events, share your experiences, mentor the next generation, and contribute to the ongoing narrative of Sharda's success. Let's reconnect, reminisce, and reimagine the possibilities that lie ahead.
-            </p>
-
-                <p id="popupMessage">
-
-      Let us embrace our roles as ambassadors of Mangalore University's ethos and excellence. Let's celebrate the dreams we realized, the bonds we forged, and the incredible future that awaits us. Together, we are more than just alumni; we are a force of positive change, a testament to the power of education, and a living embodiment of Mangala's legacy.
-            </p>
-
-
-
+    <div class="popup-body">
+      <p id="popupMessage"></p>
     </div>
   </div>
 </div>
 
-</div>
 
 
 

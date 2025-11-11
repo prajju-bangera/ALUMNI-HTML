@@ -6,6 +6,8 @@
     <title>Notable Alumni - Mangalore University</title>
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Base Styles */
         * {
@@ -18,6 +20,7 @@
             --primary: #667eea;
             --primary-dark: #5a67d8;
             --secondary: #764ba2;
+            --accent: #f093fb;
             --success: #10b981;
             --danger: #ef4444;
             --warning: #f59e0b;
@@ -25,13 +28,17 @@
             --dark: #1e293b;
             --gray: #6b7280;
             --gray-light: #e5e7eb;
+            --card-bg: linear-gradient(145deg, #ffffff, #f5f7fa);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
 
         body {
             font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f7fa;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
             color: var(--dark);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
@@ -42,8 +49,9 @@
 
         /* Header Styles */
         .header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -76,51 +84,157 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.5rem;
             background: white;
             color: var(--primary);
             border: 1px solid var(--primary);
-            border-radius: 6px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
         }
 
         .back-btn:hover {
             background: var(--primary);
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.25);
         }
 
         /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 4rem 0;
+            padding: 5rem 0;
             text-align: center;
             margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.05"><polygon points="1000,100 1000,0 0,100"></polygon></svg>');
+            background-size: cover;
         }
 
         .hero-title {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInUp 1s ease;
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             opacity: 0.9;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
+            position: relative;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .stat-number::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        /* Plus symbol for stats */
+        .plus-symbol {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-left: 0.2rem;
         }
 
         /* Controls Section */
         .controls-section {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .controls-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
 
         .search-filter-container {
@@ -138,25 +252,29 @@
 
         .search-input {
             width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            padding: 1rem 1rem 1rem 3rem;
             border: 1px solid var(--gray-light);
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s ease;
+            background: var(--light);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
         }
 
         .search-input:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
         }
 
         .search-icon {
             position: absolute;
-            left: 0.75rem;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
             color: var(--gray);
+            font-size: 1.2rem;
         }
 
         .filter-group {
@@ -166,97 +284,189 @@
         }
 
         .filter-select {
-            padding: 0.75rem 1rem;
+            padding: 1rem 1.5rem;
             border: 1px solid var(--gray-light);
-            border-radius: 8px;
-            background: white;
-            font-size: 0.9rem;
-            min-width: 150px;
+            border-radius: 12px;
+            background: var(--light);
+            font-size: 0.95rem;
+            min-width: 160px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
         }
 
-        /* Alumni Grid */
-        .alumni-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        /* Alumni Cards with Alternating Layout */
+        .alumni-cards-container {
             margin-bottom: 3rem;
         }
 
         .alumni-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: linear-gradient(135deg, #ffffff, #bdceff);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+            transition: all 0.4s ease;
+            margin-bottom: 2.5rem;
+            display: flex;
+            min-height: 280px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
         }
 
         .alumni-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-10px);
+            box-shadow: var(--card-shadow-hover);
         }
 
-        .alumni-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        .alumni-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .alumni-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .alumni-card-image {
+            flex: 0 0 30%;
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .alumni-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .alumni-content {
             padding: 1.5rem;
         }
 
+        .alumni-card-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            z-index: 1;
+        }
+
+        .alumni-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .alumni-card:hover .alumni-card-image img {
+            transform: scale(1.05);
+        }
+
+        .alumni-card-content {
+            flex: 1;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
         .alumni-name {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
             color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .alumni-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .alumni-card:hover .alumni-name::after {
+            width: 100px;
         }
 
         .alumni-degree {
             color: var(--primary);
             font-weight: 600;
             margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alumni-degree::before {
+            content: '🎓';
+            font-size: 1.2rem;
         }
 
         .alumni-year {
             color: var(--gray);
-            font-size: 0.85rem;
+            font-size: 1rem;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alumni-year::before {
+            content: '📅';
+            font-size: 1.1rem;
         }
 
         .alumni-achievement {
-            font-size: 0.9rem;
+            font-size: 1.05rem;
             color: var(--dark);
-            margin-bottom: 1rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .alumni-achievement::before {
+            content: '⭐';
+            position: absolute;
+            left: 0;
+            top: 0;
         }
 
         .alumni-actions {
             display: flex;
-            gap: 0.75rem;
+            gap: 1rem;
         }
 
         .btn {
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
             border: none;
             font-weight: 500;
             cursor: pointer;
@@ -264,27 +474,59 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
         .btn-outline {
             background: transparent;
             border: 1px solid var(--gray-light);
             color: var(--dark);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
 
         .btn-outline:hover {
             background: var(--light);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Alternate card layouts */
+        .alumni-card:nth-child(odd) .alumni-card-image {
+            order: 2;
+        }
+
+        .alumni-card:nth-child(odd) .alumni-card-content {
+            order: 1;
         }
 
         /* Alumni Detail Modal */
@@ -312,28 +554,29 @@
 
         .modal-content {
             background: white;
-            border-radius: 12px;
-            max-width: 800px;
+            border-radius: 20px;
+            max-width: 900px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
         }
 
         .alumni-modal.active .modal-content {
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .modal-close {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
             background: rgba(0, 0, 0, 0.1);
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -341,90 +584,131 @@
             cursor: pointer;
             z-index: 10;
             color: var(--dark);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
         }
 
         .modal-close:hover {
             background: rgba(0, 0, 0, 0.2);
+            transform: rotate(90deg);
         }
 
         .modal-header {
-            padding: 2rem 2rem 1rem;
+            padding: 2.5rem 2.5rem 1.5rem;
             border-bottom: 1px solid var(--gray-light);
+            position: relative;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
 
         .modal-body {
-            padding: 1rem 2rem 2rem;
+            padding: 1.5rem 2.5rem 2.5rem;
         }
 
         .modal-alumni-info {
             display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 2rem;
+            grid-template-columns: 180px 1fr;
+            gap: 2.5rem;
             margin-bottom: 2rem;
         }
 
         .modal-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 12px;
+            width: 180px;
+            height: 180px;
+            border-radius: 16px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 4rem;
+            font-size: 3.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
         }
 
         .modal-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 16px;
         }
 
         .modal-details h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 0.5rem;
+            color: var(--dark);
         }
 
         .modal-degree {
             color: var(--primary);
             font-weight: 600;
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .modal-year {
             color: var(--gray);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
         }
 
         .modal-bio {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             line-height: 1.7;
+            font-size: 1.05rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
         }
 
         .modal-achievements h3,
         .modal-career h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             color: var(--dark);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-achievements h3::before {
+            content: '🏆';
+        }
+
+        .modal-career h3::before {
+            content: '💼';
         }
 
         .modal-achievements ul,
         .modal-career ul {
             list-style: none;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .modal-achievements li,
         .modal-career li {
-            padding: 0.5rem 0;
+            padding: 0.8rem 0;
             border-bottom: 1px solid var(--gray-light);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
+            transition: background 0.3s ease;
+            border-radius: 8px;
+            padding-left: 1rem;
+        }
+
+        .modal-achievements li:hover,
+        .modal-career li:hover {
+            background: var(--light);
         }
 
         .modal-achievements li:before,
@@ -432,47 +716,7 @@
             content: "•";
             color: var(--primary);
             font-weight: bold;
-        }
-
-        /* Stats Section */
-        .stats-section {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 1.5rem;
-            background: var(--light);
-            border-radius: 8px;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-weight: 500;
-        }
-
-        /* Plus symbol for stats */
-        .plus-symbol {
             font-size: 1.5rem;
-            color: var(--primary);
-            margin-left: 0.2rem;
         }
 
         /* Pagination */
@@ -480,28 +724,34 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.5rem;
-            margin: 2rem 0;
+            gap: 0.8rem;
+            margin: 3rem 0;
         }
 
         .pagination-btn {
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.2rem;
             border: 1px solid var(--gray-light);
             background: white;
-            border-radius: 6px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
 
         .pagination-btn:hover:not(.disabled) {
             background: var(--light);
             border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
         }
 
         .pagination-btn.active {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.3);
         }
 
         .pagination-btn.disabled {
@@ -512,39 +762,74 @@
         /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             color: var(--gray);
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
         }
 
         .empty-state i {
-            font-size: 4rem;
+            font-size: 5rem;
             margin-bottom: 1.5rem;
             opacity: 0.5;
+            color: var(--primary);
         }
 
         .empty-state h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 1rem;
             color: var(--dark);
+        }
+
+        .empty-state p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         /* Footer */
         .footer {
             background: var(--dark);
             color: white;
-            padding: 3rem 0;
-            margin-top: 4rem;
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .footer-section h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: white;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
         }
 
         .footer-section p {
@@ -552,22 +837,72 @@
             line-height: 1.7;
         }
 
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
         .footer-bottom {
             text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
+            padding-top: 3rem;
+            margin-top: 3rem;
             border-top: 1px solid #374151;
             color: #9ca3af;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
-            .alumni-grid {
-                grid-template-columns: 1fr;
+            .alumni-card {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .alumni-card-image {
+                order: 1 !important;
+                flex: 0 0 200px;
+            }
+
+            .alumni-card-content {
+                order: 2 !important;
             }
 
             .search-filter-container {
@@ -582,6 +917,7 @@
             .modal-alumni-info {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 1.5rem;
             }
 
             .modal-image {
@@ -604,6 +940,14 @@
 
             .filter-select {
                 min-width: auto;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .alumni-name {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -678,7 +1022,7 @@
         </div>
     </section>
 
-    <!-- Alumni Grid -->
+    <!-- Alumni Cards -->
     <section class="container">
         <!-- Back Button -->
         <a href="index.html" class="back-btn">
@@ -686,7 +1030,7 @@
             Back to Home
         </a>
         
-        <div class="alumni-grid" id="alumniGrid">
+        <div class="alumni-cards-container" id="alumniCardsContainer">
             <!-- Alumni cards will be populated by JavaScript -->
         </div>
         
@@ -721,9 +1065,9 @@
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
-                    <p><a href="index.html" style="color: #cbd5e1;">Home</a></p>
-                    <p><a href="AlumniNetwork.html" style="color: #cbd5e1;">Alumni Network</a></p>
-                    <p><a href="profile.html" style="color: #cbd5e1;">My Profile</a></p>
+                    <a href="index.html">Home</a>
+                    <a href="AlumniNetwork.html">Alumni Network</a>
+                    <a href="profile.html">My Profile</a>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Info</h3>
@@ -743,12 +1087,12 @@
         const alumniData = [
             {
                 id: 1,
-                name: "Dr. Anjali Rao",
-                degree: "PhD in Biotechnology",
+                name: "Mr. Santhosha Shetty",
+                degree: "Industrial Chemistry",
                 year: "2005",
                 field: "science",
-                achievement: "Nobel Prize nominee for groundbreaking research in genetic engineering",
-                bio: "Dr. Anjali Rao is a renowned biotechnologist whose research in genetic engineering has revolutionized treatment approaches for hereditary diseases. She currently leads the Genetic Research Institute in Bangalore.",
+                achievement: "Mr. Santhosha Shetty is a Head of R&D Pouch Solutions FZ LLC, RAK- UAE",
+                bio: "Mr. Santhosha Shetty is a Head of R&D Pouch Solutions FZ LLC, RAK- UAE. He has made significant contributions to the field of industrial chemistry and packaging solutions.",
                 tags: ["Science", "Research", "Biotechnology"],
                 achievements: [
                     "Nobel Prize Nominee in Medicine (2020)",
@@ -761,16 +1105,16 @@
                     "Professor, Indian Institute of Science (2008-2015)",
                     "Research Scientist, MIT (2005-2008)"
                 ],
-                image: null
+                image: "assets/img/santhosh.jpg"
             },
             {
                 id: 2,
-                name: "Rajesh Kumar",
-                degree: "Bachelor of Computer Applications",
+                name: "Dr. Arun Krishna Kodoth",
+                degree: "Industrial Chemistry",
                 year: "1998",
                 field: "technology",
-                achievement: "Founder of India's leading e-commerce platform, ShopEasy",
-                bio: "Rajesh Kumar transformed the e-commerce landscape in India with his innovative platform ShopEasy, which now serves millions of customers across the country and employs over 10,000 people.",
+                achievement: "Dr. Arun Krishna Kodoth is a Head, R&D, Marysadan projects Pvt. Ltd. Ernakulam Kerala",
+                bio: "Dr. Arun Krishna Kodoth is a Head, R&D, Marysadan projects Pvt. Ltd. Ernakulam Kerala. He has pioneered several innovations in the field of chemical engineering.",
                 tags: ["Technology", "Entrepreneurship", "E-commerce"],
                 achievements: [
                     "Forbes 30 Under 30 (2005)",
@@ -781,15 +1125,15 @@
                     "Founder & CEO, ShopEasy (2003-Present)",
                     "Software Engineer, Infosys (1998-2003)"
                 ],
-                image: null
+                image: "assets/img/Arun.jpg"
             },
             {
                 id: 3,
-                name: "Prof. Meera Nair",
-                degree: "MA in English Literature",
+                name: "Dr. Shiprath K",
+                degree: "Electrolyte Scientist",
                 year: "1985",
                 field: "academia",
-                achievement: "Internationally acclaimed author and literary critic",
+                achievement: "NEOCELL INDUSTRIES PVT. LTD. MUMBAI",
                 bio: "Professor Meera Nair's contributions to post-colonial literature have earned her international recognition. Her novels have been translated into 15 languages and are part of university curricula worldwide.",
                 tags: ["Academia", "Literature", "Writing"],
                 achievements: [
@@ -802,124 +1146,85 @@
                     "Department Head, Delhi University (1995-2010)",
                     "Lecturer, Mangalore University (1985-1995)"
                 ],
-                image: null
+                image: "assets/img/shiprath.jpg"
             },
             {
                 id: 4,
-                name: "Sanjay Patel",
-                degree: "Bachelor of Commerce",
-                year: "2008",
-                field: "business",
-                achievement: "CEO of Fortune 500 financial services company",
-                bio: "Sanjay Patel's strategic leadership transformed a traditional financial institution into a digital-first powerhouse, increasing market share by 40% in just five years.",
-                tags: ["Business", "Finance", "Leadership"],
+                name: "Shashidhar Joshi",
+                degree: "MSc Statistics ",
+                year: "1999",
+                field: "academia",
+                achievement: "Senior Director - Biostatistics Sitero LLC",
+                bio: "Professor Meera Nair's contributions to post-colonial literature have earned her international recognition. Her novels have been translated into 15 languages and are part of university curricula worldwide.",
+                tags: ["Academia", "Literature", "Writing"],
                 achievements: [
-                    "Business Today CEO of the Year (2021)",
-                    "Led company to record $5B revenue (2022)",
-                    "Featured in Harvard Business Review (2020)"
+                    "Sahitya Akademi Award (2010)",
+                    "Commonwealth Writers' Prize (2008)",
+                    "Visiting Professor at Oxford University (2015-2017)"
                 ],
                 career: [
-                    "CEO, FinServe India (2018-Present)",
-                    "COO, Global Bank India (2013-2018)",
-                    "Management Trainee, HDFC Bank (2008-2013)"
+                    "Professor Emeritus, JNU (2010-Present)",
+                    "Department Head, Delhi University (1995-2010)",
+                    "Lecturer, Mangalore University (1985-1995)"
                 ],
-                image: null
+                image: "assets/img/shashidhar.jpg"
             },
             {
                 id: 5,
-                name: "Priya Sharma",
-                degree: "Bachelor of Arts",
-                year: "2012",
-                field: "arts",
-                achievement: "Award-winning documentary filmmaker and social activist",
-                bio: "Priya Sharma uses the power of visual storytelling to highlight social issues. Her documentaries on environmental conservation and women's rights have sparked national conversations and policy changes.",
-                tags: ["Arts", "Media", "Activism"],
+                name: "Dr N Balakrishna",
+                degree: "Former Professor CUSAT",
+                year: "1986 ",
+                field: "academia",
+                achievement: "NEOCELL INDUSTRIES PVT. LTD. MUMBAI",
+                bio: "Professor Meera Nair's contributions to post-colonial literature have earned her international recognition. Her novels have been translated into 15 languages and are part of university curricula worldwide.",
+                tags: ["Academia", "Literature", "Writing"],
                 achievements: [
-                    "National Film Award for Best Documentary (2019)",
-                    "UN Women Empowerment Award (2020)",
-                    "TED Speaker on social change through media"
+                    "Sahitya Akademi Award (2010)",
+                    "Commonwealth Writers' Prize (2008)",
+                    "Visiting Professor at Oxford University (2015-2017)"
                 ],
                 career: [
-                    "Founder, ChangeLens Productions (2015-Present)",
-                    "Documentary Filmmaker, BBC India (2012-2015)"
+                    "Professor Emeritus, JNU (2010-Present)",
+                    "Department Head, Delhi University (1995-2010)",
+                    "Lecturer, Mangalore University (1985-1995)"
                 ],
-                image: null
+                image: "assets/img/ff.jpg"
             },
             {
                 id: 6,
-                name: "Dr. Arjun Menon",
-                degree: "PhD in Environmental Science",
-                year: "1995",
-                field: "science",
-                achievement: "Pioneer in sustainable agriculture and climate change mitigation",
-                bio: "Dr. Arjun Menon's research has helped develop climate-resilient crops that are now used by millions of farmers across South Asia, significantly improving food security in vulnerable regions.",
-                tags: ["Science", "Environment", "Agriculture"],
+                name: "Mr Dayananda U",
+                degree: "Electrolyte Scientist",
+                year: "1985",
+                field: "academia",
+                achievement: "Data Scientist Microsoft Bangalore",
+                bio: "Professor Meera Nair's contributions to post-colonial literature have earned her international recognition. Her novels have been translated into 15 languages and are part of university curricula worldwide.",
+                tags: ["Academia", "Literature", "Writing"],
                 achievements: [
-                    "World Food Prize Laureate (2018)",
-                    "UN Climate Action Award (2021)",
-                    "Developed 5 climate-resilient crop varieties"
+                    "Sahitya Akademi Award (2010)",
+                    "Commonwealth Writers' Prize (2008)",
+                    "Visiting Professor at Oxford University (2015-2017)"
                 ],
                 career: [
-                    "Director, International Crop Research Institute (2010-Present)",
-                    "Senior Scientist, ICAR (1995-2010)"
+                    "Professor Emeritus, JNU (2010-Present)",
+                    "Department Head, Delhi University (1995-2010)",
+                    "Lecturer, Mangalore University (1985-1995)"
                 ],
-                image: null
+                image: "assets/img/gg.jpg"
             },
-            {
-                id: 7,
-                name: "Dr. Kavita Singh",
-                degree: "PhD in Chemistry",
-                year: "2001",
-                field: "science",
-                achievement: "Developed innovative water purification technology",
-                bio: "Dr. Kavita Singh's research in nanomaterials has led to the development of affordable water purification systems that are used in rural communities across India.",
-                tags: ["Science", "Chemistry", "Environment"],
-                achievements: [
-                    "National Innovation Award (2018)",
-                    "Published 50+ research papers",
-                    "Patent for water purification technology"
-                ],
-                career: [
-                    "Professor, IIT Delhi (2015-Present)",
-                    "Research Scientist, CSIR (2005-2015)",
-                    "Postdoctoral Fellow, Cambridge University (2001-2005)"
-                ],
-                image: null
-            },
-            {
-                id: 8,
-                name: "Vikram Joshi",
-                degree: "Bachelor of Business Administration",
-                year: "2010",
-                field: "business",
-                achievement: "Founded successful fintech startup valued at $500M",
-                bio: "Vikram Joshi identified a gap in the financial services market and built a fintech platform that has transformed how small businesses access credit.",
-                tags: ["Business", "Finance", "Entrepreneurship"],
-                achievements: [
-                    "Forbes Asia 30 Under 30 (2018)",
-                    "Economic Times Startup of the Year (2019)",
-                    "Featured in TechCrunch Disrupt"
-                ],
-                career: [
-                    "Founder & CEO, FinTech Solutions (2015-Present)",
-                    "Product Manager, Paytm (2012-2015)",
-                    "Business Analyst, HDFC Bank (2010-2012)"
-                ],
-                image: null
-            }
+           
         ];
 
         // Pagination variables
         let currentPage = 1;
-        const alumniPerPage = 6;
+        const alumniPerPage = 5;
 
         // Initialize Page
         document.addEventListener('DOMContentLoaded', function() {
             // Start counting animations
             startCountingAnimation();
             
-            // Render alumni grid with pagination
-            renderAlumniGrid(currentPage);
+            // Render alumni cards with pagination
+            renderAlumniCards(currentPage);
             
             // Setup event listeners
             setupEventListeners();
@@ -952,9 +1257,9 @@
             window.requestAnimationFrame(step);
         }
 
-        // Render Alumni Grid with Pagination
-        function renderAlumniGrid(page) {
-            const alumniGrid = document.getElementById('alumniGrid');
+        // Render Alumni Cards with Pagination
+        function renderAlumniCards(page) {
+            const alumniContainer = document.getElementById('alumniCardsContainer');
             const pagination = document.getElementById('pagination');
             
             // Calculate pagination
@@ -965,33 +1270,36 @@
             
             // Render alumni cards
             if (paginatedAlumni.length === 0) {
-                alumniGrid.innerHTML = `
-                    <div class="empty-state" style="grid-column: 1 / -1;">
+                alumniContainer.innerHTML = `
+                    <div class="empty-state">
                         <i class="bi bi-search"></i>
                         <h3>No Alumni Found</h3>
                         <p>Try adjusting your search or filters to find notable alumni.</p>
                     </div>
                 `;
             } else {
-                alumniGrid.innerHTML = '';
+                alumniContainer.innerHTML = '';
                 
-                paginatedAlumni.forEach(alumni => {
+                paginatedAlumni.forEach((alumni, index) => {
                     const alumniCard = document.createElement('div');
                     alumniCard.className = 'alumni-card';
                     alumniCard.setAttribute('data-id', alumni.id);
+                    
+                    // Add staggered animation delay
+                    alumniCard.style.animationDelay = `${index * 0.1}s`;
                     
                     // Create initials for avatar
                     const names = alumni.name.split(' ');
                     const initials = names[0].charAt(0) + (names[1] ? names[1].charAt(0) : '');
                     
                     alumniCard.innerHTML = `
-                        <div class="alumni-image">
+                        <div class="alumni-card-image">
                             ${alumni.image ? 
                                 `<img src="${alumni.image}" alt="${alumni.name}">` : 
-                                `<span>${initials}</span>`
+                                `<div style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.5rem; border-radius: 12px;">${initials}</div>`
                             }
                         </div>
-                        <div class="alumni-content">
+                        <div class="alumni-card-content">
                             <h3 class="alumni-name">${alumni.name}</h3>
                             <div class="alumni-degree">${alumni.degree}</div>
                             <div class="alumni-year">Class of ${alumni.year}</div>
@@ -1001,11 +1309,15 @@
                                     <i class="bi bi-eye"></i>
                                     View Profile
                                 </button>
+                                <button class="btn btn-outline">
+                                    <i class="bi bi-share"></i>
+                                    Share
+                                </button>
                             </div>
                         </div>
                     `;
                     
-                    alumniGrid.appendChild(alumniCard);
+                    alumniContainer.appendChild(alumniCard);
                 });
             }
             
@@ -1026,13 +1338,25 @@
             
             // Previous button
             if (currentPage > 1) {
-                paginationHTML += `<button class="pagination-btn" onclick="changePage(${currentPage - 1})">Previous</button>`;
+                paginationHTML += `<button class="pagination-btn" onclick="changePage(${currentPage - 1})">
+                    <i class="bi bi-chevron-left"></i> Previous
+                </button>`;
             } else {
-                paginationHTML += `<button class="pagination-btn disabled">Previous</button>`;
+                paginationHTML += `<button class="pagination-btn disabled">
+                    <i class="bi bi-chevron-left"></i> Previous
+                </button>`;
             }
             
             // Page numbers
-            for (let i = 1; i <= totalPages; i++) {
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
                 if (i === currentPage) {
                     paginationHTML += `<button class="pagination-btn active">${i}</button>`;
                 } else {
@@ -1042,9 +1366,13 @@
             
             // Next button
             if (currentPage < totalPages) {
-                paginationHTML += `<button class="pagination-btn" onclick="changePage(${currentPage + 1})">Next</button>`;
+                paginationHTML += `<button class="pagination-btn" onclick="changePage(${currentPage + 1})">
+                    Next <i class="bi bi-chevron-right"></i>
+                </button>`;
             } else {
-                paginationHTML += `<button class="pagination-btn disabled">Next</button>`;
+                paginationHTML += `<button class="pagination-btn disabled">
+                    Next <i class="bi bi-chevron-right"></i>
+                </button>`;
             }
             
             pagination.innerHTML = paginationHTML;
@@ -1053,7 +1381,7 @@
         // Change page
         function changePage(page) {
             currentPage = page;
-            renderAlumniGrid(currentPage);
+            renderAlumniCards(currentPage);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -1145,7 +1473,7 @@
 
         // Filter Alumni
         function filterAlumni() {
-            renderAlumniGrid(currentPage);
+            renderAlumniCards(currentPage);
         }
 
         // View Alumni Detail
