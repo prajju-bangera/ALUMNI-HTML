@@ -949,7 +949,31 @@
             .alumni-name {
                 font-size: 1.5rem;
             }
+         .alumni-card-image img {
+            width: 100%;
+            height: 180%;
+            object-fit: cover;
+            margin-top: 83px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+            position: relative;
+            z-index: 2;
         }
+        }
+               @media (max-width: 480px) {
+            .alumni-card-image img {
+            width: 100%;
+            height: 180%;
+            object-fit: cover;
+            margin-top: 83px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+               }
     </style>
 </head>
 <body>
@@ -1309,10 +1333,7 @@
                                     <i class="bi bi-eye"></i>
                                     View Profile
                                 </button>
-                                <button class="btn btn-outline">
-                                    <i class="bi bi-share"></i>
-                                    Share
-                                </button>
+                       
                             </div>
                         </div>
                     `;

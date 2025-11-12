@@ -1079,6 +1079,186 @@
                 transform: translateY(0);
             }
         }
+        /* Small phones (320px - 480px) */
+@media (max-width: 480px) {
+    .an-header {
+        padding: 0.75rem;
+    }
+    
+    .an-nav-buttons {
+        gap: 0.5rem;
+    }
+    
+    .an-nav-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    .an-header-title {
+        font-size: 1.2rem;
+    }
+    
+    .an-hero {
+        padding: 2rem 0.75rem;
+    }
+    
+    .an-hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .an-hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .an-stats-section {
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .an-stats-title {
+        font-size: 1.3rem;
+    }
+    
+    .an-location-stats {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .an-location-stat {
+        padding: 1.25rem 0.75rem;
+    }
+    
+    .an-stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .an-stat-label {
+        font-size: 0.85rem;
+    }
+    
+    .an-main-content {
+        padding: 0 0.75rem 1.5rem;
+    }
+    
+    .an-section-header {
+        padding-top: 1rem;
+    }
+    
+    .an-section-title {
+        font-size: 1.3rem;
+    }
+    
+    .an-search-filters {
+        gap: 0.5rem;
+    }
+    
+    .an-search-input,
+    .an-filter-select,
+    .an-custom-select-header {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .an-search-icon {
+        left: 0.6rem;
+    }
+    
+    /* Updated: Display 2 cards per row on mobile */
+    .an-alumni-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .an-alumni-card {
+        animation-delay: 0s !important; /* Remove staggered animation on mobile */
+    }
+    
+    .an-card-header {
+        padding: 0.75rem;
+    }
+    
+    .an-profile-image {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .an-profile-name {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .an-profile-batch {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.4rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .an-profile-occupation {
+        font-size: 0.75rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .an-profile-email {
+        font-size: 0.7rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .an-profile-location {
+        font-size: 0.65rem;
+    }
+    
+    .an-card-footer {
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .an-view-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.7rem;
+    }
+    
+    .an-popup-content {
+        max-width: 100%;
+    }
+    
+    .an-popup-header {
+        padding: 1.25rem;
+    }
+    
+    .an-popup-contact {
+        padding: 1.25rem;
+    }
+    
+    .an-popup-footer {
+        padding: 1rem 1.25rem;
+    }
+}
+
+/* Extra Small Phones (320px - 360px) */
+@media (max-width: 360px) {
+    .an-alumni-grid {
+grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .an-nav-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .an-nav-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .an-hero-title {
+        font-size: 1.4rem;
+    }
+    
+    .an-profile-image {
+        width: 50px;
+        height: 50px;
+    }
+}
     </style>
 </head>
 <body>
@@ -1247,107 +1427,107 @@
         const sampleAlumni = [
             {
                 id: 1,
-                name: 'Dr. Rajesh Kumar',
-                batch: '1995',
-                email: 'rajesh.kumar@email.com',
+                name: 'Prof. P L Dharma',
+                batch: '1988',
+                email: 'dharma@email.com',
                 phone: '9876543210',
                 phoneVisibility: 'public',
-                address: '123 Tech Park, Koramangala, Bangalore - 560034, Karnataka, India',
-                degree: 'B.E. Computer Science',
-                department: 'Computer Science',
-                occupation: 'Senior Software Architect',
-                image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face'
+                address: '123 Tech Park, Koramangala, Mangalore - 560034, Karnataka, India',
+                degree: 'M.A political science',
+                department: 'Political Science',
+                occupation: 'Vice Chancellor, MAA',
+                image: 'assets/img/Dharma.jpg'
             },
             {
                 id: 2,
-                name: 'Prof. Anjali Sharma',
+                name: 'Subramanya. T',
                 batch: '1988',
-                email: 'anjali.sharma@mit.edu',
+                email: 'subramanya@mit.edu',
                 phone: '9123456789',
                 phoneVisibility: 'private',
                 address: '456 University Avenue, Boston, Massachusetts 02139, United States of America',
-                degree: 'M.Sc. Physics',
-                department: 'Physics',
-                occupation: 'Professor of Physics',
-                image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face'
+                degree: 'MSc. Statistics',
+                department: 'Statistics',
+                occupation: '',
+                image: 'assets/img/Subramanya.jpg'
             },
             {
                 id: 3,
-                name: 'Mr. Vikram Patel',
-                batch: '2005',
+                name: 'Sudha K',
+                batch: '1996',
                 email: 'vikram.patel@greenenergy.com',
-                phone: '9988776655',
+                phone: '9480015954',
                 phoneVisibility: 'public',
-                address: '789 Business Tower, Bandra Kurla Complex, Mumbai - 400051, Maharashtra, India',
+                address: 'Kadri,Mangalore, India',
                 degree: 'MBA',
                 department: 'Business Administration',
                 occupation: 'CEO, Green Energy Solutions',
-                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face'
+                image: 'assets/img/sudha.jpg'
             },
             {
                 id: 4,
-                name: 'Dr. Priya Nair',
+                name: 'Dr Ismail B',
                 batch: '1998',
                 email: 'priya.nair@nhi.gov.in',
-                phone: '9876512345',
+                phone: '9448546006',
                 phoneVisibility: 'private',
-                address: '321 Medical Complex, Saket, New Delhi - 110017, India',
+                address: 'Kairangala, DK, Karnataka, India',
                 degree: 'MBBS, MD',
                 department: 'Medicine',
                 occupation: 'Chief Medical Officer',
-                image: 'https://images.unsplash.com/photo-1551836026-d5c88ac5c4fa?w=300&h=300&fit=crop&crop=face'
+                image: 'assets/img/ismail.jpg'
             },
             {
                 id: 5,
-                name: 'Ms. Meera Krishnan',
-                batch: '2010',
+                name: 'Pradeep D Souza;',
+                batch: '1995',
                 email: 'meera.krishnan@artist.com',
                 phone: '9123487654',
                 phoneVisibility: 'public',
-                address: '567 Art Studio, Kensington, London SW7 2AZ, United Kingdom',
-                degree: 'BFA Fine Arts',
-                department: 'Fine Arts',
+                address: 'Mangalore, India',
+                degree: 'MSC statistics',
+                department: 'Statistics',
                 occupation: 'Professional Artist & Curator',
-                image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop&crop=face'
+                image: 'assets/img/praveen.jpg'
             },
             {
                 id: 6,
-                name: 'Dr. Arjun Menon',
-                batch: '2000',
+                name: 'V G Bhat',
+                batch: '1988',
                 email: 'arjun.menon@globalpharma.com',
-                phone: '9876598765',
+                phone: '9448240975',
                 phoneVisibility: 'private',
-                address: '654 Research Park, Whitefield, Bangalore - 560066, Karnataka, India',
-                degree: 'M.Sc. Chemistry, PhD',
-                department: 'Chemistry',
+                address: 'Nehrnagar, Puttur, Karnataka, India',
+                degree: 'MSc. Statistics',
+                department: 'Statistics',
                 occupation: 'Research Director',
-                image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face'
+                image: 'assets/img/VG.jpg'
             },
             {
                 id: 7,
-                name: 'Ms. Sanjana Rao',
-                batch: '2015',
+                name: 'Dr N Balakrishna',
+                batch: '1986',
                 email: 'sanjana.rao@techcorp.com',
                 phone: '9123456780',
                 phoneVisibility: 'public',
                 address: '789 Innovation Hub, Hitech City, Hyderabad - 500081, Telangana, India',
-                degree: 'B.Tech Computer Science',
-                department: 'Computer Science',
-                occupation: 'Product Manager',
-                image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop&crop=face'
+                degree: 'Phd',
+                department: 'Statistics',
+                occupation: 'Professor of statistics',
+                image: 'assets/img/balakrisna.jpg'
             },
             {
                 id: 8,
-                name: 'Mr. Rohan Desai',
-                batch: '2012',
+                name: 'Ramakrishna Rao',
+                batch: '1998',
                 email: 'rohan.desai@finance.com',
                 phone: '9123456781',
                 phoneVisibility: 'private',
-                address: '456 Business Bay, Downtown Dubai, UAE',
+                address: 'Mangalore, India',
                 degree: 'MBA Finance',
                 department: 'Business Administration',
                 occupation: 'Investment Banker',
-                image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face'
+                image: 'assets/img/ramakrishna.jpg'
             },
             {
                 id: 9,

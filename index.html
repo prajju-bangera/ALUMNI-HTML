@@ -2794,7 +2794,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <!-- Gallery Section -->
-<!-- ======= Gallery Section ======= -->
+
 <section id="gallery" class="gallery section">
   <div class="container section-title">
     <h2>Our Gallery</h2>
@@ -2830,10 +2830,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <i class="bi bi-chevron-left"></i> Previous
     </button>
 
-    <div class="pagination-numbers">
-      <button class="page-number active">1</button>
-      <button class="page-number">2</button>
-      <button class="page-number">3</button>
+    <div class="pagination-numbers" id="paginationNumbers">
+      <!-- Page numbers will be generated dynamically -->
     </div>
 
     <button class="pagination-btn next">
@@ -3184,24 +3182,20 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
   // Array of gallery image URLs
   const galleryImages = [
-    "https://tse3.mm.bing.net/th/id/OIP.U_VJuupQohwnzXcKMztqWgHaEo?pid=Api&P=0&h=180",
-    "https://tse2.mm.bing.net/th/id/OIP.7cRYFyLoDEDh4sRtM73vvwHaDg?pid=Api&P=0&h=180",
-    "https://tse4.mm.bing.net/th/id/OIP.th9PP5ztJug6QUp1lY0-BwHaEK?pid=Api&P=0&h=180",
-    "https://tse3.mm.bing.net/th/id/OIP.7-zyZ2NnUnnVlzYKB2ym0QHaE7?pid=Api&P=0&h=180",
-    "https://tse1.mm.bing.net/th/id/OIP.zB1rsS80G2GPbY0mMvKnigHaEK?pid=Api&P=0&h=180",
-    "https://tse1.mm.bing.net/th/id/OIP.zB1rsS80G2GPbY0mMvKnigHaEK?pid=Api&P=0&h=180",
-    "https://tse1.mm.bing.net/th/id/OIP.zB1rsS80G2GPbY0mMvKnigHaEK?pid=Api&P=0&h=180",
-    "https://tse1.mm.bing.net/th/id/OIP.zB1rsS80G2GPbY0mMvKnigHaEK?pid=Api&P=0&h=180",
-    "https://tse1.mm.bing.net/th/id/OIP.zB1rsS80G2GPbY0mMvKnigHaEK?pid=Api&P=0&h=180",
-    "https://tse1.mm.bing.net/th/id/OIP.zB1rsS80G2GPbY0mMvKnigHaEK?pid=Api&P=0&h=180",
-    "https://tse1.mm.bing.net/th/id/OIP.zB1rsS80G2GPbY0mMvKnigHaEK?pid=Api&P=0&h=180",
-    "https://tse1.mm.bing.net/th/id/OIP.zB1rsS80G2GPbY0mMvKnigHaEK?pid=Api&P=0&h=180"
-  ];
+    "assets/img/gallery1.jpg",
+    "assets/img/gallery2.jpg",
+    "assets/img/gallery3.jpg",
+    "assets/img/gallery4.jpg",
+    "assets/img/gallery5.jpg",
+    "assets/img/gallery6.jpg",    
+    "assets/img/gallery7.jpg",
+    "assets/img/gallery8.jpg",
+];
 
   const galleryGrid = document.getElementById("galleryGrid");
   const prevBtn = document.querySelector('.gallery-pagination .prev');
   const nextBtn = document.querySelector('.gallery-pagination .next');
-  const pageNumbers = document.querySelectorAll('.gallery-pagination .page-number');
+  const paginationNumbers = document.getElementById('paginationNumbers');
 
   // Lightbox elements
   const lightbox = document.getElementById("lightbox");
@@ -3251,6 +3245,65 @@ document.addEventListener('DOMContentLoaded', function() {
     updatePaginationState();
   }
 
+  // Generate dynamic pagination numbers
+  function generatePaginationNumbers() {
+    const totalPages = Math.ceil(galleryImages.length / itemsPerPage);
+    paginationNumbers.innerHTML = '';
+    
+    // Always show first page
+    addPageNumber(1);
+    
+    // Calculate range of pages to show
+    let startPage = Math.max(2, currentPage - 1);
+    let endPage = Math.min(totalPages - 1, currentPage + 1);
+    
+    // Add ellipsis after first page if needed
+    if (startPage > 2) {
+      addEllipsis();
+    }
+    
+    // Add middle pages
+    for (let i = startPage; i <= endPage; i++) {
+      addPageNumber(i);
+    }
+    
+    // Add ellipsis before last page if needed
+    if (endPage < totalPages - 1) {
+      addEllipsis();
+    }
+    
+    // Always show last page if there's more than one page
+    if (totalPages > 1) {
+      addPageNumber(totalPages);
+    }
+    
+    // Update active state
+    updatePaginationActiveState();
+  }
+  
+  function addPageNumber(pageNum) {
+    const pageElement = document.createElement('button');
+    pageElement.classList.add('page-number');
+    pageElement.textContent = pageNum;
+    pageElement.dataset.page = pageNum;
+    paginationNumbers.appendChild(pageElement);
+  }
+  
+  function addEllipsis() {
+    const ellipsis = document.createElement('div');
+    ellipsis.classList.add('page-ellipsis');
+    ellipsis.textContent = '...';
+    paginationNumbers.appendChild(ellipsis);
+  }
+  
+  function updatePaginationActiveState() {
+    const pageNumbers = document.querySelectorAll('.page-number');
+    pageNumbers.forEach(page => {
+      const pageNum = parseInt(page.dataset.page);
+      page.classList.toggle('active', pageNum === currentPage);
+    });
+  }
+
   // Update pagination state
   function updatePaginationState() {
     const totalPages = Math.ceil(galleryImages.length / itemsPerPage);
@@ -3261,13 +3314,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update next button
     nextBtn.disabled = currentPage === totalPages;
     
-    // Update page numbers active state
-    pageNumbers.forEach((page, index) => {
-      const pageNum = index + 1;
-      if (pageNum <= 3) { // Only update visible page numbers
-        page.classList.toggle('active', pageNum === currentPage);
-      }
-    });
+    // Generate pagination numbers
+    generatePaginationNumbers();
   }
 
   // Setup pagination listeners
@@ -3289,15 +3337,15 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    // Page numbers
-    pageNumbers.forEach(page => {
-      page.addEventListener('click', () => {
-        const pageNum = parseInt(page.textContent);
+    // Page numbers (delegated event listener)
+    paginationNumbers.addEventListener('click', (e) => {
+      if (e.target.classList.contains('page-number')) {
+        const pageNum = parseInt(e.target.dataset.page);
         if (!isNaN(pageNum)) {
           currentPage = pageNum;
           renderGallery();
         }
-      });
+      }
     });
   }
 
@@ -3912,430 +3960,435 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 
+ <style>
+ /* Full Width Footer Styles */
+        .site-footer {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: #e2e8f0;
+            width: 118%;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            overflow: hidden;
+        }
 
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
 
+        .site-footer__main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+        }
 
-<footer id="footer" class="footer dark-background">
-  <div class="container footer-top">
-    <div class="row gy-4">
-      <!-- About Section -->
-      <div class="col-lg-4 col-md-6 footer-about">
-        <a href="index.html" class="logo d-flex align-items-center">
-          <span class="sitename">Mangalore University Alumni Association (MAA)</span>
-        </a>
-        <div class="footer-contact pt-3">
-          <p>Mangalore University</p>
-          <p>Konaje, Dakshina Kannada, Karnataka 574199</p>
-          <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-          <p><strong>Email:</strong> <span>info@example.com</span></p>
-        </div>
-        <div class="mt-3">
-          <!-- <a href="login.html" class="btn btn-primary">Join Us</a> -->
-        </div>
-      </div>
+        .site-footer__sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
 
-      <!-- Quick Links Section -->
-      <div class="col-lg-4 col-md-6">
-        <div class="row">
-          <div class="col-6 footer-links">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#hero">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#about">About</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#team">Team</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="NotableAlumni.html">Alumni Achievers</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#clients">Events</a></li>
-            </ul>
-          </div>
-          <div class="col-6 footer-links">
-            <h4>&nbsp;</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#services">News</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#gallery">Gallery</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#contact">Contact Us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="AlumniNetwork.html">Alumni Network</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+        .site-footer__section {
+            padding: 0 10px;
+        }
 
-      <!-- Newsletter & Social Section -->
-      <div class="col-lg-4 col-md-12 footer-newsletter">
-        <h4>Connect With Us</h4>
-        <p>Stay updated with the latest news and events from Mangalore University Alumni Association</p>
-        <div class="social-links d-flex mt-4">
-          <!-- <a href=""><i class="bi bi-twitter-x"></i></a> -->
-          <a href=""><i class="bi bi-facebook"></i></a>
-          <a href=""><i class="bi bi-instagram"></i></a>
-          <a href=""><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
+        .site-footer__section-title {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
 
-  <!-- Copyright Section -->
-  <div class="container copyright text-center mt-4">
-    <p>© <span>Copyright</span> <strong class="px-1 sitename">Mangalore University Alumni Association(MAA)</strong> <span>All Rights Reserved</span></p>
-  </div>
-</footer>
+        .site-footer__section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
 
-<style>
-/* Footer Base Styles */
-.footer {
-  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-  color: #e2e8f0;
-  padding: 60px 0 20px;
-  position: relative;
-}
+        /* About Section */
+        .site-footer__about-logo {
+            text-decoration: none;
+            margin-bottom: 20px;
+            display: block;
+        }
 
-.footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-}
+        .site-footer__institution-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff5d34, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-.footer-top {
-  padding-bottom: 40px;
-  border-bottom: 1px solid #4a5568;
-}
+        .site-footer__contact-info {
+            margin-top: 20px;
+        }
 
-/* Footer About Section */
-.footer-about .logo {
-  text-decoration: none;
-  margin-bottom: 20px;
-  display: block;
-}
+        .site-footer__contact-line {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            color: #cbd5e0;
+        }
 
-.sitename {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: white;
-  background: rgb(255, 93, 52);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+        .site-footer__contact-line strong {
+            color: white;
+        }
 
-.footer-contact p {
-  margin-bottom: 8px;
-  line-height: 1.6;
-  color: #cbd5e0;
-}
+        /* Quick Links Section */
+        .site-footer__links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            /* margin-left: -52px; */
+        }
 
-.footer-contact p strong {
-  color: white;
-}
+        .site-footer__links-column {
+            display: flex;
+            flex-direction: column;
+        }
 
-.btn-primary {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border: none;
-  padding: 12px 30px;
-  border-radius: 25px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  color: white;
-  display: inline-block;
-}
+        .site-footer__links-list {
+            list-style: none;
+        }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-}
+        .site-footer__link-item {
+            margin-bottom: 12px;
+        }
 
-/* Footer Links */
-.footer-links h4 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 20px;
-  position: relative;
-}
+        .site-footer__page-link {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
 
+        .site-footer__link-icon {
+            color: #667eea;
+            margin-right: 8px;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
 
+        .site-footer__page-link:hover {
+            color: #667eea;
+            padding-left: 5px;
+        }
 
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+        .site-footer__page-link:hover .site-footer__link-icon {
+            transform: translateX(3px);
+        }
 
-.footer-links ul li {
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-}
+        /* Connect Section */
+        .site-footer__connect-text {
+            margin-bottom: 20px;
+            color: #cbd5e0;
+            line-height: 1.6;
+        }
 
-.footer-links ul li i {
-  color: #667eea;
-  font-size: 0.8rem;
-  margin-right: 8px;
-  transition: 0.3s;
-}
+        .site-footer__social-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
 
-.footer-links ul li a {
-  color: #cbd5e0;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-}
+        .site-footer__social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #4a5568;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
 
-.footer-links ul li a:hover {
-  color: #667eea;
-  padding-left: 5px;
-}
+        .site-footer__social-link:hover {
+            background: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.3);
+        }
 
-.footer-links ul li:hover i {
-  transform: translateX(3px);
-}
+        /* Bottom Section */
+        .site-footer__bottom-section {
+           
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            padding: 25px 0;
+            border-top: 1px solid #4a5568;
+        }
 
-/* Newsletter Section */
-.footer-newsletter h4 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 15px;
-  position: relative;
-}
+        .site-footer__bottom-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+                margin-top: -12px;
+              padding-bottom: 17px;
 
+        }
 
+        .site-footer__copyright {
+            color: #a0aec0;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
 
-.footer-newsletter p {
-  color: #cbd5e0;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
+        .site-footer__copyright strong {
+            background: linear-gradient(135deg, #ff5f20, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
 
-/* Social Links */
-.social-links {
-  gap: 15px;
+        .site-footer__legal-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
 
-  justify-content: flex-start;
-}
+        .site-footer__policy-link {
+            color: #cbd5e0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
 
-.social-links a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #4a5568;
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 1.1rem;
-}
+        .site-footer__policy-link:hover {
+            color: #667eea;
+        }
 
-.social-links a:hover {
-  background: #667eea;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-}
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .site-footer__sections-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            
+            .site-footer__links-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
 
-/* Copyright Section */
-.copyright {
-  padding-top: 30px;
-  color: #a0aec0;
-  font-size: 0.9rem;
-}
-
-.copyright p {
-  margin-bottom: 10px;
-}
-
-.copyright .sitename {
-  font-size: 1rem;
-  background:rgb(255, 95, 32);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ========== MOBILE RESPONSIVE STYLES ========== */
-@media (max-width: 768px) {
-  .footer {
-    padding: 40px 0 20px;
+        @media (max-width: 768px) {
+            .site-footer__sections-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .site-footer__section {
+                text-align: center;
+                padding: 0 20px;
+            }
+            
+            .site-footer__section-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .site-footer__page-link {
+                justify-content: center;
+            }
+            
+            .site-footer__links-grid {
+                grid-template-columns: 1fr 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .site-footer__social-container {
+                justify-content: center;
+            }
+              /* ✅ FIX: Remove negative margin */
+  .site-footer__bottom-section {
+    margin-top: 0;
+    padding: 25px 0;
   }
+        }
 
-  .footer-top {
-    padding-bottom: 30px;
-  }
-
-  /* Stack columns vertically on mobile */
-  .row.gy-4 {
-    gap: 30px !important;
-  }
-
-  /* About Section Mobile */
-  .footer-about {
-    text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #4a5568;
-    margin-bottom: 20px;
-  }
-
-  .sitename {
-    font-size: 1.3rem;
-    display: block;
-    text-align: center;
-  }
-
-  .footer-contact {
-    text-align: center;
-  }
-
-  .footer-contact p {
-    font-size: 0.95rem;
-  }
-
-  /* Quick Links Mobile */
-  .footer-links {
-    text-align: center;
-    margin-bottom: 25px;
-  }
-
-  .footer-links h4 {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-  }
-
-  .footer-links h4::after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .footer-links ul li {
-    justify-content: center;
-  }
-
-  .footer-links ul li a {
-    font-size: 0.9rem;
+       @media (max-width: 576px) {
+  .site-footer__main-content {
+    padding: 40px 15px 30px;
   }
   
-
-  /* Make quick links columns stack on very small screens */
-  @media (max-width: 576px) {
-    .col-6.footer-links {
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .footer-links:last-child {
-      margin-bottom: 0;
-    }
+  .site-footer__links-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-left: -45px; /* removed negative margin */
   }
-
-  /* Newsletter Section Mobile */
-  .footer-newsletter {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #4a5568;
+  
+  .site-footer__legal-links {
+    gap: 15px;
   }
-
-  .footer-newsletter h4 {
-    font-size: 1.1rem;
-  }
-
-  .footer-newsletter h4::after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .footer-newsletter p {
-    font-size: 0.95rem;
-  }
-
-  /* Social Links Mobile */
-  .social-links {
-    justify-content: center;
-  }
-
-  .social-links a {
-    width: 45px;
-    height: 45px;
-    font-size: 1.2rem;
-  }
-
-  /* Copyright Mobile */
-  .copyright {
-    padding-top: 20px;
-  }
-
-  .copyright p {
-    font-size: 0.85rem;
-    line-height: 1.5;
-  }
-
-  .copyright .sitename {
-    font-size: 0.9rem;
-    display: block;
-    margin: 5px 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer {
-    padding: 30px 0 15px;
-  }
-
-  .sitename {
-    font-size: 1.2rem;
-  }
-
-  .btn-primary {
-    padding: 10px 25px;
-    font-size: 0.9rem;
-    width: 100%;
-    max-width: 200px;
-  }
-
-  .social-links a {
-    width: 42px;
-    height: 42px;
-    font-size: 1.1rem;
-  }
-
-  .copyright p {
-    font-size: 0.8rem;
-  }
-}
-
-/* Extra small devices */
-@media (max-width: 360px) {
-  .footer-links ul li {
-    margin-bottom: 8px;
-  }
-
-  .footer-links ul li a {
+  
+  .site-footer__policy-link {
     font-size: 0.85rem;
   }
-
-  .social-links {
-    gap: 10px;
+  
+  .site-footer__institution-name {
+    font-size: 1.3rem;
   }
 
-  .social-links a {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer {
-    padding-bottom: 90px !important;
-  }
-  .copyright {
-    margin-top: 25px;
+  /* ✅ FIX: Remove negative margin */
+  .site-footer__bottom-section {
+    margin-top: 0;
+    padding: 25px 0;
   }
 }
 
-</style>
+        @media (max-width: 360px) {
+            .site-footer__link-item {
+                margin-bottom: 8px;
+            }
+            
+            .site-footer__page-link {
+                font-size: 0.9rem;
+            }
+            
+            .site-footer__social-container {
+                gap: 10px;
+            }
+            
+            .site-footer__social-link {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+
+
+    <footer class="site-footer">
+        <div class="site-footer__main-content">
+            <div class="site-footer__sections-grid">
+                <!-- About Section -->
+                <div class="site-footer__section">
+                    <a href="index.html" class="site-footer__about-logo">
+                        <span class="site-footer__institution-name">Mangalore University Alumni Association (MAA)</span>
+                    </a>
+                    <div class="site-footer__contact-info">
+                        <p class="site-footer__contact-line">Mangalore University</p>
+                        <p class="site-footer__contact-line">Konaje, Dakshina Kannada, Karnataka 574199</p>
+                        <p class="site-footer__contact-line"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+                        <p class="site-footer__contact-line"><strong>Email:</strong> <span>info@example.com</span></p>
+                    </div>
+                </div>
+                
+                <!-- Quick Links Section -->
+                <div class="site-footer__section">
+                    <h3 class="site-footer__section-title">Quick Links</h3>
+                    <div class="site-footer__links-grid">
+                        <div class="site-footer__links-column">
+                            <ul class="site-footer__links-list">
+                                <li class="site-footer__link-item">
+                                    <a href="#hero" class="site-footer__page-link">
+                                        <i class="bi bi-chevron-right site-footer__link-icon"></i> Home
+                                    </a>
+                                </li>
+                                <li class="site-footer__link-item">
+                                    <a href="#about" class="site-footer__page-link">
+                                        <i class="bi bi-chevron-right site-footer__link-icon"></i> About
+                                    </a>
+                                </li>
+                                <li class="site-footer__link-item">
+                                    <a href="#team" class="site-footer__page-link">
+                                        <i class="bi bi-chevron-right site-footer__link-icon"></i> Team
+                                    </a>
+                                </li>
+                                <li class="site-footer__link-item">
+                                    <a href="NotableAlumni.html" class="site-footer__page-link">
+                                        <i class="bi bi-chevron-right site-footer__link-icon"></i> Alumni Achievers
+                                    </a>
+                                </li>
+                                <li class="site-footer__link-item">
+                                    <a href="#clients" class="site-footer__page-link">
+                                        <i class="bi bi-chevron-right site-footer__link-icon"></i> Events
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="site-footer__links-column">
+                            <ul class="site-footer__links-list">
+                                <li class="site-footer__link-item">
+                                    <a href="#services" class="site-footer__page-link">
+                                        <i class="bi bi-chevron-right site-footer__link-icon"></i> News
+                                    </a>
+                                </li>
+                                <li class="site-footer__link-item">
+                                    <a href="#gallery" class="site-footer__page-link">
+                                        <i class="bi bi-chevron-right site-footer__link-icon"></i> Gallery
+                                    </a>
+                                </li>
+                                <li class="site-footer__link-item">
+                                    <a href="#contact" class="site-footer__page-link">
+                                        <i class="bi bi-chevron-right site-footer__link-icon"></i> Contact Us
+                                    </a>
+                                </li>
+                                <li class="site-footer__link-item">
+                                    <a href="AlumniNetwork.html" class="site-footer__page-link">
+                                        <i class="bi bi-chevron-right site-footer__link-icon"></i> Alumni Network
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Connect Section -->
+                <div class="site-footer__section">
+                    <h3 class="site-footer__section-title">Connect With Us</h3>
+                    <p class="site-footer__connect-text">
+                        Stay updated with the latest news and events from Mangalore University Alumni Association
+                    </p>
+                    <div class="site-footer__social-container">
+                        <a href="#" class="site-footer__social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="site-footer__social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="site-footer__social-link"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="site-footer__bottom-section">
+                <div class="site-footer__bottom-content">
+                    <p class="site-footer__copyright">
+                        © <span>Copyright</span>
+                        <strong>Mangalore University Alumni Association(MAA)</strong>
+                        <span>All Rights Reserved</span>
+                    </p>
+                
+                    </div>
+                </div>
+        </div>
+        
+        </div>
+    </footer>
+
   </main>
 
   <!-- Scroll Top -->
@@ -4356,6 +4409,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <style>
+    /* Hide scrollbar for all elements */
+html, body {
+    overflow: auto;
+}
+
+/* Hide scrollbar but keep functionality */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* For Firefox */
+body {
+    scrollbar-width: none;
+    -ms-overflow-style: none; /* IE and Edge */
+}
+  </style>
 
 </body>
 
