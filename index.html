@@ -3176,6 +3176,36 @@ document.addEventListener('DOMContentLoaded', function() {
       justify-content: center;
       gap: 10px;  
   }
+  .lightbox-content{
+    height: 355px;
+    width: 403px;
+        display: block;
+    margin: auto;
+    max-width: 107%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+}
+  @media (max-width: 480px) {
+    .lightbox-content{
+    height: 355px;
+    width: 403px;
+        display: block;
+    margin: auto;
+    max-width: 107%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
 }
 </style>
 
